@@ -9,6 +9,12 @@ $container['renderer'] = function ($c) {
     return new Slim\Views\PhpRenderer($settings['template_path']);
 };
 
+// doctrine connection
+$container['db'] = function ($c) {
+    $settings = $c->get('settings')['db'];
+    return Doctrine\DBAL\DriverManager::getConnection($settings);
+};
+
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
