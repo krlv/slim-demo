@@ -44,4 +44,14 @@ $app->group('/api', function () {
         // Return empty response with 201 Created code
         return $response->withJson(null, 201);
     });
+
+    $this->put('/tasks/{task_id}', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tasks/{task_id}' route");
+
+        // TODO: update existing task
+
+        // Return empty response with 204 No Content code
+        return $response->withJson(null, 204);
+    });
 });
