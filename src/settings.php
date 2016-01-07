@@ -17,6 +17,13 @@ return [
             'driver'   => 'pdo_mysql',
         ],
 
+        // Redis settings
+        'redis' => [
+            'scheme' => 'tcp',
+            'host'   => '127.0.0.1',
+            'port'   => 6379
+        ],
+
         // Monolog settings
         'logger' => [
             'name' => 'slim-app',

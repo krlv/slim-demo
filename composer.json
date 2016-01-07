@@ -4,6 +4,7 @@
         "slim/slim": "~3.0",
         "slim/php-view": "^2.0",
         "doctrine/dbal": "~2.5.0",
+        "predis/predis": "^1.0",
         "monolog/monolog": "^1.17"
     },
     "require-dev": {
