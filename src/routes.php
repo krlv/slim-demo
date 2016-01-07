@@ -17,7 +17,7 @@ $app->group('/api', function () {
         // TODO: fetch list of tasks
         $tasks = [];
 
-        // Render index view
+        // Return response as JSON
         return $response->withJson(['tasks' => $tasks]);
     });
 
@@ -31,7 +31,17 @@ $app->group('/api', function () {
             'title' => 'Task ' . $args['task_id'],
         ];
 
-        // Render index view
+        // Return response as JSON
         return $response->withJson(['task' => $task]);
+    });
+
+    $this->post('/tasks', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tasks' route");
+
+        // TODO: save new task
+
+        // Return empty response with 201 Created code
+        return $response->withJson(null, 201);
     });
 });
