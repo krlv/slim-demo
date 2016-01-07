@@ -20,4 +20,18 @@ $app->group('/api', function () {
         // Render index view
         return $response->withJson(['tasks' => $tasks]);
     });
+
+    $this->get('/tasks/{task_id}', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tasks/{task_id}' route");
+
+        // TODO: fetch task by ID
+        $task = [
+            'id'    => $args['task_id'],
+            'title' => 'Task ' . $args['task_id'],
+        ];
+
+        // Render index view
+        return $response->withJson(['task' => $task]);
+    });
 });
