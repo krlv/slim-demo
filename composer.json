@@ -5,6 +5,7 @@
         "slim/php-view": "^2.0",
         "doctrine/dbal": "~2.5.0",
         "predis/predis": "^1.0",
+        "ruflin/elastica": "dev-master",
         "monolog/monolog": "^1.17"
     },
     "require-dev": {

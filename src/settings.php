@@ -24,6 +24,12 @@ return [
             'port'   => 6379
         ],
 
+        // ElasticSearch settings
+        'search' => [
+            'host'   => '10.10.10.12',
+            'port'   => 9200
+        ],
+
         // Monolog settings
         'logger' => [
             'name' => 'slim-app',
