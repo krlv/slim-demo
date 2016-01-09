@@ -12,9 +12,6 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 $app->group('/api', function () {
     // Tasks API
     $this->get('/tasks', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tasks' route");
-
         // TODO: fetch list of tasks
         $tasks = [];
 
@@ -23,9 +20,6 @@ $app->group('/api', function () {
     });
 
     $this->get('/tasks/{task_id}', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tasks/{task_id}' route");
-
         // TODO: fetch task by ID
         $task = [
             'id'    => $args['task_id'],
@@ -37,9 +31,6 @@ $app->group('/api', function () {
     });
 
     $this->post('/tasks', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tasks' route");
-
         // TODO: save new task
 
         // Return empty response with 201 Created code
@@ -47,9 +38,6 @@ $app->group('/api', function () {
     });
 
     $this->put('/tasks/{task_id}', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tasks/{task_id}' route");
-
         // TODO: update existing task
 
         // Return empty response with 204 No Content code
@@ -58,9 +46,6 @@ $app->group('/api', function () {
 
     // Categories API
     $this->get('/categories', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/categories' route");
-
         // TODO: fetch list of categories
         $categories = [];
 
@@ -69,9 +54,6 @@ $app->group('/api', function () {
     });
 
     $this->get('/categories/{category_id}', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/categories/{category_id}' route");
-
         // TODO: fetch category by ID
         $task = [
             'id'    => $args['category_id'],
@@ -83,9 +65,6 @@ $app->group('/api', function () {
     });
 
     $this->post('/categories', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/categories' route");
-
         // TODO: save new category
 
         // Return empty response with 201 Created code
@@ -93,9 +72,6 @@ $app->group('/api', function () {
     });
 
     $this->put('/categories/{category_id}', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/categories/{category_id}' route");
-
         // TODO: update existing category
 
         // Return empty response with 204 No Content code
@@ -104,9 +80,6 @@ $app->group('/api', function () {
 
     // Tags API
     $this->get('/tags', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tags' route");
-
         // TODO: fetch list of available tags
         $tags = [];
 
@@ -115,9 +88,6 @@ $app->group('/api', function () {
     });
 
     $this->get('/tags/{tag_id}', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tags/{tag_id}' route");
-
         // TODO: fetch category by ID
         $task = [
             'id'    => $args['tag_id'],
@@ -129,12 +99,17 @@ $app->group('/api', function () {
     });
 
     $this->post('/tags', function ($request, $response, $args) {
-        // Sample log message
-        $this->logger->info("Slim-Skeleton '/api/tags' route");
-
         // TODO: add new tag
 
         // Return empty response with 201 Created code
         return $response->withJson(null, 201);
     });
+    
+})->add(function ($request, $response, $next) {
+    $route = $request->getAttribute('route');
+
+    // Sample log message
+    $this->logger->info("Slim-Skeleton '{$route->getPattern ()}' route");
+
+    return $next($request, $response);
 });

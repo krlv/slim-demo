@@ -2,6 +2,7 @@
 return [
     'settings' => [
         'displayErrorDetails' => true,
+        'determineRouteBeforeAppMiddleware' => true,
 
         // Renderer settings
         'renderer' => [
