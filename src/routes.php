@@ -10,6 +10,7 @@ $app->get('/[{name}]', function ($request, $response, $args) {
 });
 
 $app->group('/api', function () {
+    // Tasks API
     $this->get('/tasks', function ($request, $response, $args) {
         // Sample log message
         $this->logger->info("Slim-Skeleton '/api/tasks' route");
@@ -55,6 +56,7 @@ $app->group('/api', function () {
         return $response->withJson(null, 204);
     });
 
+    // Categories API
     $this->get('/categories', function ($request, $response, $args) {
         // Sample log message
         $this->logger->info("Slim-Skeleton '/api/categories' route");
@@ -68,7 +70,7 @@ $app->group('/api', function () {
 
     $this->get('/categories/{category_id}', function ($request, $response, $args) {
         // Sample log message
-        $this->logger->info("Slim-Skeleton '/categories/{category_id}' route");
+        $this->logger->info("Slim-Skeleton '/api/categories/{category_id}' route");
 
         // TODO: fetch category by ID
         $task = [
@@ -98,5 +100,41 @@ $app->group('/api', function () {
 
         // Return empty response with 204 No Content code
         return $response->withJson(null, 204);
+    });
+
+    // Tags API
+    $this->get('/tags', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tags' route");
+
+        // TODO: fetch list of available tags
+        $tags = [];
+
+        // Return response as JSON
+        return $response->withJson(['tags' => $tags]);
+    });
+
+    $this->get('/tags/{tag_id}', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tags/{tag_id}' route");
+
+        // TODO: fetch category by ID
+        $task = [
+            'id'    => $args['tag_id'],
+            'title' => 'Tag ' . $args['tag_id'],
+        ];
+
+        // Return response as JSON
+        return $response->withJson(['task' => $task]);
+    });
+
+    $this->post('/tags', function ($request, $response, $args) {
+        // Sample log message
+        $this->logger->info("Slim-Skeleton '/api/tags' route");
+
+        // TODO: add new tag
+
+        // Return empty response with 201 Created code
+        return $response->withJson(null, 201);
     });
 });
