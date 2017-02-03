@@ -7,7 +7,6 @@
             "email": "eug.krlv@gmail.com"
         }
     ],
-
     "require": {
         "php": ">=7.0",
         "slim/slim": "~3.0",
@@ -29,6 +28,7 @@
         }
     },
     "config": {
+        "bin-dir": "bin/",
         "preferred-install": "dist"
     }
 }
