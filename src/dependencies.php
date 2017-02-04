@@ -15,18 +15,6 @@ $container['db'] = function ($c) {
     return Doctrine\DBAL\DriverManager::getConnection($settings);
 };
 
-// redis client
-$container['redis'] = function ($c) {
-    $settings = $c->get('settings')['redis'];
-    return new Predis\Client($settings);
-};
-
-// ElasticSearch client
-$container['search'] = function ($c) {
-    $settings = $c->get('settings')['search'];
-    return new Elastica\Client($settings);
-};
-
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
