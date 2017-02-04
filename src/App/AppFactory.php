@@ -1,7 +1,5 @@
 <?php
-namespace Skeletn\App;
-
-use Slim\App;
+namespace Skeleton\App;
 
 /**
  * Class AppFactory
@@ -16,11 +14,15 @@ final class AppFactory
      * @param array $config
      * @param bool $debug
      *
-     * @return App
+     * @return SkeletonApp
      */
-    public static function createApp($config, $debug = false)
+    public static function createApp(array $config, bool $debug = false): SkeletonApp
     {
-        return (new App($config, $debug));
+        return (new SkeletonApp($config))
+            ->registerServices()
+            ->registerMiddleware()
+            ->registerRoutes()
+        ;
     }
 
     /**
@@ -29,10 +31,14 @@ final class AppFactory
      * @param array $config
      * @param bool $debug
      *
-     * @return App
+     * @return SkeletonApp
      */
-    public static function createTestApp($config, $debug = true)
+    public static function createTestApp(array $config, bool $debug = true): SkeletonApp
     {
-        return (new App($config, $debug));
+        return (new SkeletonApp($config))
+            ->registerServices()
+            ->registerMiddleware()
+            ->registerRoutes()
+        ;
     }
 }

@@ -19,12 +19,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Skeletn\\": "src/"
+            "Skeleton\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Skeletn\\Test\\": "tests/"
+            "Skeleton\\Test\\": "tests/"
         }
     },
     "config": {

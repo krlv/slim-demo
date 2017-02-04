@@ -1,20 +1,18 @@
 <?php
-namespace Skeletn\Tests\Functional;
+namespace Skeleton\Tests\Functional;
 
-use Skeletn\App\AppFactory;
-use Slim\App;
+use Skeleton\App\AppFactory;
+use Skeleton\App\SkeletonApp;
 
 /**
  * Base class functional tests
- *
- * @package Skeletn\Tests\Functional
  */
 class WebTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
     * Application instance
     *
-    * @var App
+    * @var SkeletonApp
     */
     protected $app;
 
@@ -46,7 +44,7 @@ class WebTestCase extends \PHPUnit_Framework_TestCase
     /**
     * Creates the application
     *
-    * @return App
+    * @return SkeletonApp
     */
     public function createApplication()
     {
