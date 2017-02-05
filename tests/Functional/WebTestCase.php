@@ -1,5 +1,5 @@
 <?php
-namespace Skeleton\Tests\Functional;
+namespace Skeleton\Test\Functional;
 
 use Skeleton\App\AppFactory;
 use Skeleton\App\SkeletonApp;
@@ -7,7 +7,7 @@ use Skeleton\App\SkeletonApp;
 /**
  * Base class functional tests
  */
-class WebTestCase extends \PHPUnit_Framework_TestCase
+class WebTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
     * Application instance

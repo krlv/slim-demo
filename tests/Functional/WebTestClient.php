@@ -1,5 +1,5 @@
 <?php
-namespace Skeleton\Tests\Functional;
+namespace Skeleton\Test\Functional;
 
 use Slim\App;
 use Slim\Http;
