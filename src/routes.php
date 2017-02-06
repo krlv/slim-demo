@@ -16,7 +16,16 @@ $this->group('/api', function () {
     // Tasks API
     $this->get('/tasks', function (Request $request, Response $response, array $args) {
         // TODO: fetch list of tasks
-        $tasks = [];
+        $tasks = [
+            [
+                'id'    => 1,
+                'title' => 'Task 1',
+            ],
+            [
+                'id'    => 2,
+                'title' => 'Task 2',
+            ],
+        ];
 
         // Return response as JSON
         return $response->withJson(['tasks' => $tasks]);
@@ -35,13 +44,24 @@ $this->group('/api', function () {
 
     $this->post('/tasks', function (Request $request, Response $response, array $args) {
         // TODO: save new task
+        $task = $request->getParsedBody();
+        $task = array_merge(['id' => '1'], $task);
 
-        // Return empty response with 201 Created code
-        return $response->withJson(null, 201);
+        // Return response as JSON with 201 Created code
+        return $response->withJson(['task' => $task], 201);
     });
 
     $this->put('/tasks/{task_id}', function (Request $request, Response $response, array $args) {
         // TODO: update existing task
+        $task = $request->getParsedBody();
+        $task = array_merge(['id' => $args['task_id']], $task);
+
+        // Return response as JSON
+        return $response->withJson(['task' => $task]);
+    });
+
+    $this->delete('/tasks/{task_id}', function (Request $request, Response $response, array $args) {
+        // TODO: delete existing task
 
         // Return empty response with 204 No Content code
         return $response->withJson(null, 204);
