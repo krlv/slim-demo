@@ -53,11 +53,12 @@ class WebTestClient
      * @param string $uri
      * @param array $params
      * @param array $server
+     * @param array $content
      *
      * @throws \Slim\Exception\MethodNotAllowedException
      * @throws \Slim\Exception\NotFoundException
      */
-    public function request($method, $uri, array $params = [], array $server = [])
+    public function request($method, $uri, array $params = [], array $server = [], array $content = [])
     {
         $method = strtoupper($method);
         switch ($method) {
@@ -82,7 +83,11 @@ class WebTestClient
         ]);
         $env = Http\Environment::mock($server);
 
-        $request  = Http\Request::createFromEnvironment($env);
+        $request = Http\Request::createFromEnvironment($env);
+        if (!empty($content)) {
+            $request = $request->withParsedBody($content);
+        }
+
         $response = new Http\Response();
         $response = $this->app->__invoke($request, $response);
 
