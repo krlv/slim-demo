@@ -6,7 +6,7 @@ return [
 
         // Renderer settings
         'renderer' => [
-            'template_path' => __DIR__ . '/../templates/',
+            'template_path' => __DIR__ . '/templates/',
         ],
 
         // Database settings
@@ -20,8 +20,8 @@ return [
 
         // Monolog settings
         'logger' => [
-            'name' => 'slim-app',
-            'path' => __DIR__ . '/../logs/app.log',
+            'name' => 'skeleton-app',
+            'path' => __DIR__ . '/logs/app.log',
         ],
     ],
 ];
