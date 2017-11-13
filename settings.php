@@ -10,7 +10,7 @@ return [
         ],
 
         // Database settings
-        'db' => [
+        'dbal' => [
             'dbname'   => 'skeleton',
             'user'     => 'homestead',
             'password' => 'secret',
