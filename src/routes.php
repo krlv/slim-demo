@@ -6,7 +6,7 @@ use Slim\Http\Response;
 
 $this->get('/[{name}]', function (Request $request, Response $response, array $args) {
     // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
+    $this->logger->info("dispatching '/' route");
 
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
@@ -132,7 +132,7 @@ $this->group('/api', function () {
     $route = $request->getAttribute('route');
 
     // Sample log message
-    $this->logger->info("Slim-Skeleton '{$route->getPattern ()}' route");
+    $this->logger->info("dispatching '{$route->getPattern ()}' route");
 
     return $next($request, $response);
 });
