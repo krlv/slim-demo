@@ -2,6 +2,10 @@
 namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
+use Skeleton\App\Controller\CategoriesController;
+use Skeleton\App\Controller\HomeController;
+use Skeleton\App\Controller\TagsController;
+use Skeleton\App\Controller\TasksController;
 
 class SkeletonApp extends \Slim\App
 {
@@ -10,13 +14,37 @@ class SkeletonApp extends \Slim\App
      *
      * @return SkeletonApp
      */
-    public function registerServices(): SkeletonApp
+    public function registerServices(): self
     {
         $this
             ->register(new Provider\RendererServiceProvider())
             ->register(new Provider\DbalServiceProvider())
             ->register(new Provider\LoggerServiceProvider())
         ;
+
+        return $this;
+    }
+
+    /**
+     * Registers application's controllers
+     *
+     * @return SkeletonApp
+     */
+    public function registerControllers(): self
+    {
+        $pimple = $this->getContainer();
+
+        $pimple['tasks_controller'] = function () {
+            return new TasksController();
+        };
+
+        $pimple['categories_controller'] = function () {
+            return new CategoriesController();
+        };
+
+        $pimple['tags_controller'] = function () {
+            return new TagsController();
+        };
 
         return $this;
     }
@@ -34,7 +62,7 @@ class SkeletonApp extends \Slim\App
     }
 
     /**
-     * Registers application routes
+     * Registers application's routes
      *
      * @return SkeletonApp
      */
