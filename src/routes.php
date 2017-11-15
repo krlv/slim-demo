@@ -1,18 +1,8 @@
 <?php
 // Routes
 
-use Slim\Http\Request;
-use Slim\Http\Response;
-
 $this->group('', function () {
     $this->get('/[{name}]', 'home_controller:indexAction');
-})->add(function (Request $request, Response $response, callable $next) {
-    $route = $request->getAttribute('route');
-
-    // Sample log message
-    $this->logger->info("dispatching '{$route->getPattern ()}' route");
-
-    return $next($request, $response);
 });
 
 $this->group('/api', function () {
@@ -33,12 +23,4 @@ $this->group('/api', function () {
     $this->get('/tags', 'tags_controller:getTagsAction');
     $this->get('/tags/{tag_id}', 'tags_controller:getTagAction');
     $this->post('/tags', 'tags_controller:createTagAction');
-    
-})->add(function (Request $request, Response $response, callable $next) {
-    $route = $request->getAttribute('route');
-
-    // Sample log message
-    $this->logger->info("dispatching '{$route->getPattern ()}' route");
-
-    return $next($request, $response);
 });
