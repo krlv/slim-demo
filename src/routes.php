@@ -4,12 +4,15 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-$this->get('/[{name}]', function (Request $request, Response $response, array $args) {
-    // Sample log message
-    $this->logger->info("dispatching '/' route");
+$this->group('', function () {
+    $this->get('/[{name}]', 'home_controller:indexAction');
+})->add(function (Request $request, Response $response, callable $next) {
+    $route = $request->getAttribute('route');
 
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
+    // Sample log message
+    $this->logger->info("dispatching '{$route->getPattern ()}' route");
+
+    return $next($request, $response);
 });
 
 $this->group('/api', function () {

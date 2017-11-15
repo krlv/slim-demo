@@ -34,6 +34,10 @@ class SkeletonApp extends \Slim\App
     {
         $pimple = $this->getContainer();
 
+        $pimple['home_controller'] = function (\Slim\Container $c) {
+            return new HomeController($c['renderer']);
+        };
+
         $pimple['tasks_controller'] = function () {
             return new TasksController();
         };
