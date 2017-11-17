@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class CategoriesController
 {
-    public function getCategories(Request $request, Response $response, array $args)
+    public function getCategoriesAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch list of categories
         $categories = [];
@@ -16,7 +16,7 @@ class CategoriesController
         return $response->withJson(['categories' => $categories]);
     }
 
-    public function getCategory(Request $request, Response $response, array $args)
+    public function getCategoryAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch category by ID
         $task = [
@@ -28,7 +28,7 @@ class CategoriesController
         return $response->withJson(['task' => $task]);
     }
 
-    public function createCategory(Request $request, Response $response, array $args)
+    public function createCategoryAction(Request $request, Response $response, array $args)
     {
         // TODO: save new category
 
@@ -36,7 +36,7 @@ class CategoriesController
         return $response->withJson(null, 201);
     }
 
-    public function updateCategory(Request $request, Response $response, array $args)
+    public function updateCategoryAction(Request $request, Response $response, array $args)
     {
         // TODO: update existing category
 

@@ -7,7 +7,7 @@ use Slim\Http\Response;
 
 class TagsController
 {
-    public function getTags(Request $request, Response $response, array $args)
+    public function getTagsAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch list of available tags
         $tags = [];
@@ -16,7 +16,7 @@ class TagsController
         return $response->withJson(['tags' => $tags]);
     }
 
-    public function getTag(Request $request, Response $response, array $args)
+    public function getTagAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch tag by ID
         $tags = [
@@ -28,7 +28,7 @@ class TagsController
         return $response->withJson(['tags' => $tags]);
     }
 
-    public function createTag(Request $request, Response $response, array $args)
+    public function createTagAction(Request $request, Response $response, array $args)
     {
         // TODO: add new tag
 
