@@ -2,6 +2,7 @@
 namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
+use Psr\Container\ContainerInterface;
 use Skeleton\App\Controller\CategoriesController;
 use Skeleton\App\Controller\HomeController;
 use Skeleton\App\Controller\TagsController;
@@ -34,7 +35,7 @@ class SkeletonApp extends \Slim\App
     {
         $pimple = $this->getContainer();
 
-        $pimple['home_controller'] = function (\Slim\Container $c) {
+        $pimple['home_controller'] = function (ContainerInterface $c) {
             return new HomeController($c['renderer']);
         };
 
@@ -72,8 +73,16 @@ class SkeletonApp extends \Slim\App
      */
     public function registerRoutes(): SkeletonApp
     {
-        // Register routes
-        require __DIR__ . '/../routes.php';
+        // Web routes
+        $this->group('', Route\HomeRoute::class);
+
+        // API routes
+        $this->group('/api', function () {
+            $this->group('/tasks', Route\TasksRoute::class);
+            $this->group('/categories', Route\CategoriesRoute::class);
+            $this->group('/tags', Route\TagsRoute::class);
+        });
+
         return $this;
     }
 
