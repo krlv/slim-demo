@@ -20,8 +20,8 @@ final class AppFactory
     {
         return (new SkeletonApp($config))
             ->registerServices()
-            ->registerControllers()
             ->registerMiddleware()
+            ->registerControllers()
             ->registerRoutes()
         ;
     }
@@ -38,8 +38,8 @@ final class AppFactory
     {
         return (new SkeletonApp($config))
             ->registerServices()
-            ->registerControllers()
             ->registerMiddleware()
+            ->registerControllers()
             ->registerRoutes()
         ;
     }

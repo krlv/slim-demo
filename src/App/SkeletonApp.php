@@ -3,10 +3,6 @@ namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
 use Psr\Container\ContainerInterface;
-use Skeleton\App\Controller\CategoriesController;
-use Skeleton\App\Controller\HomeController;
-use Skeleton\App\Controller\TagsController;
-use Skeleton\App\Controller\TasksController;
 
 class SkeletonApp extends \Slim\App
 {
@@ -33,22 +29,22 @@ class SkeletonApp extends \Slim\App
      */
     public function registerControllers(): self
     {
-        $pimple = $this->getContainer();
+        $cnt = $this->getContainer();
 
-        $pimple['home_controller'] = function (ContainerInterface $c) {
-            return new HomeController($c['renderer']);
+        $cnt['home_controller'] = function (ContainerInterface $cnt) {
+            return new Controller\HomeController($cnt['renderer']);
         };
 
-        $pimple['tasks_controller'] = function () {
-            return new TasksController();
+        $cnt['tasks_controller'] = function () {
+            return new Controller\TasksController();
         };
 
-        $pimple['categories_controller'] = function () {
-            return new CategoriesController();
+        $cnt['categories_controller'] = function () {
+            return new Controller\CategoriesController();
         };
 
-        $pimple['tags_controller'] = function () {
-            return new TagsController();
+        $cnt['tags_controller'] = function () {
+            return new Controller\TagsController();
         };
 
         return $this;
@@ -61,8 +57,12 @@ class SkeletonApp extends \Slim\App
      */
     public function registerMiddleware(): SkeletonApp
     {
-        // Register middleware
-        require __DIR__ . '/../middleware.php';
+        $cnt = $this->getContainer();
+
+        $cnt['logger_middleware'] = function (ContainerInterface $cnt) {
+            return new Middleware\LoggerMiddleware($cnt['logger']);
+        };
+
         return $this;
     }
 
@@ -73,6 +73,9 @@ class SkeletonApp extends \Slim\App
      */
     public function registerRoutes(): SkeletonApp
     {
+        // Logger middleware, common for all routes
+        $this->add('logger_middleware:handle');
+
         // Web routes
         $this->group('', Route\HomeRoute::class);
 
