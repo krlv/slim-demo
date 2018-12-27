@@ -14,6 +14,7 @@ class SkeletonApp extends \Slim\App
     public function registerServices(): self
     {
         $this
+            ->register(new Provider\SerializerServiceProvider())
             ->register(new Provider\RendererServiceProvider())
             ->register(new Provider\DbalServiceProvider())
             ->register(new Provider\LoggerServiceProvider())
