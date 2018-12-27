@@ -1,6 +1,7 @@
 {
-    "name": "service-skeleton",
+    "name": "krlv/service-skeleton",
     "description": "Slim Service Skeleton",
+    "license": "MIT",
     "authors": [
         {
             "name": "Eugene Kirillov",
@@ -8,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.3",
         "slim/slim": "~3.0",
         "slim/php-view": "~2.0",
         "doctrine/dbal": "~2.5",
