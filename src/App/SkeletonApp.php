@@ -29,21 +29,21 @@ class SkeletonApp extends \Slim\App
      */
     public function registerControllers(): self
     {
-        $cnt = $this->getContainer();
+        $c = $this->getContainer();
 
-        $cnt['home_controller'] = function (ContainerInterface $cnt) {
-            return new Controller\HomeController($cnt['renderer']);
+        $c['home_controller'] = function (ContainerInterface $c) {
+            return new Controller\HomeController($c['renderer']);
         };
 
-        $cnt['tasks_controller'] = function () {
+        $c['tasks_controller'] = function () {
             return new Controller\TasksController();
         };
 
-        $cnt['categories_controller'] = function () {
+        $c['categories_controller'] = function () {
             return new Controller\CategoriesController();
         };
 
-        $cnt['tags_controller'] = function () {
+        $c['tags_controller'] = function () {
             return new Controller\TagsController();
         };
 
@@ -57,10 +57,10 @@ class SkeletonApp extends \Slim\App
      */
     public function registerMiddleware(): SkeletonApp
     {
-        $cnt = $this->getContainer();
+        $c = $this->getContainer();
 
-        $cnt['logger_middleware'] = function (ContainerInterface $cnt) {
-            return new Middleware\LoggerMiddleware($cnt['logger']);
+        $c['logger_middleware'] = function (ContainerInterface $c) {
+            return new Middleware\LoggerMiddleware($c['logger']);
         };
 
         return $this;
