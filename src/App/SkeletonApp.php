@@ -14,6 +14,7 @@ class SkeletonApp extends \Slim\App
     public function registerServices(): self
     {
         $this
+            ->register(new Provider\SerializerServiceProvider())
             ->register(new Provider\RendererServiceProvider())
             ->register(new Provider\DbalServiceProvider())
             ->register(new Provider\LoggerServiceProvider())
@@ -29,22 +30,22 @@ class SkeletonApp extends \Slim\App
      */
     public function registerControllers(): self
     {
-        $cnt = $this->getContainer();
+        $c = $this->getContainer();
 
-        $cnt['home_controller'] = function (ContainerInterface $cnt) {
-            return new Controller\HomeController($cnt['renderer']);
+        $c['home_controller'] = function (ContainerInterface $c) {
+            return new Controller\HomeController($c['renderer']);
         };
 
-        $cnt['tasks_controller'] = function () {
-            return new Controller\TasksController();
+        $c['tasks_controller'] = function (ContainerInterface $c) {
+            return new Controller\TasksController($c['serializer']);
         };
 
-        $cnt['categories_controller'] = function () {
-            return new Controller\CategoriesController();
+        $c['categories_controller'] = function (ContainerInterface $c) {
+            return new Controller\CategoriesController($c['serializer']);
         };
 
-        $cnt['tags_controller'] = function () {
-            return new Controller\TagsController();
+        $c['tags_controller'] = function (ContainerInterface $c) {
+            return new Controller\TagsController($c['serializer']);
         };
 
         return $this;
@@ -57,10 +58,10 @@ class SkeletonApp extends \Slim\App
      */
     public function registerMiddleware(): SkeletonApp
     {
-        $cnt = $this->getContainer();
+        $c = $this->getContainer();
 
-        $cnt['logger_middleware'] = function (ContainerInterface $cnt) {
-            return new Middleware\LoggerMiddleware($cnt['logger']);
+        $c['logger_middleware'] = function (ContainerInterface $c) {
+            return new Middleware\LoggerMiddleware($c['logger']);
         };
 
         return $this;

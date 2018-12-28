@@ -48,7 +48,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     */
     public function createApplication()
     {
-        return AppFactory::createTestApp(require __DIR__ . '/../../src/settings.php');
+        return AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
     }
 
     /**

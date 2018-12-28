@@ -2,12 +2,24 @@
 
 namespace Skeleton\App\Controller;
 
+use Skeleton\App\Serializer\Serializer;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Http\StatusCode;
 
 class TasksController
 {
-    public function getTasksAction(Request $request, Response $response, array $args)
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    public function __construct(Serializer $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
+    public function getTasksAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch list of tasks
         $tasks = [
@@ -22,7 +34,7 @@ class TasksController
         ];
 
         // Return response as JSON
-        return $response->withJson(['tasks' => $tasks]);
+        return $this->serializer->serialize($response, $tasks);
     }
 
     public function getTaskAction(Request $request, Response $response, array $args)
@@ -34,7 +46,7 @@ class TasksController
         ];
 
         // Return response as JSON
-        return $response->withJson(['task' => $task]);
+        return $this->serializer->serialize($response, $task);
     }
 
     public function createTaskAction(Request $request, Response $response, array $args)
@@ -44,7 +56,7 @@ class TasksController
         $task = array_merge(['id' => '1'], $task);
 
         // Return response as JSON with 201 Created code
-        return $response->withJson(['task' => $task], 201);
+        return $this->serializer->serialize($response, $task, StatusCode::HTTP_CREATED);
     }
 
     public function updateTaskAction(Request $request, Response $response, array $args)
@@ -54,7 +66,7 @@ class TasksController
         $task = array_merge(['id' => $args['task_id']], $task);
 
         // Return response as JSON
-        return $response->withJson(['task' => $task]);
+        return $this->serializer->serialize($response, $task);
     }
 
     public function deleteTaskAction(Request $request, Response $response, array $args)
@@ -62,6 +74,6 @@ class TasksController
         // TODO: delete existing task
 
         // Return empty response with 204 No Content code
-        return $response->withJson(null, 204);
+        return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
     }
 }

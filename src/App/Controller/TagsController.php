@@ -2,18 +2,30 @@
 
 namespace Skeleton\App\Controller;
 
+use Skeleton\App\Serializer\Serializer;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Http\StatusCode;
 
 class TagsController
 {
+    /**
+     * @var Serializer
+     */
+    private $serializer;
+
+    public function __construct(Serializer $serializer)
+    {
+        $this->serializer = $serializer;
+    }
+
     public function getTagsAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch list of available tags
         $tags = [];
 
         // Return response as JSON
-        return $response->withJson(['tags' => $tags]);
+        return $this->serializer->serialize($response, $tags);
     }
 
     public function getTagAction(Request $request, Response $response, array $args)
@@ -25,7 +37,7 @@ class TagsController
         ];
 
         // Return response as JSON
-        return $response->withJson(['tags' => $tags]);
+        return $this->serializer->serialize($response, $tags);
     }
 
     public function createTagAction(Request $request, Response $response, array $args)
@@ -33,6 +45,6 @@ class TagsController
         // TODO: add new tag
 
         // Return empty response with 201 Created code
-        return $response->withJson(null, 201);
+        return $this->serializer->serialize($response, [], StatusCode::HTTP_CREATED);
     }
 }
