@@ -22,7 +22,16 @@ class CategoriesController
     public function getCategoriesAction(Request $request, Response $response, array $args)
     {
         // TODO: fetch list of categories
-        $categories = [];
+        $categories = [
+            [
+                'id'    => 1,
+                'title' => 'Category 1',
+            ],
+            [
+                'id'    => 2,
+                'title' => 'Category 2',
+            ],
+        ];
 
         // Return response as JSON
         return $this->serializer->serialize($response, $categories);
@@ -43,14 +52,26 @@ class CategoriesController
     public function createCategoryAction(Request $request, Response $response, array $args)
     {
         // TODO: save new category
+        $category = [
+            'id'    => 1,
+            'title' => 'Category 1',
+        ];
 
-        // Return empty response with 201 Created code
-        return $this->serializer->serialize($response, [], StatusCode::HTTP_CREATED);
+        // Return response as JSON with 201 Created code
+        return $this->serializer->serialize($response, $category, StatusCode::HTTP_CREATED);
     }
 
     public function updateCategoryAction(Request $request, Response $response, array $args)
     {
         // TODO: update existing category
+
+        // Return response as JSON
+        return $this->serializer->serialize($response, []);
+    }
+
+    public function deleteCategoryAction(Request $request, Response $response, array $args)
+    {
+        // TODO: delete existing category
 
         // Return empty response with 204 No Content code
         return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
