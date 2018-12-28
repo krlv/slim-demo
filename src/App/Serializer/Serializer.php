@@ -4,6 +4,7 @@ namespace Skeleton\App\Serializer;
 use JMS\Serializer\SerializerInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Http\StatusCode;
 
 class Serializer
 {
@@ -29,7 +30,7 @@ class Serializer
      *
      * @return Response
      */
-    public function serialize(Response $response, $data, int $status = 200): Response
+    public function serialize(Response $response, $data, int $status = StatusCode::HTTP_OK): Response
     {
         $data = $this->serializer->serialize($data, 'json');
 

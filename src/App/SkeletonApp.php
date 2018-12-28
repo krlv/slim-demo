@@ -36,16 +36,16 @@ class SkeletonApp extends \Slim\App
             return new Controller\HomeController($c['renderer']);
         };
 
-        $c['tasks_controller'] = function () {
-            return new Controller\TasksController();
+        $c['tasks_controller'] = function (ContainerInterface $c) {
+            return new Controller\TasksController($c['serializer']);
         };
 
-        $c['categories_controller'] = function () {
-            return new Controller\CategoriesController();
+        $c['categories_controller'] = function (ContainerInterface $c) {
+            return new Controller\CategoriesController($c['serializer']);
         };
 
-        $c['tags_controller'] = function () {
-            return new Controller\TagsController();
+        $c['tags_controller'] = function (ContainerInterface $c) {
+            return new Controller\TagsController($c['serializer']);
         };
 
         return $this;

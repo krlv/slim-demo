@@ -18,19 +18,19 @@ class ApiTest extends WebTestCase
     public function testGetTaskByIdAction()
     {
         $this->client->request('GET', '/api/tasks/1');
-        $this->assertJsonResponse(['task' => [
+        $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task 1',
-        ]], 200);
+        ], 200);
     }
 
     public function testGetTaskByNonExistingIdAction()
     {
         $this->client->request('GET', '/api/tasks/1');
-        $this->assertJsonResponse(['task' => [
+        $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task 1',
-        ]], 200);
+        ], 200);
     }
 
     public function testCreateTaskAction()
@@ -38,10 +38,10 @@ class ApiTest extends WebTestCase
         $this->client->request('POST', '/api/tasks', [], [], [
             'title' => 'Task 1'
         ]);
-        $this->assertJsonResponse(['task' => [
+        $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task 1',
-        ]], 201);
+        ], 201);
     }
 
     public function testUpdateTaskAction()
@@ -49,10 +49,10 @@ class ApiTest extends WebTestCase
         $this->client->request('PUT', '/api/tasks/1', [], [], [
             'title' => 'Task 1'
         ]);
-        $this->assertJsonResponse(['task' => [
+        $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task 1',
-        ]], 200);
+        ], 200);
     }
 
     public function testUpdateNonExistingTaskAction()
@@ -60,10 +60,10 @@ class ApiTest extends WebTestCase
         $this->client->request('PUT', '/api/tasks/1', [], [], [
             'title' => 'Task 1'
         ]);
-        $this->assertJsonResponse(['task' => [
+        $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task 1',
-        ]], 200);
+        ], 200);
     }
 
     public function testDeleteTaskAction()
