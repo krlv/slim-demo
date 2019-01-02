@@ -14,11 +14,18 @@ final class Task
     private $title;
 
     /**
-     * @param string $title
+     * @var boolean
      */
-    public function __construct(string $title)
+    private $isDone;
+
+    /**
+     * @param string  $title
+     * @param boolean $isDone
+     */
+    public function __construct(string $title, bool $isDone = false)
     {
-        $this->title = $title;
+        $this->title  = $title;
+        $this->isDone = $isDone;
     }
 
     /**
@@ -35,5 +42,27 @@ final class Task
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * Mark the task as done
+     *
+     * @return $this
+     */
+    public function done(): self
+    {
+        $this->isDone = true;
+        return $this;
+    }
+
+    /**
+     * Mark the task as undone
+     *
+     * @return $this
+     */
+    public function undone(): self
+    {
+        $this->isDone = false;
+        return $this;
     }
 }

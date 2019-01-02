@@ -18,9 +18,21 @@ class TaskTest extends TestCase
     public function testGetId()
     {
         $id  = 1;
-        $category = new Task('Category');
+        $task = new Task('Task');
 
-        $this->setPrivateProperty($category, 'id', $id);
-        $this->assertEquals($id, $category->getId());
+        $this->setPrivateProperty($task, 'id', $id);
+        $this->assertEquals($id, $task->getId());
+    }
+
+    public function testDone()
+    {
+        $task = (new Task('Task'))->done();
+        $this->assertTrue($this->getPrivateProperty($task, 'isDone'));
+    }
+
+    public function testUndone()
+    {
+        $task = (new Task('Task'))->undone();
+        $this->assertFalse($this->getPrivateProperty($task, 'isDone'));
     }
 }
