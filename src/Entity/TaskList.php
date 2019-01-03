@@ -1,7 +1,7 @@
 <?php
 namespace Skeleton\Entity;
 
-final class Category
+final class TaskList
 {
     /**
      * @var int
