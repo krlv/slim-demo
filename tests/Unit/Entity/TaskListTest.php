@@ -15,12 +15,19 @@ class TaskListTest extends TestCase
         $this->assertSame($title, $list->getTitle());
     }
 
-    public function testGetId()
+    public function testId()
     {
         $id  = 1;
         $list = new TaskList('Task List');
 
         $this->setPrivateProperty($list, 'id', $id);
         $this->assertEquals($id, $list->getId());
+    }
+
+    public function testTitle()
+    {
+        $list = new TaskList('Task List');
+        $list->setTitle($title = 'New List');
+        $this->assertEquals($title, $list->getTitle());
     }
 }
