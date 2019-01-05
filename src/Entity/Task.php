@@ -34,12 +34,12 @@ final class Task
     private $isDeleted;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ?\DateTimeImmutable
      */
     private $doneAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var ?\DateTimeImmutable
      */
     private $deletedAt;
 

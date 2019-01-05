@@ -66,9 +66,9 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Assert that response status equals to expected code
      *
-     * @param $code
+     * @param int $code
      */
-    public function assertStatusCode($code)
+    public function assertStatusCode(int $code)
     {
         $this->assertEquals($code, $this->client->getStatusCode());
     }
@@ -76,9 +76,9 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Assert that response content type equals to expected content type
      *
-     * @param $type
+     * @param string $type
      */
-    public function assertContentType($type)
+    public function assertContentType(string $type)
     {
         $this->assertContains($type, $this->client->getHeader('Content-Type'));
     }

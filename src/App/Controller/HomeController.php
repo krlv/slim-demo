@@ -14,7 +14,7 @@ class HomeController
     private $renderer;
 
     /**
-     * @param $renderer
+     * @param PhpRenderer $renderer
      */
     public function __construct(PhpRenderer $renderer)
     {
