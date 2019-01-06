@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Test\Functional;
 
 class ApiTest extends WebTestCase
@@ -36,7 +38,7 @@ class ApiTest extends WebTestCase
     public function testCreateTaskAction()
     {
         $this->client->request('POST', '/api/tasks', [], [], [
-            'title' => 'Task 1'
+            'title' => 'Task 1',
         ]);
         $this->assertJsonResponse([
             'id'    => '1',
@@ -47,7 +49,7 @@ class ApiTest extends WebTestCase
     public function testUpdateTaskAction()
     {
         $this->client->request('PUT', '/api/tasks/1', [], [], [
-            'title' => 'Task 1'
+            'title' => 'Task 1',
         ]);
         $this->assertJsonResponse([
             'id'    => '1',
@@ -58,7 +60,7 @@ class ApiTest extends WebTestCase
     public function testUpdateNonExistingTaskAction()
     {
         $this->client->request('PUT', '/api/tasks/1', [], [], [
-            'title' => 'Task 1'
+            'title' => 'Task 1',
         ]);
         $this->assertJsonResponse([
             'id'    => '1',

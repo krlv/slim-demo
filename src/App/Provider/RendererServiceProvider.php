@@ -1,11 +1,13 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\App\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
 /**
- * Slim PHP Renderer service provider
+ * Slim PHP Renderer service provider.
  */
 class RendererServiceProvider implements ServiceProviderInterface
 {
@@ -13,6 +15,7 @@ class RendererServiceProvider implements ServiceProviderInterface
     {
         $pimple['renderer'] = function (\Slim\Container $c) {
             $settings = $c->get('settings')['renderer'];
+
             return new \Slim\Views\PhpRenderer($settings['template_path']);
         };
     }

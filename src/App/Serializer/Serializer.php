@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\App\Serializer;
 
 use JMS\Serializer\SerializerInterface;
@@ -22,10 +24,10 @@ class Serializer
     }
 
     /**
-     * Serializes data in the request object
+     * Serializes data in the request object.
      *
      * @param Response     $response
-     * @param object|mixed $data
+     * @param mixed|object $data
      * @param int          $status
      *
      * @return Response
@@ -34,7 +36,7 @@ class Serializer
     {
         $data = $this->serializer->serialize($data, 'json');
 
-       return $response
+        return $response
             ->withHeader('Content-Type', 'application/json;charset=utf-8')
             ->withStatus($status)
             ->write($data)
@@ -42,7 +44,7 @@ class Serializer
     }
 
     /**
-     * Deserializes data into the entity object
+     * Deserializes data into the entity object.
      *
      * @param Request $request
      * @param string  $class
