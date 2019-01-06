@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Skeleton\App\Route;
 
@@ -7,7 +8,7 @@ use Skeleton\App\SkeletonApp;
 class CategoriesRoute
 {
     /**
-     * Register Categories API routes
+     * Register Categories API routes.
      *
      * @param SkeletonApp $app
      */

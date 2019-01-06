@@ -1,30 +1,30 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Test\Functional;
 
 use Skeleton\App\AppFactory;
 use Skeleton\App\SkeletonApp;
 
 /**
- * Base class functional tests
+ * Base class functional tests.
  */
 class WebTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-    * Application instance
-    *
-    * @var SkeletonApp
-    */
+     * Application instance.
+     *
+     * @var SkeletonApp
+     */
     protected $app;
 
     /**
-     *
-     *
      * @var WebTestClient
      */
     protected $client;
 
     /**
-     * Setting up test environment
+     * Setting up test environment.
      */
     public static function setUpBeforeClass()
     {
@@ -32,8 +32,8 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-    * Setting up the application
-    */
+     * Setting up the application.
+     */
     protected function setUp()
     {
         $this->app = $this->createApplication();
@@ -42,29 +42,29 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-    * Creates the application
-    *
-    * @return SkeletonApp
-    */
+     * Creates the application.
+     *
+     * @return SkeletonApp
+     */
     public function createApplication()
     {
         return AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
     }
 
     /**
-    * Creates a Client
-    *
-    * @param array $server Server parameters
-    *
-    * @return WebTestClient A Client instance
-    */
-    public function createClient(array $server = array())
+     * Creates a Client.
+     *
+     * @param array $server Server parameters
+     *
+     * @return WebTestClient A Client instance
+     */
+    public function createClient(array $server = [])
     {
         return new WebTestClient($this->app, $server);
     }
 
     /**
-     * Assert that response status equals to expected code
+     * Assert that response status equals to expected code.
      *
      * @param int $code
      */
@@ -74,7 +74,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Assert that response content type equals to expected content type
+     * Assert that response content type equals to expected content type.
      *
      * @param string $type
      */
@@ -84,10 +84,10 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * Assert that JSON response equals to expected data
+     * Assert that JSON response equals to expected data.
      *
      * @param array $expected
-     * @param int $code
+     * @param int   $code
      */
     public function assertJsonResponse(array $expected, $code = 200)
     {

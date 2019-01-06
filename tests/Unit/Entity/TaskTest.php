@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Test\Unit\Entity;
 
 use PHPUnit\Framework\TestCase;
@@ -32,7 +34,7 @@ class TaskTest extends TestCase
 
     public function testGetId()
     {
-        $id  = 1;
+        $id   = 1;
         $task = new Task('Task');
 
         $this->setPrivateProperty($task, 'id', $id);

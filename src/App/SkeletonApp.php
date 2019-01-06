@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
@@ -7,7 +9,7 @@ use Psr\Container\ContainerInterface;
 class SkeletonApp extends \Slim\App
 {
     /**
-     * Registers application dependencies
+     * Registers application dependencies.
      *
      * @return SkeletonApp
      */
@@ -24,7 +26,7 @@ class SkeletonApp extends \Slim\App
     }
 
     /**
-     * Registers application's controllers
+     * Registers application's controllers.
      *
      * @return SkeletonApp
      */
@@ -52,11 +54,11 @@ class SkeletonApp extends \Slim\App
     }
 
     /**
-     * Registers application middleware
+     * Registers application middleware.
      *
      * @return SkeletonApp
      */
-    public function registerMiddleware(): SkeletonApp
+    public function registerMiddleware(): self
     {
         $c = $this->getContainer();
 
@@ -68,11 +70,11 @@ class SkeletonApp extends \Slim\App
     }
 
     /**
-     * Registers application's routes
+     * Registers application's routes.
      *
      * @return SkeletonApp
      */
-    public function registerRoutes(): SkeletonApp
+    public function registerRoutes(): self
     {
         // Logger middleware, common for all routes
         $this->add('logger_middleware:handle');
@@ -91,16 +93,17 @@ class SkeletonApp extends \Slim\App
     }
 
     /**
-     * Registers a service provider
+     * Registers a service provider.
      *
      * @param ServiceProviderInterface $provider Service provider
-     * @param array $values Array of values to configure service provider
+     * @param array                    $values   Array of values to configure service provider
      *
      * @return SkeletonApp
      */
-    public function register(ServiceProviderInterface $provider, array $values = []): SkeletonApp
+    public function register(ServiceProviderInterface $provider, array $values = []): self
     {
         $this->getContainer()->register($provider, $values);
+
         return $this;
     }
 }

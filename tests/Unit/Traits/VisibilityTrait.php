@@ -1,14 +1,16 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Test\Unit\Traits;
 
 trait VisibilityTrait
 {
     /**
-     * Set private property to an object
+     * Set private property to an object.
      *
      * @param object $object
      * @param string $property
-     * @param mixed $value
+     * @param mixed  $value
      */
     protected function setPrivateProperty($object, $property, $value): void
     {
@@ -18,7 +20,7 @@ trait VisibilityTrait
     }
 
     /**
-     * Get private property from an object
+     * Get private property from an object.
      *
      * @param object $object
      * @param string $property

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Entity;
 
 final class Task
@@ -24,12 +26,12 @@ final class Task
     private $priority;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $isDone;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $isDeleted;
 
@@ -88,11 +90,13 @@ final class Task
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -106,11 +110,13 @@ final class Task
 
     /**
      * @param string $description
+     *
      * @return $this
      */
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -124,11 +130,13 @@ final class Task
 
     /**
      * @param int $priority
+     *
      * @return $this
      */
     public function setPriority(int $priority): self
     {
         $this->priority = $priority;
+
         return $this;
     }
 
@@ -165,19 +173,20 @@ final class Task
     }
 
     /**
-     * Mark the task as done
+     * Mark the task as done.
      *
      * @return $this
      */
     public function done(): self
     {
         $this->isDone = true;
-        $this->doneAt = new \DateTimeImmutable;
+        $this->doneAt = new \DateTimeImmutable();
+
         return $this;
     }
 
     /**
-     * Mark the task as undone
+     * Mark the task as undone.
      *
      * @return $this
      */
@@ -185,23 +194,25 @@ final class Task
     {
         $this->isDone = false;
         $this->doneAt = null;
+
         return $this;
     }
 
     /**
-     * Mark the task as deleted (hide the task)
+     * Mark the task as deleted (hide the task).
      *
      * @return $this
      */
     public function delete(): self
     {
         $this->isDeleted = true;
-        $this->deletedAt = new \DateTimeImmutable;
+        $this->deletedAt = new \DateTimeImmutable();
+
         return $this;
     }
 
     /**
-     * Mark the task as un-deleted (undo the task deletion)
+     * Mark the task as un-deleted (undo the task deletion).
      *
      * @return $this
      */
@@ -209,6 +220,7 @@ final class Task
     {
         $this->isDeleted = false;
         $this->deletedAt = null;
+
         return $this;
     }
 }

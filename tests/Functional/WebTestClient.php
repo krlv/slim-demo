@@ -1,13 +1,13 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Test\Functional;
 
 use Slim\App;
 use Slim\Http;
 
 /**
- * WebTestClient simulates web browser and makes requests to application
- *
- * @package Skeletn\Tests\Functional
+ * WebTestClient simulates web browser and makes requests to application.
  */
 class WebTestClient
 {
@@ -32,9 +32,9 @@ class WebTestClient
     protected $response;
 
     /**
-     * WebTestClient constructor
+     * WebTestClient constructor.
      *
-     * @param App $app
+     * @param App   $app
      * @param array $server
      */
     public function __construct(App $app, array $server)
@@ -47,13 +47,13 @@ class WebTestClient
     }
 
     /**
-     * Perform request
+     * Perform request.
      *
      * @param string $method
      * @param string $uri
-     * @param array $params
-     * @param array $server
-     * @param array $content
+     * @param array  $params
+     * @param array  $server
+     * @param array  $content
      *
      * @throws \Slim\Exception\MethodNotAllowedException
      * @throws \Slim\Exception\NotFoundException
@@ -67,7 +67,7 @@ class WebTestClient
             case 'PATCH':
             case 'DELETE':
                 $this->server['slim.input'] = http_build_query($params);
-                $query = '';
+                $query                      = '';
             break;
 
             case 'GET':
@@ -96,7 +96,7 @@ class WebTestClient
     }
 
     /**
-     * Returns response status code
+     * Returns response status code.
      *
      * @return int
      */
@@ -106,7 +106,7 @@ class WebTestClient
     }
 
     /**
-     * Returns response headers
+     * Returns response headers.
      *
      * @return array
      */
@@ -116,7 +116,7 @@ class WebTestClient
     }
 
     /**
-     * Returns response header by name
+     * Returns response header by name.
      *
      * @param string $name
      *
@@ -128,7 +128,7 @@ class WebTestClient
     }
 
     /**
-     * Returns response body as a string
+     * Returns response body as a string.
      *
      * @return string
      */

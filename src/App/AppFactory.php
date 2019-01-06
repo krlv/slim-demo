@@ -1,18 +1,18 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\App;
 
 /**
- * Class AppFactory
- *
- * @package Skeletn\App
+ * Class AppFactory.
  */
 final class AppFactory
 {
     /**
-     * Create Application's instance
+     * Create Application's instance.
      *
      * @param array $config
-     * @param bool $debug
+     * @param bool  $debug
      *
      * @return SkeletonApp
      */
@@ -27,10 +27,10 @@ final class AppFactory
     }
 
     /**
-     * Create Application's instance
+     * Create Application's instance.
      *
      * @param array $config
-     * @param bool $debug
+     * @param bool  $debug
      *
      * @return SkeletonApp
      */

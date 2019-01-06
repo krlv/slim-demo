@@ -1,7 +1,8 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\App\Provider;
 
-use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\Visitor\Factory\JsonDeserializationVisitorFactory;
 use JMS\Serializer\Visitor\Factory\JsonSerializationVisitorFactory;
@@ -18,6 +19,7 @@ class SerializerServiceProvider implements ServiceProviderInterface
                 ->setSerializationVisitor('json', new JsonSerializationVisitorFactory())
                 ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())
                 ->build();
+
             return new Serializer($serializer);
         };
     }

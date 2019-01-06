@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace Skeleton\Entity;
 
 final class TaskList
@@ -39,11 +41,13 @@ final class TaskList
 
     /**
      * @param string $title
+     *
      * @return $this
      */
     public function setTitle(string $title): self
     {
         $this->title = $title;
+
         return $this;
     }
 }
