@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\App\Serializer;
@@ -66,7 +67,7 @@ class SerializerTest extends TestCase
 
         /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
-        /** @var Response $response */
+        // @var Response $response
         $this->assertSame($response, $appSerializer->serialize($response, $task, $status));
     }
 
@@ -111,7 +112,7 @@ class SerializerTest extends TestCase
 
         /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
-        /** @var Request $request */
+        // @var Request $request
         $this->assertSame($task, $appSerializer->deserialize($request, $class));
     }
 }

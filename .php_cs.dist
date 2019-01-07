@@ -12,7 +12,7 @@ return PhpCsFixer\Config::create()
         'concat_space' => ['spacing' => 'one'],
         'increment_style' => ['style' => 'pre'],
         'linebreak_after_opening_tag' => true,
-        'blank_line_after_opening_tag' => false,
+        'blank_line_after_opening_tag' => true,
         'dir_constant' => true,
         'heredoc_to_nowdoc' => true,
         'modernize_types_casting' => true,

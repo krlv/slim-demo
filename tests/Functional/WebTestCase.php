@@ -1,15 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Functional;
 
+use PHPUnit\Framework\TestCase;
 use Skeleton\App\AppFactory;
 use Skeleton\App\SkeletonApp;
 
 /**
  * Base class functional tests.
  */
-class WebTestCase extends \PHPUnit\Framework\TestCase
+class WebTestCase extends TestCase
 {
     /**
      * Application instance.
