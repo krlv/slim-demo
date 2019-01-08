@@ -15,7 +15,7 @@ trait VisibilityTrait
      */
     protected function setPrivateProperty($object, $property, $value): void
     {
-        \Closure::bind(function ($object, $value) use ($property): void {
+        \Closure::bind(static function ($object, $value) use ($property): void {
             $object->$property = $value;
         }, null, $object)->__invoke($object, $value);
     }
@@ -30,7 +30,7 @@ trait VisibilityTrait
      */
     protected function getPrivateProperty($object, $property)
     {
-        return \Closure::bind(function ($object) use ($property) {
+        return \Closure::bind(static function ($object) use ($property) {
             return $object->$property;
         }, null, $object)->__invoke($object);
     }

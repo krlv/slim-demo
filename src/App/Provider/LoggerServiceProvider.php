@@ -14,7 +14,7 @@ class LoggerServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple): void
     {
-        $pimple['logger'] = function (\Slim\Container $c) {
+        $pimple['logger'] = static function (\Slim\Container $c) {
             $settings = $c->get('settings')['logger'];
 
             $logger = new \Monolog\Logger($settings['name']);
