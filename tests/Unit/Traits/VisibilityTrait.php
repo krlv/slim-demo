@@ -15,7 +15,7 @@ trait VisibilityTrait
      */
     protected function setPrivateProperty($object, $property, $value): void
     {
-        \Closure::bind(function ($object, $value) use ($property) {
+        \Closure::bind(function ($object, $value) use ($property): void {
             $object->$property = $value;
         }, null, $object)->__invoke($object, $value);
     }

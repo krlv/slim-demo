@@ -12,7 +12,7 @@ class TaskTest extends TestCase
 {
     use VisibilityTrait;
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $task = new Task(
             $title       = 'Task',
@@ -33,7 +33,7 @@ class TaskTest extends TestCase
         $this->assertSame($deletedAt, $task->getDeletedAt());
     }
 
-    public function testGetId()
+    public function testGetId(): void
     {
         $id   = 1;
         $task = new Task('Task');
@@ -42,49 +42,49 @@ class TaskTest extends TestCase
         $this->assertEquals($id, $task->getId());
     }
 
-    public function testTitle()
+    public function testTitle(): void
     {
         $task = new Task('Task');
         $task->setTitle($title = 'New Task');
         $this->assertEquals($title, $task->getTitle());
     }
 
-    public function testDescription()
+    public function testDescription(): void
     {
         $task = new Task('Task');
         $task->setDescription($description = 'Description');
         $this->assertEquals($description, $task->getDescription());
     }
 
-    public function testPriority()
+    public function testPriority(): void
     {
         $task = new Task('Task');
         $task->setPriority($priority = 10);
         $this->assertEquals($priority, $task->getPriority());
     }
 
-    public function testDone()
+    public function testDone(): void
     {
         $task = (new Task('Task'))->done();
         $this->assertTrue($task->isDone());
         $this->assertInstanceOf(\DateTimeImmutable::class, $task->getDoneAt());
     }
 
-    public function testUndone()
+    public function testUndone(): void
     {
         $task = (new Task('Task'))->undone();
         $this->assertFalse($task->isDone());
         $this->assertNull($task->getDoneAt());
     }
 
-    public function testDelete()
+    public function testDelete(): void
     {
         $task = (new Task('Task'))->delete();
         $this->assertTrue($task->isDeleted());
         $this->assertInstanceOf(\DateTimeImmutable::class, $task->getDeletedAt());
     }
 
-    public function testRestore()
+    public function testRestore(): void
     {
         $task = (new Task('Task'))->restore();
         $this->assertFalse($task->isDeleted());

@@ -13,7 +13,7 @@ use Skeleton\App\Serializer\Serializer;
 
 class SerializerServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $pimple)
+    public function register(Container $pimple): void
     {
         $pimple['serializer'] = function (\Slim\Container $c) {
             $serializer = SerializerBuilder::create()

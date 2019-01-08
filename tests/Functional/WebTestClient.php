@@ -57,7 +57,7 @@ class WebTestClient
      * @throws \Slim\Exception\MethodNotAllowedException
      * @throws \Slim\Exception\NotFoundException
      */
-    public function request($method, $uri, array $params = [], array $server = [], array $content = [])
+    public function request($method, $uri, array $params = [], array $server = [], array $content = []): void
     {
         $method = \strtoupper($method);
         switch ($method) {

@@ -12,7 +12,7 @@ use Pimple\ServiceProviderInterface;
  */
 class LoggerServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $pimple)
+    public function register(Container $pimple): void
     {
         $pimple['logger'] = function (\Slim\Container $c) {
             $settings = $c->get('settings')['logger'];

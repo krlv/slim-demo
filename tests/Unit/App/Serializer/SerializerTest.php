@@ -13,7 +13,7 @@ use Slim\Http\Response;
 
 class SerializerTest extends TestCase
 {
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $task = ['id' => 1, 'title' => 'Task 1'];
         $data = '{"id":1,"title":"Task 1"}';
@@ -71,7 +71,7 @@ class SerializerTest extends TestCase
         $this->assertSame($response, $appSerializer->serialize($response, $task, $status));
     }
 
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $task = ['id' => 1, 'title' => 'Task 1'];
 

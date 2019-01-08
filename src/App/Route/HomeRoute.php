@@ -13,7 +13,7 @@ class HomeRoute
      *
      * @param SkeletonApp $app
      */
-    public function __invoke(SkeletonApp $app)
+    public function __invoke(SkeletonApp $app): void
     {
         $app->get('/[{name}]', 'home_controller:indexAction');
     }

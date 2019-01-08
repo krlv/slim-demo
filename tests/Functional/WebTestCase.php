@@ -28,7 +28,7 @@ class WebTestCase extends TestCase
     /**
      * Setting up test environment.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         //TODO: init database
     }
@@ -36,7 +36,7 @@ class WebTestCase extends TestCase
     /**
      * Setting up the application.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = $this->createApplication();
         //TODO: init database tables
@@ -70,7 +70,7 @@ class WebTestCase extends TestCase
      *
      * @param int $code
      */
-    public function assertStatusCode(int $code)
+    public function assertStatusCode(int $code): void
     {
         $this->assertEquals($code, $this->client->getStatusCode());
     }
@@ -80,7 +80,7 @@ class WebTestCase extends TestCase
      *
      * @param string $type
      */
-    public function assertContentType(string $type)
+    public function assertContentType(string $type): void
     {
         $this->assertContains($type, $this->client->getHeader('Content-Type'));
     }
@@ -91,7 +91,7 @@ class WebTestCase extends TestCase
      * @param string[] $expected
      * @param int      $code
      */
-    public function assertJsonResponse(array $expected, $code = 200)
+    public function assertJsonResponse(array $expected, $code = 200): void
     {
         $this->assertStatusCode($code);
         $this->assertContentType('application/json;charset=utf-8');

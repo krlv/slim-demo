@@ -84,7 +84,7 @@ class SkeletonApp extends \Slim\App
         $this->group('', Route\HomeRoute::class);
 
         // API routes
-        $this->group('/api', function () {
+        $this->group('/api', function (): void {
             $this->group('/tasks', Route\TasksRoute::class);
             $this->group('/categories', Route\CategoriesRoute::class);
             $this->group('/tags', Route\TagsRoute::class);

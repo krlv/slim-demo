@@ -13,7 +13,7 @@ class CategoriesRoute
      *
      * @param SkeletonApp $app
      */
-    public function __invoke(SkeletonApp $app)
+    public function __invoke(SkeletonApp $app): void
     {
         $app->get('', 'categories_controller:getCategoriesAction');
         $app->get('/{category_id}', 'categories_controller:getCategoryAction');
