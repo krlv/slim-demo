@@ -60,7 +60,7 @@ class WebTestCase extends TestCase
      *
      * @return WebTestClient A Client instance
      */
-    public function createClient(array $server = [])
+    public function createClient(array $server = []): WebTestClient
     {
         return new WebTestClient($this->app, $server);
     }
@@ -91,7 +91,7 @@ class WebTestCase extends TestCase
      * @param string[] $expected
      * @param int      $code
      */
-    public function assertJsonResponse(array $expected, $code = 200): void
+    public function assertJsonResponse(array $expected, int $code = 200): void
     {
         $this->assertStatusCode($code);
         $this->assertContentType('application/json;charset=utf-8');

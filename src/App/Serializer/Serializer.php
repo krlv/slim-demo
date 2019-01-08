@@ -50,7 +50,7 @@ class Serializer
      * @param Request $request
      * @param string  $class
      *
-     * @return object
+     * @return array|object
      */
     public function deserialize(Request $request, string $class)
     {

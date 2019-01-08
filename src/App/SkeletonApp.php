@@ -6,8 +6,9 @@ namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
 use Psr\Container\ContainerInterface;
+use Slim\App;
 
-class SkeletonApp extends \Slim\App
+class SkeletonApp extends App
 {
     /**
      * Registers application dependencies.

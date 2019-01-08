@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Skeleton\Test\Functional;
 
 use Slim\App;
+use Slim\Exception\MethodNotAllowedException;
+use Slim\Exception\NotFoundException;
 use Slim\Http;
 
 /**
@@ -54,10 +56,10 @@ class WebTestClient
      * @param string[] $server
      * @param string[] $content
      *
-     * @throws \Slim\Exception\MethodNotAllowedException
-     * @throws \Slim\Exception\NotFoundException
+     * @throws MethodNotAllowedException
+     * @throws NotFoundException
      */
-    public function request($method, $uri, array $params = [], array $server = [], array $content = []): void
+    public function request(string $method, string $uri, array $params = [], array $server = [], array $content = []): void
     {
         $method = \strtoupper($method);
         switch ($method) {
@@ -67,7 +69,7 @@ class WebTestClient
             case 'DELETE':
                 $this->server['slim.input'] = \http_build_query($params);
                 $query                      = '';
-            break;
+                break;
 
             case 'GET':
             default:
@@ -99,7 +101,7 @@ class WebTestClient
      *
      * @return int
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->response->getStatusCode();
     }
@@ -107,9 +109,9 @@ class WebTestClient
     /**
      * Returns response headers.
      *
-     * @return array
+     * @return string[]
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->response->getHeaders();
     }
@@ -121,7 +123,7 @@ class WebTestClient
      *
      * @return string[]
      */
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
         return $this->response->getHeader($name);
     }
@@ -131,7 +133,7 @@ class WebTestClient
      *
      * @return string
      */
-    public function getResponse()
+    public function getResponse(): string
     {
         return (string) $this->response->getBody();
     }

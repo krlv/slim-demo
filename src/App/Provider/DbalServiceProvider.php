@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Provider;
 
+use Doctrine\DBAL\DriverManager;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -17,7 +18,7 @@ class DbalServiceProvider implements ServiceProviderInterface
         $pimple['dbal'] = static function (\Slim\Container $c) {
             $settings = $c->get('settings')['dbal'];
 
-            return \Doctrine\DBAL\DriverManager::getConnection($settings);
+            return DriverManager::getConnection($settings);
         };
     }
 }

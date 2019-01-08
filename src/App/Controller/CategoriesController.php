@@ -21,7 +21,14 @@ class CategoriesController
         $this->serializer = $serializer;
     }
 
-    public function getCategoriesAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function getCategoriesAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch list of categories
         $categories = [
@@ -39,7 +46,14 @@ class CategoriesController
         return $this->serializer->serialize($response, $categories);
     }
 
-    public function getCategoryAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function getCategoryAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch category by ID
         $category = [
@@ -51,7 +65,14 @@ class CategoriesController
         return $this->serializer->serialize($response, $category);
     }
 
-    public function createCategoryAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function createCategoryAction(Request $request, Response $response, array $args): Response
     {
         // TODO: save new category
         $category = [
@@ -63,7 +84,14 @@ class CategoriesController
         return $this->serializer->serialize($response, $category, StatusCode::HTTP_CREATED);
     }
 
-    public function updateCategoryAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function updateCategoryAction(Request $request, Response $response, array $args): Response
     {
         // TODO: update existing category
 
@@ -71,7 +99,14 @@ class CategoriesController
         return $this->serializer->serialize($response, []);
     }
 
-    public function deleteCategoryAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function deleteCategoryAction(Request $request, Response $response, array $args): Response
     {
         // TODO: delete existing category
 
