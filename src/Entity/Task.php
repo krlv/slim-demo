@@ -7,7 +7,7 @@ namespace Skeleton\Entity;
 final class Task
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
 
@@ -37,12 +37,12 @@ final class Task
     private $isDeleted;
 
     /**
-     * @var ?\DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
     private $doneAt;
 
     /**
-     * @var ?\DateTimeImmutable
+     * @var \DateTimeImmutable|null
      */
     private $deletedAt;
 
@@ -61,8 +61,8 @@ final class Task
         int $priority = 0,
         bool $isDone = false,
         bool $isDeleted = false,
-        \DateTimeImmutable $doneAt = null,
-        \DateTimeImmutable $deletedAt = null
+        ?\DateTimeImmutable $doneAt = null,
+        ?\DateTimeImmutable $deletedAt = null
     ) {
         $this->title       = $title;
         $this->description = $description;
@@ -74,9 +74,9 @@ final class Task
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
