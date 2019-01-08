@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
@@ -22,7 +23,14 @@ class HomeController
         $this->renderer = $renderer;
     }
 
-    public function indexAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function indexAction(Request $request, Response $response, array $args): Response
     {
         // Render index view
         return $this->renderer->render($response, 'index.phtml', $args);

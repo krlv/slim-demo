@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\Entity;
@@ -11,13 +12,13 @@ class TagTest extends TestCase
 {
     use VisibilityTrait;
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $tag = new Tag($title = 'Tag');
         $this->assertSame($title, $tag->getTitle());
     }
 
-    public function testGetId()
+    public function testGetId(): void
     {
         $id  = 1;
         $tag = new Tag('Tag');

@@ -1,9 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Functional;
 
 use Slim\App;
+use Slim\Exception\MethodNotAllowedException;
+use Slim\Exception\NotFoundException;
 use Slim\Http;
 
 /**
@@ -17,7 +20,7 @@ class WebTestClient
     protected $app;
 
     /**
-     * @var array
+     * @var string[]
      */
     protected $server;
 
@@ -32,16 +35,14 @@ class WebTestClient
     protected $response;
 
     /**
-     * WebTestClient constructor.
-     *
-     * @param App   $app
-     * @param array $server
+     * @param App      $app
+     * @param string[] $server
      */
     public function __construct(App $app, array $server)
     {
         $this->app = $app;
 
-        $this->server = array_merge([
+        $this->server = \array_merge([
             'SCRIPT_NAME' => '/index.php',
         ], $server);
     }
@@ -49,34 +50,34 @@ class WebTestClient
     /**
      * Perform request.
      *
-     * @param string $method
-     * @param string $uri
-     * @param array  $params
-     * @param array  $server
-     * @param array  $content
+     * @param string   $method
+     * @param string   $uri
+     * @param string[] $params
+     * @param string[] $server
+     * @param string[] $content
      *
-     * @throws \Slim\Exception\MethodNotAllowedException
-     * @throws \Slim\Exception\NotFoundException
+     * @throws MethodNotAllowedException
+     * @throws NotFoundException
      */
-    public function request($method, $uri, array $params = [], array $server = [], array $content = [])
+    public function request(string $method, string $uri, array $params = [], array $server = [], array $content = []): void
     {
-        $method = strtoupper($method);
+        $method = \strtoupper($method);
         switch ($method) {
             case 'POST':
             case 'PUT':
             case 'PATCH':
             case 'DELETE':
-                $this->server['slim.input'] = http_build_query($params);
+                $this->server['slim.input'] = \http_build_query($params);
                 $query                      = '';
-            break;
+                break;
 
             case 'GET':
             default:
-                $query = http_build_query($params);
+                $query = \http_build_query($params);
                 break;
         }
 
-        $server = array_merge($this->server, $server, [
+        $server = \array_merge($this->server, $server, [
             'REQUEST_URI'    => $uri,
             'REQUEST_METHOD' => $method,
             'QUERY_STRING'   => $query,
@@ -100,7 +101,7 @@ class WebTestClient
      *
      * @return int
      */
-    public function getStatusCode()
+    public function getStatusCode(): int
     {
         return $this->response->getStatusCode();
     }
@@ -108,9 +109,9 @@ class WebTestClient
     /**
      * Returns response headers.
      *
-     * @return array
+     * @return string[]
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->response->getHeaders();
     }
@@ -122,7 +123,7 @@ class WebTestClient
      *
      * @return string[]
      */
-    public function getHeader($name)
+    public function getHeader(string $name): array
     {
         return $this->response->getHeader($name);
     }
@@ -132,7 +133,7 @@ class WebTestClient
      *
      * @return string
      */
-    public function getResponse()
+    public function getResponse(): string
     {
         return (string) $this->response->getBody();
     }

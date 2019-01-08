@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Route;
@@ -12,7 +13,7 @@ class TagsRoute
      *
      * @param SkeletonApp $app
      */
-    public function __invoke(SkeletonApp $app)
+    public function __invoke(SkeletonApp $app): void
     {
         $app->get('', 'tags_controller:getTagsAction');
         $app->get('/{tag_id}', 'tags_controller:getTagAction');

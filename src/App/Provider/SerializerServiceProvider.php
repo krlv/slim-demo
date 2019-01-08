@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Provider;
@@ -12,9 +13,9 @@ use Skeleton\App\Serializer\Serializer;
 
 class SerializerServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $pimple)
+    public function register(Container $pimple): void
     {
-        $pimple['serializer'] = function (\Slim\Container $c) {
+        $pimple['serializer'] = static function (\Slim\Container $c) {
             $serializer = SerializerBuilder::create()
                 ->setSerializationVisitor('json', new JsonSerializationVisitorFactory())
                 ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())

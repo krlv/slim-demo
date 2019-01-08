@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\App\Serializer;
@@ -12,7 +13,7 @@ use Slim\Http\Response;
 
 class SerializerTest extends TestCase
 {
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $task = ['id' => 1, 'title' => 'Task 1'];
         $data = '{"id":1,"title":"Task 1"}';
@@ -66,11 +67,11 @@ class SerializerTest extends TestCase
 
         /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
-        /** @var Response $response */
+        // @var Response $response
         $this->assertSame($response, $appSerializer->serialize($response, $task, $status));
     }
 
-    public function testDeserialize()
+    public function testDeserialize(): void
     {
         $task = ['id' => 1, 'title' => 'Task 1'];
 
@@ -111,7 +112,7 @@ class SerializerTest extends TestCase
 
         /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
-        /** @var Request $request */
+        // @var Request $request
         $this->assertSame($task, $appSerializer->deserialize($request, $class));
     }
 }

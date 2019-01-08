@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
@@ -20,7 +21,14 @@ class TagsController
         $this->serializer = $serializer;
     }
 
-    public function getTagsAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function getTagsAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch list of available tags
         $tags = [];
@@ -29,7 +37,14 @@ class TagsController
         return $this->serializer->serialize($response, $tags);
     }
 
-    public function getTagAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function getTagAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch tag by ID
         $tags = [
@@ -41,7 +56,14 @@ class TagsController
         return $this->serializer->serialize($response, $tags);
     }
 
-    public function createTagAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function createTagAction(Request $request, Response $response, array $args): Response
     {
         // TODO: add new tag
 

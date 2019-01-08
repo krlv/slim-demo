@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\Entity;
@@ -11,13 +12,13 @@ class TaskListTest extends TestCase
 {
     use VisibilityTrait;
 
-    public function testConstructor()
+    public function testConstructor(): void
     {
         $list = new TaskList($title = 'Task List');
         $this->assertSame($title, $list->getTitle());
     }
 
-    public function testId()
+    public function testId(): void
     {
         $id   = 1;
         $list = new TaskList('Task List');
@@ -26,7 +27,7 @@ class TaskListTest extends TestCase
         $this->assertEquals($id, $list->getId());
     }
 
-    public function testTitle()
+    public function testTitle(): void
     {
         $list = new TaskList('Task List');
         $list->setTitle($title = 'New List');

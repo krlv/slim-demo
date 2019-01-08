@@ -5,6 +5,7 @@ return PhpCsFixer\Config::create()
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHP71Migration' => true,
+        '@PHP71Migration:risky' => true,
         'psr4' => true,
         'declare_strict_types' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -12,7 +13,7 @@ return PhpCsFixer\Config::create()
         'concat_space' => ['spacing' => 'one'],
         'increment_style' => ['style' => 'pre'],
         'linebreak_after_opening_tag' => true,
-        'blank_line_after_opening_tag' => false,
+        'blank_line_after_opening_tag' => true,
         'dir_constant' => true,
         'heredoc_to_nowdoc' => true,
         'modernize_types_casting' => true,
@@ -32,6 +33,8 @@ return PhpCsFixer\Config::create()
         'phpdoc_types_order' => ['null_adjustment'=> 'always_last'],
         'single_line_comment_style' => true,
         'date_time_immutable' => true,
+        'native_function_invocation' => ['scope' => 'all'],
+        'static_lambda' => true,
     ])
     ->setCacheFile(__DIR__.'/.php_cs.cache')
     ->setFinder(

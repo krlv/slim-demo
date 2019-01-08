@@ -1,12 +1,14 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App;
 
 use Pimple\ServiceProviderInterface;
 use Psr\Container\ContainerInterface;
+use Slim\App;
 
-class SkeletonApp extends \Slim\App
+class SkeletonApp extends App
 {
     /**
      * Registers application dependencies.
@@ -34,19 +36,19 @@ class SkeletonApp extends \Slim\App
     {
         $c = $this->getContainer();
 
-        $c['home_controller'] = function (ContainerInterface $c) {
+        $c['home_controller'] = static function (ContainerInterface $c) {
             return new Controller\HomeController($c['renderer']);
         };
 
-        $c['tasks_controller'] = function (ContainerInterface $c) {
+        $c['tasks_controller'] = static function (ContainerInterface $c) {
             return new Controller\TasksController($c['serializer']);
         };
 
-        $c['categories_controller'] = function (ContainerInterface $c) {
+        $c['categories_controller'] = static function (ContainerInterface $c) {
             return new Controller\CategoriesController($c['serializer']);
         };
 
-        $c['tags_controller'] = function (ContainerInterface $c) {
+        $c['tags_controller'] = static function (ContainerInterface $c) {
             return new Controller\TagsController($c['serializer']);
         };
 
@@ -62,7 +64,7 @@ class SkeletonApp extends \Slim\App
     {
         $c = $this->getContainer();
 
-        $c['logger_middleware'] = function (ContainerInterface $c) {
+        $c['logger_middleware'] = static function (ContainerInterface $c) {
             return new Middleware\LoggerMiddleware($c['logger']);
         };
 
@@ -83,7 +85,7 @@ class SkeletonApp extends \Slim\App
         $this->group('', Route\HomeRoute::class);
 
         // API routes
-        $this->group('/api', function () {
+        $this->group('/api', function (): void {
             $this->group('/tasks', Route\TasksRoute::class);
             $this->group('/categories', Route\CategoriesRoute::class);
             $this->group('/tags', Route\TagsRoute::class);

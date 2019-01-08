@@ -1,15 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Functional;
 
+use PHPUnit\Framework\TestCase;
 use Skeleton\App\AppFactory;
 use Skeleton\App\SkeletonApp;
 
 /**
  * Base class functional tests.
  */
-class WebTestCase extends \PHPUnit\Framework\TestCase
+class WebTestCase extends TestCase
 {
     /**
      * Application instance.
@@ -26,7 +28,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Setting up test environment.
      */
-    public static function setUpBeforeClass()
+    public static function setUpBeforeClass(): void
     {
         //TODO: init database
     }
@@ -34,7 +36,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Setting up the application.
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->app = $this->createApplication();
         //TODO: init database tables
@@ -46,7 +48,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
      *
      * @return SkeletonApp
      */
-    public function createApplication()
+    public function createApplication(): SkeletonApp
     {
         return AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
     }
@@ -54,11 +56,11 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Creates a Client.
      *
-     * @param array $server Server parameters
+     * @param string[] $server Server parameters
      *
      * @return WebTestClient A Client instance
      */
-    public function createClient(array $server = [])
+    public function createClient(array $server = []): WebTestClient
     {
         return new WebTestClient($this->app, $server);
     }
@@ -68,7 +70,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
      *
      * @param int $code
      */
-    public function assertStatusCode(int $code)
+    public function assertStatusCode(int $code): void
     {
         $this->assertEquals($code, $this->client->getStatusCode());
     }
@@ -78,7 +80,7 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
      *
      * @param string $type
      */
-    public function assertContentType(string $type)
+    public function assertContentType(string $type): void
     {
         $this->assertContains($type, $this->client->getHeader('Content-Type'));
     }
@@ -86,15 +88,15 @@ class WebTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Assert that JSON response equals to expected data.
      *
-     * @param array $expected
-     * @param int   $code
+     * @param string[] $expected
+     * @param int      $code
      */
-    public function assertJsonResponse(array $expected, $code = 200)
+    public function assertJsonResponse(array $expected, int $code = 200): void
     {
         $this->assertStatusCode($code);
         $this->assertContentType('application/json;charset=utf-8');
 
-        $expected = json_encode($expected);
+        $expected = \json_encode($expected);
         $actual   = $this->client->getResponse();
         $this->assertEquals($expected, $actual);
     }

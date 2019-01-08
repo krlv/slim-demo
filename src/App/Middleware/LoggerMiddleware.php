@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Middleware;
@@ -22,12 +23,12 @@ class LoggerMiddleware
         $this->logger = $logger;
     }
 
-    public function handle(Request $request, Response $response, callable $next)
+    public function handle(Request $request, Response $response, callable $next): Response
     {
         $route = $request->getAttribute('route');
 
         // Sample log message
-        $this->logger->info("dispatching '{$route->getPattern()}' route");
+        $this->logger->info(\sprintf("dispatching '%s' route", $route->getPattern()));
 
         return $next($request, $response);
     }

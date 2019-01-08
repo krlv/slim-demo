@@ -1,8 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Provider;
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Monolog\Processor\UidProcessor;
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
 
@@ -11,14 +15,14 @@ use Pimple\ServiceProviderInterface;
  */
 class LoggerServiceProvider implements ServiceProviderInterface
 {
-    public function register(Container $pimple)
+    public function register(Container $pimple): void
     {
-        $pimple['logger'] = function (\Slim\Container $c) {
+        $pimple['logger'] = static function (\Slim\Container $c) {
             $settings = $c->get('settings')['logger'];
 
-            $logger = new \Monolog\Logger($settings['name']);
-            $logger->pushProcessor(new \Monolog\Processor\UidProcessor());
-            $logger->pushHandler(new \Monolog\Handler\StreamHandler($settings['path'], \Monolog\Logger::DEBUG));
+            $logger = new Logger($settings['name']);
+            $logger->pushProcessor(new UidProcessor());
+            $logger->pushHandler(new StreamHandler($settings['path'], Logger::DEBUG));
 
             return $logger;
         };

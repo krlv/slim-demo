@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\Traits;
@@ -12,9 +13,9 @@ trait VisibilityTrait
      * @param string $property
      * @param mixed  $value
      */
-    protected function setPrivateProperty($object, $property, $value): void
+    protected function setPrivateProperty(object $object, string $property, $value): void
     {
-        \Closure::bind(function ($object, $value) use ($property) {
+        \Closure::bind(static function ($object, $value) use ($property): void {
             $object->$property = $value;
         }, null, $object)->__invoke($object, $value);
     }
@@ -27,9 +28,9 @@ trait VisibilityTrait
      *
      * @return mixed
      */
-    protected function getPrivateProperty($object, $property)
+    protected function getPrivateProperty(object $object, string $property)
     {
-        return \Closure::bind(function ($object) use ($property) {
+        return \Closure::bind(static function ($object) use ($property) {
             return $object->$property;
         }, null, $object)->__invoke($object);
     }

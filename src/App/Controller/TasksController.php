@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
@@ -20,6 +21,13 @@ class TasksController
         $this->serializer = $serializer;
     }
 
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
     public function getTasksAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch list of tasks
@@ -38,7 +46,14 @@ class TasksController
         return $this->serializer->serialize($response, $tasks);
     }
 
-    public function getTaskAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function getTaskAction(Request $request, Response $response, array $args): Response
     {
         // TODO: fetch task by ID
         $task = [
@@ -50,27 +65,48 @@ class TasksController
         return $this->serializer->serialize($response, $task);
     }
 
-    public function createTaskAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function createTaskAction(Request $request, Response $response, array $args): Response
     {
         // TODO: save new task
         $task = $request->getParsedBody();
-        $task = array_merge(['id' => '1'], $task);
+        $task = \array_merge(['id' => '1'], $task);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $task, StatusCode::HTTP_CREATED);
     }
 
-    public function updateTaskAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function updateTaskAction(Request $request, Response $response, array $args): Response
     {
         // TODO: update existing task
         $task = $request->getParsedBody();
-        $task = array_merge(['id' => $args['task_id']], $task);
+        $task = \array_merge(['id' => $args['task_id']], $task);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $task);
     }
 
-    public function deleteTaskAction(Request $request, Response $response, array $args)
+    /**
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
+     *
+     * @return Response
+     */
+    public function deleteTaskAction(Request $request, Response $response, array $args): Response
     {
         // TODO: delete existing task
 

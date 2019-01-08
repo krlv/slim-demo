@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Skeleton\App\Route;
@@ -12,7 +13,7 @@ class TasksRoute
      *
      * @param SkeletonApp $app
      */
-    public function __invoke(SkeletonApp $app)
+    public function __invoke(SkeletonApp $app): void
     {
         $app->get('', 'tasks_controller:getTasksAction');
         $app->get('/{task_id}', 'tasks_controller:getTaskAction');
