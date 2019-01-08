@@ -32,6 +32,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_types_order' => ['null_adjustment'=> 'always_last'],
         'single_line_comment_style' => true,
         'date_time_immutable' => true,
+        'native_function_invocation' => ['scope' => 'all'],
     ])
     ->setCacheFile(__DIR__.'/.php_cs.cache')
     ->setFinder(

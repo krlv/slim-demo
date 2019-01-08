@@ -55,7 +55,7 @@ class TasksController
     {
         // TODO: save new task
         $task = $request->getParsedBody();
-        $task = array_merge(['id' => '1'], $task);
+        $task = \array_merge(['id' => '1'], $task);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $task, StatusCode::HTTP_CREATED);
@@ -65,7 +65,7 @@ class TasksController
     {
         // TODO: update existing task
         $task = $request->getParsedBody();
-        $task = array_merge(['id' => $args['task_id']], $task);
+        $task = \array_merge(['id' => $args['task_id']], $task);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $task);

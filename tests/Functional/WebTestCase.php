@@ -48,7 +48,7 @@ class WebTestCase extends TestCase
      *
      * @return SkeletonApp
      */
-    public function createApplication()
+    public function createApplication(): SkeletonApp
     {
         return AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
     }
@@ -56,7 +56,7 @@ class WebTestCase extends TestCase
     /**
      * Creates a Client.
      *
-     * @param array $server Server parameters
+     * @param string[] $server Server parameters
      *
      * @return WebTestClient A Client instance
      */
@@ -88,15 +88,15 @@ class WebTestCase extends TestCase
     /**
      * Assert that JSON response equals to expected data.
      *
-     * @param array $expected
-     * @param int   $code
+     * @param string[] $expected
+     * @param int      $code
      */
     public function assertJsonResponse(array $expected, $code = 200)
     {
         $this->assertStatusCode($code);
         $this->assertContentType('application/json;charset=utf-8');
 
-        $expected = json_encode($expected);
+        $expected = \json_encode($expected);
         $actual   = $this->client->getResponse();
         $this->assertEquals($expected, $actual);
     }
