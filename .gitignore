@@ -2,10 +2,20 @@
 /bin/
 /logs/
 phpunit.xml
+
+# PHP CodeStyle Fixer
 .php_cs
 .php_cs.cache
+
+# PHP CodeSniffer
 phpcs.xml
 .phpcs-cache
+
+# PHPStan
+phpstan.neon
+
+# Composer Git Hooks
+cghooks.lock
 
 # IDE
 .idea

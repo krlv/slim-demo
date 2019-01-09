@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Skeleton\App;
 
+use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use Psr\Container\ContainerInterface;
 use Slim\App;
 
+/**
+ * @method Container getContainer()
+ */
 class SkeletonApp extends App
 {
     /**
@@ -36,19 +39,19 @@ class SkeletonApp extends App
     {
         $c = $this->getContainer();
 
-        $c['home_controller'] = static function (ContainerInterface $c) {
+        $c['home_controller'] = static function (Container $c) {
             return new Controller\HomeController($c['renderer']);
         };
 
-        $c['tasks_controller'] = static function (ContainerInterface $c) {
+        $c['tasks_controller'] = static function (Container $c) {
             return new Controller\TasksController($c['serializer']);
         };
 
-        $c['categories_controller'] = static function (ContainerInterface $c) {
+        $c['categories_controller'] = static function (Container $c) {
             return new Controller\CategoriesController($c['serializer']);
         };
 
-        $c['tags_controller'] = static function (ContainerInterface $c) {
+        $c['tags_controller'] = static function (Container $c) {
             return new Controller\TagsController($c['serializer']);
         };
 
@@ -64,7 +67,7 @@ class SkeletonApp extends App
     {
         $c = $this->getContainer();
 
-        $c['logger_middleware'] = static function (ContainerInterface $c) {
+        $c['logger_middleware'] = static function (Container $c) {
             return new Middleware\LoggerMiddleware($c['logger']);
         };
 
