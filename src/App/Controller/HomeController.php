@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Views\PhpRenderer;
@@ -28,9 +29,9 @@ class HomeController
      * @param Response $response
      * @param string[] $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function indexAction(Request $request, Response $response, array $args): Response
+    public function indexAction(Request $request, Response $response, array $args): ResponseInterface
     {
         // Render index view
         return $this->renderer->render($response, 'index.phtml', $args);

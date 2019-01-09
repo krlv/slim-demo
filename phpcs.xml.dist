@@ -48,6 +48,13 @@
         </properties>
     </rule>
 
+    <!-- Search in annotations when looking for unused imports -->
+    <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse">
+        <properties>
+            <property name="searchAnnotations" value="true"/>
+        </properties>
+    </rule>
+
     <!-- Override Doctrine requirement for space after NOT -->
     <rule ref="Generic.Formatting.SpaceAfterNot">
         <properties>

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Skeleton\Test\Functional;
 
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Slim\App;
 use Slim\Exception\MethodNotAllowedException;
 use Slim\Exception\NotFoundException;
@@ -25,12 +27,12 @@ class WebTestClient
     protected $server;
 
     /**
-     * @var Http\Request
+     * @var RequestInterface
      */
     protected $request;
 
     /**
-     * @var Http\Response
+     * @var ResponseInterface
      */
     protected $response;
 
@@ -109,7 +111,7 @@ class WebTestClient
     /**
      * Returns response headers.
      *
-     * @return string[]
+     * @return array[string[]]
      */
     public function getHeaders(): array
     {
