@@ -1,0 +1,25 @@
+dist: xenial
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+
+script:
+  - ./bin/phpcs
+  - ./bin/php-cs-fixer fix --dry-run
+  - ./bin/phpunit --testsuite unit
+  - ./bin/phpunit --testsuite functional
+  - ./bin/phpstan analyse
+
+matrix:
+  fast_finish: true
+  include:
+    - php: 7.3
+    - php: nightly
+  allow_failures:
+    - php: nightly
