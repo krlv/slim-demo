@@ -1,8 +1,5 @@
 dist: xenial
 language: php
-php:
-  - '7.3'
-  - nightly
 
 cache:
   directories:
@@ -21,3 +18,8 @@ script:
 
 matrix:
   fast_finish: true
+  include:
+    - php: 7.3
+    - php: nightly
+  allow_failures:
+    - php: nightly
