@@ -12,10 +12,10 @@
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
-        <testsuite name="Service Skeleton Unit Tests">
+        <testsuite name="unit">
             <directory suffix="Test.php">tests/Unit</directory>
         </testsuite>
-        <testsuite name="Service Skeleton Functional Tests">
+        <testsuite name="functional">
             <directory suffix="Test.php">tests/Functional</directory>
         </testsuite>
     </testsuites>
