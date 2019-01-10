@@ -14,9 +14,6 @@ phpcs.xml
 # PHPStan
 phpstan.neon
 
-# Composer Git Hooks
-cghooks.lock
-
 # IDE
 .idea
 
