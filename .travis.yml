@@ -1,7 +1,6 @@
 dist: xenial
 language: php
 php:
-  - '7.1'
   - '7.2'
   - '7.3'
   - nightly
@@ -17,6 +16,11 @@ before_script:
 matrix:
   fast_finish: true
 
+stages:
+  - "Code Style Checks"
+  - "Test"
+  - "Analysis"
+
 jobs:
   include:
     - stage: "Code Style Checks"
@@ -24,7 +28,7 @@ jobs:
       script: ./bin/phpcs
     - name: "PHP CodeStyle Fixer"
       script: ./bin/php-cs-fixer fix --dry-run
-    - stage: "Tests"
+    - stage: Test
       name: "Unit Tests"
       script: ./bin/phpunit --testsuite unit
     - name: "Functional Tests"
