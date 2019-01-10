@@ -12,26 +12,12 @@ before_script:
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
 
+script:
+  - ./bin/phpcs
+  - ./bin/php-cs-fixer fix --dry-run
+  - ./bin/phpunit --testsuite unit
+  - ./bin/phpunit --testsuite functional
+  - ./bin/phpstan analyse
+
 matrix:
   fast_finish: true
-
-stages:
-  - "Code Style Checks"
-  - "Test"
-  - "Analysis"
-
-jobs:
-  include:
-    - stage: "Code Style Checks"
-      name: "PHP CodeSniffer"
-      script: ./bin/phpcs
-    - name: "PHP CodeStyle Fixer"
-      script: ./bin/php-cs-fixer fix --dry-run
-    - stage: Test
-      name: "Unit Tests"
-      script: ./bin/phpunit --testsuite unit
-    - name: "Functional Tests"
-      script: ./bin/phpunit --testsuite functional
-    - stage: "Analysis"
-      name: "Static Analysis"
-      script: ./bin/phpstan analyse
