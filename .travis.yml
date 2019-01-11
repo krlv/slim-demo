@@ -1,19 +1,9 @@
 dist: xenial
 language: php
 
-cache:
-  directories:
-    - $HOME/.composer/cache
-
-before_script:
-  - composer self-update
-  - composer install --prefer-source --no-interaction --dev
-
-script:
-  - ./bin/phpcs
-  - ./bin/php-cs-fixer fix --dry-run
-  - ./bin/phpunit
-  - ./bin/phpstan analyse
+notifications:
+  email:
+    on_success: never
 
 matrix:
   fast_finish: true
@@ -22,3 +12,28 @@ matrix:
     - php: nightly
   allow_failures:
     - php: nightly
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - phpenv config-rm xdebug.ini
+
+install:
+  - mkdir -p build/logs
+
+before_script:
+  - composer self-update
+  - composer install --prefer-source --no-interaction --dev
+  - if [[ $(phpenv version-name) != 'nightly' ]]; then composer require --dev satooshi/php-coveralls '~2.0' -n ; fi
+
+script:
+  - ./bin/phpcs
+  - ./bin/php-cs-fixer fix --dry-run
+  - if [[ $(phpenv version-name) != 'nightly' ]]; then phpdbg -qrr bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml ; fi
+  - if [[ $(phpenv version-name) == 'nightly' ]]; then ./bin/phpunit ; fi
+  - ./bin/phpstan analyse
+
+after_success:
+  - bin/php-coveralls -v --exclude-no-stmt
