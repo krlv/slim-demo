@@ -12,8 +12,7 @@ before_script:
 script:
   - ./bin/phpcs
   - ./bin/php-cs-fixer fix --dry-run
-  - ./bin/phpunit --testsuite unit
-  - ./bin/phpunit --testsuite functional
+  - ./bin/phpunit
   - ./bin/phpstan analyse
 
 matrix:
