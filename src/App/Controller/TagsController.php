@@ -66,8 +66,10 @@ class TagsController
     public function createTagAction(Request $request, Response $response, array $args): Response
     {
         // TODO: add new tag
+        $tag = $request->getParsedBody();
+        $tag = \array_merge(['id' => '1'], $tag);
 
-        // Return empty response with 201 Created code
-        return $this->serializer->serialize($response, [], StatusCode::HTTP_CREATED);
+        // Return response as JSON with 201 Created code
+        return $this->serializer->serialize($response, $tag, StatusCode::HTTP_CREATED);
     }
 }
