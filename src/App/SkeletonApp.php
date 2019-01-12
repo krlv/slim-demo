@@ -43,12 +43,12 @@ class SkeletonApp extends App
             return new Controller\HomeController($c['renderer']);
         };
 
-        $c['tasks_controller'] = static function (Container $c) {
-            return new Controller\TasksController($c['serializer']);
+        $c['lists_controller'] = static function (Container $c) {
+            return new Controller\ListsController($c['serializer']);
         };
 
-        $c['categories_controller'] = static function (Container $c) {
-            return new Controller\CategoriesController($c['serializer']);
+        $c['tasks_controller'] = static function (Container $c) {
+            return new Controller\TasksController($c['serializer']);
         };
 
         $c['tags_controller'] = static function (Container $c) {
@@ -89,8 +89,8 @@ class SkeletonApp extends App
 
         // API routes
         $this->group('/api', function (): void {
-            $this->group('/tasks', Route\TasksRoute::class);
-            $this->group('/categories', Route\CategoriesRoute::class);
+            $this->group('/lists', Route\ListsRoute::class);
+            $this->group('/lists/{list_id}/tasks', Route\TasksRoute::class);
             $this->group('/tags', Route\TagsRoute::class);
         });
 

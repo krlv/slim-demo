@@ -9,7 +9,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Http\StatusCode;
 
-class CategoriesController
+class ListsController
 {
     /**
      * @var Serializer
@@ -28,22 +28,22 @@ class CategoriesController
      *
      * @return Response
      */
-    public function getCategoriesAction(Request $request, Response $response, array $args): Response
+    public function getListsAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: fetch list of categories
-        $categories = [
+        // TODO: fetch list of task lists
+        $lists = [
             [
                 'id'    => 1,
-                'title' => 'Category 1',
+                'title' => 'Task List 1',
             ],
             [
                 'id'    => 2,
-                'title' => 'Category 2',
+                'title' => 'Task List 2',
             ],
         ];
 
         // Return response as JSON
-        return $this->serializer->serialize($response, $categories);
+        return $this->serializer->serialize($response, $lists);
     }
 
     /**
@@ -53,16 +53,16 @@ class CategoriesController
      *
      * @return Response
      */
-    public function getCategoryAction(Request $request, Response $response, array $args): Response
+    public function getListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: fetch category by ID
-        $category = [
-            'id'    => $args['category_id'],
-            'title' => 'Category ' . $args['category_id'],
+        // TODO: fetch list by ID
+        $list = [
+            'id'    => $args['list_id'],
+            'title' => 'Task List ' . $args['list_id'],
         ];
 
         // Return response as JSON
-        return $this->serializer->serialize($response, $category);
+        return $this->serializer->serialize($response, $list);
     }
 
     /**
@@ -72,16 +72,14 @@ class CategoriesController
      *
      * @return Response
      */
-    public function createCategoryAction(Request $request, Response $response, array $args): Response
+    public function createListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: save new category
-        $category = [
-            'id'    => 1,
-            'title' => 'Category 1',
-        ];
+        // TODO: create new list
+        $list = $request->getParsedBody();
+        $list = \array_merge(['id' => '1'], $list);
 
         // Return response as JSON with 201 Created code
-        return $this->serializer->serialize($response, $category, StatusCode::HTTP_CREATED);
+        return $this->serializer->serialize($response, $list, StatusCode::HTTP_CREATED);
     }
 
     /**
@@ -91,12 +89,14 @@ class CategoriesController
      *
      * @return Response
      */
-    public function updateCategoryAction(Request $request, Response $response, array $args): Response
+    public function updateListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: update existing category
+        // TODO: update existing task list
+        $list = $request->getParsedBody();
+        $list = \array_merge(['id' => $args['list_id']], $list);
 
         // Return response as JSON
-        return $this->serializer->serialize($response, []);
+        return $this->serializer->serialize($response, $list);
     }
 
     /**
@@ -106,9 +106,9 @@ class CategoriesController
      *
      * @return Response
      */
-    public function deleteCategoryAction(Request $request, Response $response, array $args): Response
+    public function deleteListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: delete existing category
+        // TODO: delete existing task list
 
         // Return empty response with 204 No Content code
         return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
