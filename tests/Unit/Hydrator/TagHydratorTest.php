@@ -19,9 +19,8 @@ final class TagHydratorTest extends TestCase
             'title' => 'New Tag',
         ];
 
-        $hydrator = new TagHydrator();
-
         $expected = new Tag('New Tag');
+        $hydrator = new TagHydrator();
         $actual   = $hydrator->hydrate($tag);
 
         $this->assertEquals($expected, $actual);
@@ -34,12 +33,27 @@ final class TagHydratorTest extends TestCase
             'title' => 'New Tag',
         ];
 
-        $hydrator = new TagHydrator();
-
         $expected = new Tag('New Tag');
         $this->setPrivateProperty($expected, 'id', 1);
 
-        $actual = $hydrator->hydrate($tag);
+        $hydrator = new TagHydrator();
+        $actual   = $hydrator->hydrate($tag);
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testToArray(): void
+    {
+        $expected = [
+            'id'    => 1,
+            'title' => 'New Tag',
+        ];
+
+        $tag = new Tag('New Tag');
+        $this->setPrivateProperty($tag, 'id', 1);
+
+        $hydrator = new TagHydrator();
+        $actual   = $hydrator->toArray($tag);
 
         $this->assertEquals($expected, $actual);
     }
