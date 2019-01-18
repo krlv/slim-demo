@@ -13,48 +13,71 @@ final class TaskListHydratorTest extends TestCase
 {
     use VisibilityTrait;
 
-    public function testHydrate(): void
+    /**
+     * @param array    $list
+     * @param TaskList $expected
+     *
+     * @dataProvider hydrateProvider
+     */
+    public function testHydrate(array $list, TaskList $expected): void
     {
-        $list = [
-            'title' => 'New List',
-        ];
-
-        $expected = new TaskList('New List');
         $hydrator = new TaskListHydrator();
-        $actual   = $hydrator->hydrate($list);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $hydrator->hydrate($list));
     }
 
-    public function testHydrateWithId(): void
+    /**
+     * @param TaskList $list
+     * @param array    $expected
+     *
+     * @dataProvider toArrayProvider
+     */
+    public function testToArray(TaskList $list, array $expected): void
     {
-        $list = [
-            'id'    => 1,
-            'title' => 'New List',
-        ];
-
-        $expected = new TaskList('New List');
-        $this->setPrivateProperty($expected, 'id', 1);
-
         $hydrator = new TaskListHydrator();
-        $actual   = $hydrator->hydrate($list);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $hydrator->toArray($list));
     }
 
-    public function testToArray(): void
+    public function hydrateProvider(): array
     {
+        $expected = new TaskList($title = 'New List');
+        $list     = [
+            'id'    => null,
+            'title' => $title,
+        ];
+
+        $expectedWithId = new TaskList($title = 'List With ID');
+        $this->setPrivateProperty($expectedWithId, 'id', $id = 1);
+
+        $listWithId = [
+            'id'    => $id,
+            'title' => $title,
+        ];
+
+        return [
+            [$list, $expected],
+            [$listWithId, $expectedWithId],
+        ];
+    }
+
+    public function toArrayProvider(): array
+    {
+        $list     = new TaskList($title = 'New List');
         $expected = [
-            'id'    => 1,
-            'title' => 'New List',
+            'id'    => null,
+            'title' => $title,
         ];
 
-        $list = new TaskList('New List');
-        $this->setPrivateProperty($list, 'id', 1);
+        $listWithId = new TaskList($title = 'List With ID');
+        $this->setPrivateProperty($listWithId, 'id', $id = 1);
 
-        $hydrator = new TaskListHydrator();
-        $actual   = $hydrator->toArray($list);
+        $expectedWithId = [
+            'id'    => $id,
+            'title' => $title,
+        ];
 
-        $this->assertEquals($expected, $actual);
+        return [
+            [$list, $expected],
+            [$listWithId, $expectedWithId],
+        ];
     }
 }

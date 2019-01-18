@@ -45,12 +45,12 @@ final class TagHydratorTest extends TestCase
             'title' => $title,
         ];
 
-        $expectedWithId = new Tag('Tag With ID');
+        $expectedWithId = new Tag($title = 'Tag With ID');
         $this->setPrivateProperty($expectedWithId, 'id', $id = 1);
 
         $tagWithId = [
             'id'    => $id,
-            'title' => 'Tag With ID',
+            'title' => $title,
         ];
 
         return [
