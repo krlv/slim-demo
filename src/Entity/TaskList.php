@@ -7,7 +7,7 @@ namespace Skeleton\Entity;
 final class TaskList
 {
     /**
-     * @var int"null
+     * @var int|null
      */
     private $id;
 
