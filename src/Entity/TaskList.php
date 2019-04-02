@@ -7,7 +7,7 @@ namespace Skeleton\Entity;
 final class TaskList
 {
     /**
-     * @var int
+     * @var int|null
      */
     private $id;
 
@@ -25,9 +25,9 @@ final class TaskList
     }
 
     /**
-     * @return int
+     * @return int|null
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

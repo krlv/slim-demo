@@ -13,48 +13,71 @@ final class TagHydratorTest extends TestCase
 {
     use VisibilityTrait;
 
-    public function testHydrate(): void
+    /**
+     * @param array $tag
+     * @param Tag   $expected
+     *
+     * @dataProvider hydrateProvider
+     */
+    public function testHydrate(array $tag, Tag $expected): void
     {
-        $tag = [
-            'title' => 'New Tag',
-        ];
-
-        $expected = new Tag('New Tag');
         $hydrator = new TagHydrator();
-        $actual   = $hydrator->hydrate($tag);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $hydrator->hydrate($tag));
     }
 
-    public function testHydrateWithId(): void
+    /**
+     * @param Tag   $tag
+     * @param array $expected
+     *
+     * @dataProvider toArrayProvider
+     */
+    public function testToArray(Tag $tag, array $expected): void
     {
-        $tag = [
-            'id'    => 1,
-            'title' => 'New Tag',
-        ];
-
-        $expected = new Tag('New Tag');
-        $this->setPrivateProperty($expected, 'id', 1);
-
         $hydrator = new TagHydrator();
-        $actual   = $hydrator->hydrate($tag);
-
-        $this->assertEquals($expected, $actual);
+        $this->assertEquals($expected, $hydrator->toArray($tag));
     }
 
-    public function testToArray(): void
+    public function hydrateProvider(): array
     {
+        $expected = new Tag($title = 'New Tag');
+        $tag      = [
+            'id'    => null,
+            'title' => $title,
+        ];
+
+        $expectedWithId = new Tag($title = 'Tag With ID');
+        $this->setPrivateProperty($expectedWithId, 'id', $id = 1);
+
+        $tagWithId = [
+            'id'    => $id,
+            'title' => $title,
+        ];
+
+        return [
+            [$tag, $expected],
+            [$tagWithId, $expectedWithId],
+        ];
+    }
+
+    public function toArrayProvider(): array
+    {
+        $tag      = new Tag($title = 'New Tag');
         $expected = [
-            'id'    => 1,
-            'title' => 'New Tag',
+            'id'    => null,
+            'title' => $title,
         ];
 
-        $tag = new Tag('New Tag');
-        $this->setPrivateProperty($tag, 'id', 1);
+        $tagWithId = new Tag($title = 'Tag With ID');
+        $this->setPrivateProperty($tagWithId, 'id', $id = 1);
 
-        $hydrator = new TagHydrator();
-        $actual   = $hydrator->toArray($tag);
+        $expectedWithId = [
+            'id'    => $id,
+            'title' => $title,
+        ];
 
-        $this->assertEquals($expected, $actual);
+        return [
+            [$tag, $expected],
+            [$tagWithId, $expectedWithId],
+        ];
     }
 }
