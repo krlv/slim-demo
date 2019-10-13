@@ -109,7 +109,6 @@ class TasksController
     public function deleteTaskAction(Request $request, Response $response, array $args): Response
     {
         // TODO: delete existing task
-
         // Return empty response with 204 No Content code
         return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
     }

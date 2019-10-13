@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\Test\Unit\Traits;
 
-trait VisibilityTrait
+trait Visibility
 {
     /**
      * Set private property to an object.

@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace Skeleton\App;
 
-/**
- * Class AppFactory.
- */
 final class AppFactory
 {
     /**
