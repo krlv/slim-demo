@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Route;
 
-use Skeleton\App\SkeletonApp;
+use Slim\Interfaces\RouteCollectorProxyInterface;
 
 class HomeRoute
 {
     /**
      * Register Home web routes.
      *
-     * @param SkeletonApp $app
+     * @param RouteCollectorProxyInterface $app
      */
-    public function __invoke(SkeletonApp $app): void
+    public function __invoke(RouteCollectorProxyInterface $app): void
     {
         $app->get('/[{name}]', 'home_controller:indexAction');
     }

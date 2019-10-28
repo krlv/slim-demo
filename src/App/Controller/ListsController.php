@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
 
+use Fig\Http\Message\StatusCodeInterface as HttpCode;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Skeleton\App\Serializer\Serializer;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\StatusCode;
 
 class ListsController
 {
@@ -79,7 +79,7 @@ class ListsController
         $list = \array_merge(['id' => '1'], $list);
 
         // Return response as JSON with 201 Created code
-        return $this->serializer->serialize($response, $list, StatusCode::HTTP_CREATED);
+        return $this->serializer->serialize($response, $list, HttpCode::STATUS_CREATED);
     }
 
     /**
@@ -110,6 +110,6 @@ class ListsController
     {
         // TODO: delete existing task list
         // Return empty response with 204 No Content code
-        return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
+        return $this->serializer->serialize($response, [], HttpCode::STATUS_NO_CONTENT);
     }
 }

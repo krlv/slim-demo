@@ -7,11 +7,11 @@ namespace Skeleton\Test\Unit\Hydrator;
 use PHPUnit\Framework\TestCase;
 use Skeleton\Entity\Task;
 use Skeleton\Hydrator\TaskHydrator;
-use Skeleton\Test\Unit\Traits\VisibilityTrait;
+use Skeleton\Test\Unit\Traits\Visibility;
 
 final class TaskHydratorTest extends TestCase
 {
-    use VisibilityTrait;
+    use Visibility;
 
     /**
      * @param array $task

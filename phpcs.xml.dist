@@ -71,4 +71,9 @@
             <property name="spacing" value="0"/>
         </properties>
     </rule>
+
+    <!-- The Slim does not support static closures -->
+    <rule ref="SlevomatCodingStandard.Functions.StaticClosure.ClosureNotStatic">
+        <exclude-pattern>src/App/AppFactory.php</exclude-pattern>
+    </rule>
 </ruleset>

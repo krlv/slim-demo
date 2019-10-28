@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
 
+use Fig\Http\Message\StatusCodeInterface as HttpCode;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Skeleton\App\Serializer\Serializer;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\StatusCode;
 
 class TagsController
 {
@@ -22,13 +22,13 @@ class TagsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function getTagsAction(Request $request, Response $response, array $args): Response
+    public function getTagsAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: fetch list of available tags
         $tags = [];
@@ -38,13 +38,13 @@ class TagsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function getTagAction(Request $request, Response $response, array $args): Response
+    public function getTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: fetch tag by ID
         $tags = [
@@ -57,19 +57,19 @@ class TagsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function createTagAction(Request $request, Response $response, array $args): Response
+    public function createTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: add new tag
         $tag = $request->getParsedBody();
         $tag = \array_merge(['id' => '1'], $tag);
 
         // Return response as JSON with 201 Created code
-        return $this->serializer->serialize($response, $tag, StatusCode::HTTP_CREATED);
+        return $this->serializer->serialize($response, $tag, HttpCode::STATUS_CREATED);
     }
 }

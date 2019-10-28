@@ -17,8 +17,8 @@ class LoggerServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple): void
     {
-        $pimple['logger'] = static function (\Slim\Container $c) {
-            $settings = $c->get('settings')['logger'];
+        $pimple['logger'] = static function (Container $c) {
+            $settings = $c->offsetGet('settings')['logger'];
 
             $logger = new Logger($settings['name']);
             $logger->pushProcessor(new UidProcessor());

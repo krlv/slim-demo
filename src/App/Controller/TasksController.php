@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
 
+use Fig\Http\Message\StatusCodeInterface as HttpCode;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use Skeleton\App\Serializer\Serializer;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\StatusCode;
 
 class TasksController
 {
@@ -22,13 +22,13 @@ class TasksController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function getTasksAction(Request $request, Response $response, array $args): Response
+    public function getTasksAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: fetch list of tasks
         $tasks = [
@@ -47,13 +47,13 @@ class TasksController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function getTaskAction(Request $request, Response $response, array $args): Response
+    public function getTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: fetch task by ID
         $task = [
@@ -66,30 +66,30 @@ class TasksController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function createTaskAction(Request $request, Response $response, array $args): Response
+    public function createTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: save new task
         $task = $request->getParsedBody();
         $task = \array_merge(['id' => '1'], $task);
 
         // Return response as JSON with 201 Created code
-        return $this->serializer->serialize($response, $task, StatusCode::HTTP_CREATED);
+        return $this->serializer->serialize($response, $task, HttpCode::STATUS_CREATED);
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function updateTaskAction(Request $request, Response $response, array $args): Response
+    public function updateTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: update existing task
         $task = $request->getParsedBody();
@@ -100,16 +100,16 @@ class TasksController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
-     * @param string[] $args
+     * @param ServerRequestInterface $request
+     * @param ResponseInterface      $response
+     * @param string[]               $args
      *
-     * @return Response
+     * @return ResponseInterface
      */
-    public function deleteTaskAction(Request $request, Response $response, array $args): Response
+    public function deleteTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
         // TODO: delete existing task
         // Return empty response with 204 No Content code
-        return $this->serializer->serialize($response, [], StatusCode::HTTP_NO_CONTENT);
+        return $this->serializer->serialize($response, [], HttpCode::STATUS_NO_CONTENT);
     }
 }

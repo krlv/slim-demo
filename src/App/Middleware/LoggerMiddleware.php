@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace Skeleton\App\Middleware;
 
 use Monolog\Logger;
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class LoggerMiddleware
 {
@@ -23,13 +24,13 @@ class LoggerMiddleware
         $this->logger = $logger;
     }
 
-    public function handle(Request $request, Response $response, callable $next): Response
+    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $route = $request->getAttribute('route');
 
         // Sample log message
         $this->logger->info(\sprintf("dispatching '%s' route", $route->getPattern()));
 
-        return $next($request, $response);
+        return $handler->handle($request);
     }
 }

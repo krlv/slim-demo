@@ -10,19 +10,19 @@ final class ListsTest extends WebTestCase
 {
     public function testGetListsAction(): void
     {
-        $this->client->request('GET', '/api/lists');
+        $this->request('GET', '/api/lists');
         $this->assertStatusCode(200);
     }
 
     public function testGetEmptyListsAction(): void
     {
-        $this->client->request('GET', '/api/lists');
+        $this->request('GET', '/api/lists');
         $this->assertStatusCode(200);
     }
 
     public function testGetListByIdAction(): void
     {
-        $this->client->request('GET', '/api/lists/1');
+        $this->request('GET', '/api/lists/1');
         $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task List 1',
@@ -31,7 +31,7 @@ final class ListsTest extends WebTestCase
 
     public function testGetListByNonExistingIdAction(): void
     {
-        $this->client->request('GET', '/api/lists/1');
+        $this->request('GET', '/api/lists/1');
         $this->assertJsonResponse([
             'id'    => '1',
             'title' => 'Task List 1',
@@ -40,7 +40,7 @@ final class ListsTest extends WebTestCase
 
     public function testCreateListAction(): void
     {
-        $this->client->request('POST', '/api/lists', [], [], [
+        $this->request('POST', '/api/lists', [], [], [], [
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
@@ -51,7 +51,7 @@ final class ListsTest extends WebTestCase
 
     public function testUpdateListAction(): void
     {
-        $this->client->request('PUT', '/api/lists/1', [], [], [
+        $this->request('PUT', '/api/lists/1', [], [], [], [
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
@@ -62,7 +62,7 @@ final class ListsTest extends WebTestCase
 
     public function testUpdateNonExistingListAction(): void
     {
-        $this->client->request('PUT', '/api/lists/1', [], [], [
+        $this->request('PUT', '/api/lists/1', [], [], [], [
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
@@ -73,13 +73,13 @@ final class ListsTest extends WebTestCase
 
     public function testDeleteListAction(): void
     {
-        $this->client->request('DELETE', '/api/lists/1');
+        $this->request('DELETE', '/api/lists/1');
         $this->assertStatusCode(204);
     }
 
     public function testDeleteNonExistingListAction(): void
     {
-        $this->client->request('DELETE', '/api/lists/1');
+        $this->request('DELETE', '/api/lists/1');
         $this->assertStatusCode(204);
     }
 }

@@ -4,9 +4,8 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Controller;
 
-use Psr\Http\Message\ResponseInterface;
-use Slim\Http\Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\PhpRenderer;
 
 class HomeController
@@ -27,11 +26,11 @@ class HomeController
     /**
      * @param Request  $request
      * @param Response $response
-     * @param string[] $args
+     * @param array    $args
      *
-     * @return ResponseInterface
+     * @return Response
      */
-    public function indexAction(Request $request, Response $response, array $args): ResponseInterface
+    public function indexAction(Request $request, Response $response, array $args): Response
     {
         // Render index view
         return $this->renderer->render($response, 'index.phtml', $args);

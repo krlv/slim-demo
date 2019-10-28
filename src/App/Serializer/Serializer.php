@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Serializer;
 
+use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use JMS\Serializer\SerializerInterface;
-use Slim\Http\Request;
-use Slim\Http\Response;
-use Slim\Http\StatusCode;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 class Serializer
 {
@@ -33,14 +33,17 @@ class Serializer
      *
      * @return Response
      */
-    public function serialize(Response $response, $data, int $status = StatusCode::HTTP_OK): Response
+    public function serialize(Response $response, $data, int $status = HttpCode::STATUS_OK): Response
     {
         $data = $this->serializer->serialize($data, 'json');
+
+        $body = $response->getBody();
+        $body->write($data);
 
         return $response
             ->withHeader('Content-Type', 'application/json;charset=utf-8')
             ->withStatus($status)
-            ->write($data)
+            ->withBody($body)
         ;
     }
 
