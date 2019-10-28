@@ -15,8 +15,8 @@ class DbalServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple): void
     {
-        $pimple['dbal'] = static function (\Slim\Container $c) {
-            $settings = $c->get('settings')['dbal'];
+        $pimple['dbal'] = static function (Container $c) {
+            $settings = $c->offsetGet('settings')['dbal'];
 
             return DriverManager::getConnection($settings);
         };

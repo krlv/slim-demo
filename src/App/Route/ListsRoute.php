@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Route;
 
-use Skeleton\App\SkeletonApp;
+use Slim\Interfaces\RouteCollectorProxyInterface;
 
 class ListsRoute
 {
     /**
      * Register Categories API routes.
      *
-     * @param SkeletonApp $app
+     * @param RouteCollectorProxyInterface $app
      */
-    public function __invoke(SkeletonApp $app): void
+    public function __invoke(RouteCollectorProxyInterface $app): void
     {
         $app->get('', 'lists_controller:getListsAction');
         $app->get('/{list_id}', 'lists_controller:getListAction');

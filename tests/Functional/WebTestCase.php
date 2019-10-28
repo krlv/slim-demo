@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace Skeleton\Test\Functional;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface as Response;
 use Skeleton\App\AppFactory;
-use Skeleton\App\SkeletonApp;
+use Slim\App as SlimApp;
+use Slim\Psr7\Factory\StreamFactory;
+use Slim\Psr7\Headers;
+use Slim\Psr7\Request;
+use Slim\Psr7\Uri;
 
 /**
  * Base class functional tests.
@@ -16,21 +21,21 @@ class WebTestCase extends TestCase
     /**
      * Application instance.
      *
-     * @var SkeletonApp
+     * @var SlimApp
      */
     protected $app;
 
     /**
-     * @var WebTestClient
+     * @var Response
      */
-    protected $client;
+    protected $response;
 
     /**
      * Setting up test environment.
      */
     public static function setUpBeforeClass(): void
     {
-        //TODO: init database
+        //TODO: init database state
     }
 
     /**
@@ -38,31 +43,34 @@ class WebTestCase extends TestCase
      */
     protected function setUp(): void
     {
-        $this->app = $this->createApplication();
+        $this->app = AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
+
         //TODO: init database tables
-        $this->client = $this->createClient();
     }
 
-    /**
-     * Creates the application.
-     *
-     * @return SkeletonApp
-     */
-    public function createApplication(): SkeletonApp
-    {
-        return AppFactory::createTestApp(require __DIR__ . '/../../settings.php');
-    }
+    public function request(
+        string $method,
+        string $path,
+        array $headers = [],
+        array $cookies = [],
+        array $server = [],
+        array $content = []
+    ): void {
+        $uri = new Uri('', '', 80, $path);
 
-    /**
-     * Creates a Client.
-     *
-     * @param string[] $server Server parameters
-     *
-     * @return WebTestClient A Client instance
-     */
-    public function createClient(array $server = []): WebTestClient
-    {
-        return new WebTestClient($this->app, $server);
+        $stream = (new StreamFactory())->createStream();
+
+        $h = new Headers();
+        foreach ($headers as $name => $value) {
+            $h->addHeader($name, $value);
+        }
+
+        $request = new Request($method, $uri, $h, $cookies, $server, $stream);
+        if (!empty($content)) {
+            $request = $request->withParsedBody($content);
+        }
+
+        $this->response = $this->app->handle($request);
     }
 
     /**
@@ -72,7 +80,7 @@ class WebTestCase extends TestCase
      */
     public function assertStatusCode(int $code): void
     {
-        $this->assertEquals($code, $this->client->getStatusCode());
+        $this->assertEquals($code, $this->response->getStatusCode());
     }
 
     /**
@@ -82,7 +90,7 @@ class WebTestCase extends TestCase
      */
     public function assertContentType(string $type): void
     {
-        $this->assertContains($type, $this->client->getHeader('Content-Type'));
+        $this->assertContains($type, $this->response->getHeader('Content-Type'));
     }
 
     /**
@@ -97,7 +105,8 @@ class WebTestCase extends TestCase
         $this->assertContentType('application/json;charset=utf-8');
 
         $expected = \json_encode($expected);
-        $actual   = $this->client->getResponse();
+        $actual   = (string) $this->response->getBody();
+
         $this->assertEquals($expected, $actual);
     }
 }

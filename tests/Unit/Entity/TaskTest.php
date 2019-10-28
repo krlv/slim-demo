@@ -6,11 +6,11 @@ namespace Skeleton\Test\Unit\Entity;
 
 use PHPUnit\Framework\TestCase;
 use Skeleton\Entity\Task;
-use Skeleton\Test\Unit\Traits\VisibilityTrait;
+use Skeleton\Test\Unit\Traits\Visibility;
 
 class TaskTest extends TestCase
 {
-    use VisibilityTrait;
+    use Visibility;
 
     public function testConstructor(): void
     {

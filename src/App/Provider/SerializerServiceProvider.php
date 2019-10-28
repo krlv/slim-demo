@@ -15,7 +15,7 @@ class SerializerServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple): void
     {
-        $pimple['serializer'] = static function (\Slim\Container $c) {
+        $pimple['serializer'] = static function (Container $c) {
             $serializer = SerializerBuilder::create()
                 ->setSerializationVisitor('json', new JsonSerializationVisitorFactory())
                 ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())

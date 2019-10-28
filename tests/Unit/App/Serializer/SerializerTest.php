@@ -6,10 +6,10 @@ namespace Skeleton\Test\Unit\App\Serializer;
 
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\StreamInterface;
 use Skeleton\App\Serializer\Serializer;
-use Slim\Http\Request;
-use Slim\Http\RequestBody;
-use Slim\Http\Response;
 
 class SerializerTest extends TestCase
 {
@@ -20,7 +20,7 @@ class SerializerTest extends TestCase
 
         $serializer = $this
             ->getMockBuilder(SerializerInterface::class)
-            ->setMethods(['serialize'])
+            ->onlyMethods(['serialize'])
             ->getMockForAbstractClass()
         ;
 
@@ -34,11 +34,30 @@ class SerializerTest extends TestCase
             ->willReturn($data)
         ;
 
+        $responseBody = $this
+            ->getMockBuilder(StreamInterface::class)
+            ->onlyMethods(['write'])
+            ->getMockForAbstractClass()
+        ;
+
+        $responseBody
+            ->expects($this->once())
+            ->method('write')
+            ->with($data)
+            ->willReturn(\strlen($data))
+        ;
+
         $response = $this
             ->getMockBuilder(Response::class)
             ->disableOriginalConstructor()
-            ->setMethods(['withHeader', 'withStatus', 'write'])
-            ->getMock()
+            ->onlyMethods(['getBody', 'withHeader', 'withStatus', 'withBody'])
+            ->getMockForAbstractClass()
+        ;
+
+        $response
+            ->expects($this->once())
+            ->method('getBody')
+            ->willReturn($responseBody)
         ;
 
         $response
@@ -60,8 +79,8 @@ class SerializerTest extends TestCase
 
         $response
             ->expects($this->once())
-            ->method('write')
-            ->with($this->equalTo($data))
+            ->method('withBody')
+            ->with($this->equalTo($responseBody))
             ->willReturn($response)
         ;
 
@@ -75,15 +94,24 @@ class SerializerTest extends TestCase
     {
         $task = ['id' => 1, 'title' => 'Task 1'];
 
-        $requestBody = new RequestBody();
-        $requestBody->write($jsonString = '{"id":1,"title":"Task 1"}');
+        $requestBody = $this
+            ->getMockBuilder(StreamInterface::class)
+            ->onlyMethods(['__toString'])
+            ->getMockForAbstractClass()
+        ;
+
+        $requestBody
+            ->expects($this->once())
+            ->method('__toString')
+            ->willReturn($jsonString = '{"id":1,"title":"Task 1"}')
+        ;
 
         // Request mock with body
         $request = $this
             ->getMockBuilder(Request::class)
             ->disableOriginalConstructor()
-            ->setMethods(['getBody'])
-            ->getMock()
+            ->onlyMethods(['getBody'])
+            ->getMockForAbstractClass()
         ;
 
         $request
@@ -95,7 +123,7 @@ class SerializerTest extends TestCase
         // Serializer mock with deserialize method
         $serializer = $this
             ->getMockBuilder(SerializerInterface::class)
-            ->setMethods(['deserialize'])
+            ->onlyMethods(['deserialize'])
             ->getMockForAbstractClass()
         ;
 

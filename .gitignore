@@ -1,7 +1,10 @@
 /vendor/
 /bin/
 /logs/
+
+# PHPUnit
 phpunit.xml
+.phpunit.result.cache
 
 # PHP CodeStyle Fixer
 .php_cs
