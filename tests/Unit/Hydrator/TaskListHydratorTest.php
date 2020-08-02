@@ -14,9 +14,6 @@ final class TaskListHydratorTest extends TestCase
     use Visibility;
 
     /**
-     * @param array    $list
-     * @param TaskList $expected
-     *
      * @dataProvider hydrateProvider
      */
     public function testHydrate(array $list, TaskList $expected): void
@@ -26,9 +23,6 @@ final class TaskListHydratorTest extends TestCase
     }
 
     /**
-     * @param TaskList $list
-     * @param array    $expected
-     *
      * @dataProvider toArrayProvider
      */
     public function testToArray(TaskList $list, array $expected): void

@@ -10,8 +10,6 @@ class TasksRoute
 {
     /**
      * Register Tasks API routes.
-     *
-     * @param RouteCollectorProxyInterface $app
      */
     public function __invoke(RouteCollectorProxyInterface $app): void
     {

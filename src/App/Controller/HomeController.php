@@ -15,21 +15,11 @@ class HomeController
      */
     private $renderer;
 
-    /**
-     * @param PhpRenderer $renderer
-     */
     public function __construct(PhpRenderer $renderer)
     {
         $this->renderer = $renderer;
     }
 
-    /**
-     * @param Request  $request
-     * @param Response $response
-     * @param array    $args
-     *
-     * @return Response
-     */
     public function indexAction(Request $request, Response $response, array $args): Response
     {
         // Render index view

@@ -14,9 +14,6 @@ final class TagHydratorTest extends TestCase
     use Visibility;
 
     /**
-     * @param array $tag
-     * @param Tag   $expected
-     *
      * @dataProvider hydrateProvider
      */
     public function testHydrate(array $tag, Tag $expected): void
@@ -26,9 +23,6 @@ final class TagHydratorTest extends TestCase
     }
 
     /**
-     * @param Tag   $tag
-     * @param array $expected
-     *
      * @dataProvider toArrayProvider
      */
     public function testToArray(Tag $tag, array $expected): void

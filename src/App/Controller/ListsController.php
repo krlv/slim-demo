@@ -22,11 +22,7 @@ class ListsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
      * @param string[] $args
-     *
-     * @return Response
      */
     public function getListsAction(Request $request, Response $response, array $args): Response
     {
@@ -47,11 +43,7 @@ class ListsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
      * @param string[] $args
-     *
-     * @return Response
      */
     public function getListAction(Request $request, Response $response, array $args): Response
     {
@@ -66,11 +58,7 @@ class ListsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
      * @param string[] $args
-     *
-     * @return Response
      */
     public function createListAction(Request $request, Response $response, array $args): Response
     {
@@ -83,11 +71,7 @@ class ListsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
      * @param string[] $args
-     *
-     * @return Response
      */
     public function updateListAction(Request $request, Response $response, array $args): Response
     {
@@ -100,11 +84,7 @@ class ListsController
     }
 
     /**
-     * @param Request  $request
-     * @param Response $response
      * @param string[] $args
-     *
-     * @return Response
      */
     public function deleteListAction(Request $request, Response $response, array $args): Response
     {

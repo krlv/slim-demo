@@ -7,9 +7,7 @@ namespace Skeleton\Hydrator;
 abstract class AbstractHydrator implements HydratorInterface
 {
     /**
-     * @param object $entity
-     * @param string $property
-     * @param mixed  $value
+     * @param mixed $value
      *
      * @return $this
      */
