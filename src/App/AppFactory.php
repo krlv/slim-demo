@@ -47,7 +47,7 @@ final class AppFactory
         $app       = \Slim\Factory\AppFactory::createFromContainer($container);
 
         // Logger middleware, common for all routes
-        $app->add('logger_middleware:handle');
+        $app->add('logger_middleware:process');
 
         // Web routes
         $app->group('', Route\HomeRoute::class);
@@ -102,7 +102,7 @@ final class AppFactory
         $app       = \Slim\Factory\AppFactory::createFromContainer($container);
 
         // Logger middleware, common for all routes
-        $app->add('logger_middleware:handle');
+        $app->add('logger_middleware:process');
 
         // Web routes
         $app->group('', Route\HomeRoute::class);

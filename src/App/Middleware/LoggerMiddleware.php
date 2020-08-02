@@ -7,9 +7,10 @@ namespace Skeleton\App\Middleware;
 use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-class LoggerMiddleware
+class LoggerMiddleware implements MiddlewareInterface
 {
     /**
      * @var Logger
@@ -21,7 +22,7 @@ class LoggerMiddleware
         $this->logger = $logger;
     }
 
-    public function handle(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $route = $request->getAttribute('route');
 
