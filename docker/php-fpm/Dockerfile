@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-alpine
+FROM php:7.4-fpm-alpine
 
 RUN docker-php-source extract \
     && apk add --update --no-cache --virtual .build-deps $PHPIZE_DEPS \
