@@ -21,8 +21,6 @@ final class TagHydrator extends AbstractHydrator
 
     /**
      * @param Tag $tag
-     *
-     * @return array
      */
     public function toArray(object $tag): array
     {

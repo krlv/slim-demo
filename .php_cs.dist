@@ -6,6 +6,7 @@ return PhpCsFixer\Config::create()
         '@Symfony:risky' => true,
         '@PHP71Migration' => true,
         '@PHP71Migration:risky' => true,
+        '@PHP73Migration' => true,
         'psr4' => true,
         'declare_strict_types' => true,
         'array_syntax' => ['syntax' => 'short'],
@@ -34,7 +35,8 @@ return PhpCsFixer\Config::create()
         'single_line_comment_style' => true,
         'date_time_immutable' => true,
         'native_function_invocation' => ['scope' => 'all'],
-        'static_lambda' => true,
+        // temporary disable because of routing static closure binding
+        // 'static_lambda' => true,
     ])
     ->setCacheFile(__DIR__ . '/.php_cs.cache')
     ->setFinder(

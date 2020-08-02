@@ -22,11 +22,7 @@ class TagsController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function getTagsAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -38,11 +34,7 @@ class TagsController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function getTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -57,11 +49,7 @@ class TagsController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function createTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {

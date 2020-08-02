@@ -16,9 +16,6 @@ class Serializer
      */
     private $serializer;
 
-    /**
-     * @param SerializerInterface $serializer
-     */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
@@ -27,11 +24,7 @@ class Serializer
     /**
      * Serializes data in the request object.
      *
-     * @param Response     $response
      * @param mixed|object $data
-     * @param int          $status
-     *
-     * @return Response
      */
     public function serialize(Response $response, $data, int $status = HttpCode::STATUS_OK): Response
     {
@@ -49,9 +42,6 @@ class Serializer
 
     /**
      * Deserializes data into the entity object.
-     *
-     * @param Request $request
-     * @param string  $class
      *
      * @return array|object
      */

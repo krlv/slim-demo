@@ -75,8 +75,6 @@ class WebTestCase extends TestCase
 
     /**
      * Assert that response status equals to expected code.
-     *
-     * @param int $code
      */
     public function assertStatusCode(int $code): void
     {
@@ -85,8 +83,6 @@ class WebTestCase extends TestCase
 
     /**
      * Assert that response content type equals to expected content type.
-     *
-     * @param string $type
      */
     public function assertContentType(string $type): void
     {
@@ -97,7 +93,6 @@ class WebTestCase extends TestCase
      * Assert that JSON response equals to expected data.
      *
      * @param string[] $expected
-     * @param int      $code
      */
     public function assertJsonResponse(array $expected, int $code = 200): void
     {

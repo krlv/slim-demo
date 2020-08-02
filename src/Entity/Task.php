@@ -46,15 +46,6 @@ final class Task
      */
     private $deletedAt;
 
-    /**
-     * @param string                  $title
-     * @param string                  $description
-     * @param int                     $priority
-     * @param bool                    $isDone
-     * @param bool                    $isDeleted
-     * @param \DateTimeImmutable|null $doneAt
-     * @param \DateTimeImmutable|null $deletedAt
-     */
     public function __construct(
         string $title,
         string $description = '',
@@ -73,25 +64,17 @@ final class Task
         $this->deletedAt   = $deletedAt;
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getTitle(): string
     {
         return $this->title;
     }
 
     /**
-     * @param string $title
-     *
      * @return $this
      */
     public function setTitle(string $title): self
@@ -101,17 +84,12 @@ final class Task
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
     /**
-     * @param string $description
-     *
      * @return $this
      */
     public function setDescription(string $description): self
@@ -121,17 +99,12 @@ final class Task
         return $this;
     }
 
-    /**
-     * @return int
-     */
     public function getPriority(): int
     {
         return $this->priority;
     }
 
     /**
-     * @param int $priority
-     *
      * @return $this
      */
     public function setPriority(int $priority): self
@@ -141,33 +114,21 @@ final class Task
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function isDone(): bool
     {
         return $this->isDone;
     }
 
-    /**
-     * @return bool
-     */
     public function isDeleted(): bool
     {
         return $this->isDeleted;
     }
 
-    /**
-     * @return \DateTimeImmutable|null
-     */
     public function getDoneAt(): ?\DateTimeImmutable
     {
         return $this->doneAt;
     }
 
-    /**
-     * @return \DateTimeImmutable|null
-     */
     public function getDeletedAt(): ?\DateTimeImmutable
     {
         return $this->deletedAt;

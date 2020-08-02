@@ -9,9 +9,7 @@ trait Visibility
     /**
      * Set private property to an object.
      *
-     * @param object $object
-     * @param string $property
-     * @param mixed  $value
+     * @param mixed $value
      */
     protected function setPrivateProperty(object $object, string $property, $value): void
     {
@@ -22,9 +20,6 @@ trait Visibility
 
     /**
      * Get private property from an object.
-     *
-     * @param object $object
-     * @param string $property
      *
      * @return mixed
      */

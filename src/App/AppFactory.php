@@ -12,11 +12,6 @@ final class AppFactory
 {
     /**
      * Create Application's instance.
-     *
-     * @param array $config
-     * @param bool  $debug
-     *
-     * @return App
      */
     public static function createApp(array $config, bool $debug = false): App
     {
@@ -72,11 +67,6 @@ final class AppFactory
 
     /**
      * Create Application's instance.
-     *
-     * @param array $config
-     * @param bool  $debug
-     *
-     * @return App
      */
     public static function createTestApp(array $config, bool $debug = true): App
     {

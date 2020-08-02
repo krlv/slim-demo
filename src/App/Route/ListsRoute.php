@@ -10,8 +10,6 @@ class ListsRoute
 {
     /**
      * Register Categories API routes.
-     *
-     * @param RouteCollectorProxyInterface $app
      */
     public function __invoke(RouteCollectorProxyInterface $app): void
     {

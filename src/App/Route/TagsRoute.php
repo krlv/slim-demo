@@ -10,8 +10,6 @@ class TagsRoute
 {
     /**
      * Register Tags API routes.
-     *
-     * @param RouteCollectorProxyInterface $app
      */
     public function __invoke(RouteCollectorProxyInterface $app): void
     {

@@ -22,11 +22,7 @@ class TasksController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function getTasksAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -47,11 +43,7 @@ class TasksController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function getTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -66,11 +58,7 @@ class TasksController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function createTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -83,11 +71,7 @@ class TasksController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function updateTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
@@ -100,11 +84,7 @@ class TasksController
     }
 
     /**
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     * @param string[]               $args
-     *
-     * @return ResponseInterface
+     * @param string[] $args
      */
     public function deleteTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {

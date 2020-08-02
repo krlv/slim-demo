@@ -21,8 +21,6 @@ final class TaskListHydrator extends AbstractHydrator
 
     /**
      * @param TaskList $list
-     *
-     * @return array
      */
     public function toArray(object $list): array
     {

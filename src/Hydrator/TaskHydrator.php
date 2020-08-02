@@ -45,8 +45,6 @@ final class TaskHydrator extends AbstractHydrator
 
     /**
      * @param Task $tag
-     *
-     * @return array
      */
     public function toArray(object $tag): array
     {
