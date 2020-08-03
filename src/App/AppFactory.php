@@ -50,6 +50,7 @@ final class AppFactory
         $app->add('logger_middleware:process');
         $app->addRoutingMiddleware();
         $app->addMiddleware(new TrailingSlash(false));
+        $app->addMiddleware(new Middleware\JsonBodyParserMiddleware());
         $app->addErrorMiddleware(true, true, true);
 
         $routes = require __DIR__ . '/../../config/routes.php';
@@ -98,6 +99,7 @@ final class AppFactory
         $app->add('logger_middleware:process');
         $app->addRoutingMiddleware();
         $app->addMiddleware(new TrailingSlash(false));
+        $app->addMiddleware(new Middleware\JsonBodyParserMiddleware());
         $app->addErrorMiddleware(true, true, true);
 
         $routes = require __DIR__ . '/../../config/routes.php';
