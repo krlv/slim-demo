@@ -20,27 +20,8 @@ final class AppFactory
             ->register(new Provider\RendererServiceProvider())
             ->register(new Provider\DbalServiceProvider())
             ->register(new Provider\LoggerServiceProvider())
+            ->register(new Provider\ControllerServiceProvider())
         ;
-
-        $container['logger_middleware'] = static function (Container $c) {
-            return new Middleware\LoggerMiddleware($c['logger']);
-        };
-
-        $container['home_controller'] = static function (Container $c) {
-            return new Controller\HomeController($c['renderer']);
-        };
-
-        $container['lists_controller'] = static function (Container $c) {
-            return new Controller\ListsController($c['serializer']);
-        };
-
-        $container['tasks_controller'] = static function (Container $c) {
-            return new Controller\TasksController($c['serializer']);
-        };
-
-        $container['tags_controller'] = static function (Container $c) {
-            return new Controller\TagsController($c['serializer']);
-        };
 
         $container = new \Pimple\Psr11\Container($container);
         $app       = \Slim\Factory\AppFactory::createFromContainer($container);

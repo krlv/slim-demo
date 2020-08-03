@@ -3,11 +3,11 @@
 declare(strict_types=1);
 
 use Middlewares\TrailingSlash;
-use Skeleton\App\Middleware\JsonBodyParserMiddleware;
+use Skeleton\App\Middleware;
 use Slim\App;
 
 return static function (App $app) {
-    $app->add('logger_middleware:process');
+    $app->add(Middleware\LoggerMiddleware::class);
     $app->addMiddleware(new TrailingSlash(false));
-    $app->addMiddleware(new JsonBodyParserMiddleware());
+    $app->addMiddleware(new Middleware\JsonBodyParserMiddleware());
 };
