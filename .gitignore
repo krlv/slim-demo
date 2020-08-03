@@ -1,6 +1,6 @@
 /vendor/
 /bin/
-/logs/
+/var/
 
 # PHPUnit
 phpunit.xml
