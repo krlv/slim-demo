@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Skeleton\App;
 
-use Middlewares\TrailingSlash;
 use Pimple\Container;
 use Slim\App;
 
@@ -44,17 +43,19 @@ final class AppFactory
         };
 
         $container = new \Pimple\Psr11\Container($container);
-        $app = \Slim\Factory\AppFactory::createFromContainer($container);
+        $app       = \Slim\Factory\AppFactory::createFromContainer($container);
 
-        // Logger middleware, common for all routes
-        $app->add('logger_middleware:process');
-        $app->addRoutingMiddleware();
-        $app->addMiddleware(new TrailingSlash(false));
-        $app->addMiddleware(new Middleware\JsonBodyParserMiddleware());
-        $app->addErrorMiddleware(true, true, true);
+        // Register global middleware
+        $middleware = require __DIR__ . '/../../config/middleware.php';
+        $middleware($app);
 
+        // Register routes
         $routes = require __DIR__ . '/../../config/routes.php';
         $routes($app);
+
+        // Built-in Slim middleware: routing and error handling
+        $app->addRoutingMiddleware();
+        $app->addErrorMiddleware(false, true, true);
 
         return $app;
     }
@@ -93,17 +94,19 @@ final class AppFactory
         };
 
         $container = new \Pimple\Psr11\Container($container);
-        $app = \Slim\Factory\AppFactory::createFromContainer($container);
+        $app       = \Slim\Factory\AppFactory::createFromContainer($container);
 
-        // Logger middleware, common for all routes
-        $app->add('logger_middleware:process');
-        $app->addRoutingMiddleware();
-        $app->addMiddleware(new TrailingSlash(false));
-        $app->addMiddleware(new Middleware\JsonBodyParserMiddleware());
-        $app->addErrorMiddleware(true, true, true);
+        // Register global middleware
+        $middleware = require __DIR__ . '/../../config/middleware.php';
+        $middleware($app);
 
+        // Register routes
         $routes = require __DIR__ . '/../../config/routes.php';
         $routes($app);
+
+        // Built-in Slim middleware: routing and error handling
+        $app->addRoutingMiddleware();
+        $app->addErrorMiddleware(true, true, true);
 
         return $app;
     }
