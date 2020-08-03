@@ -44,23 +44,16 @@ final class AppFactory
         };
 
         $container = new \Pimple\Psr11\Container($container);
-        $app       = \Slim\Factory\AppFactory::createFromContainer($container);
+        $app = \Slim\Factory\AppFactory::createFromContainer($container);
 
         // Logger middleware, common for all routes
         $app->add('logger_middleware:process');
-
-        // Web routes
-        $app->group('', Route\HomeRoute::class);
-
-        // API routes
-        $app->group('/api', function ($app): void {
-            $app->group('/lists', Route\ListsRoute::class);
-            $app->group('/lists/{list_id}/tasks', Route\TasksRoute::class);
-            $app->group('/tags', Route\TagsRoute::class);
-        });
-
         $app->addRoutingMiddleware();
-        $app->add(new TrailingSlash(false));
+        $app->addMiddleware(new TrailingSlash(false));
+        $app->addErrorMiddleware(true, true, true);
+
+        $routes = require __DIR__ . '/../../config/routes.php';
+        $routes($app);
 
         return $app;
     }
@@ -99,24 +92,16 @@ final class AppFactory
         };
 
         $container = new \Pimple\Psr11\Container($container);
-        $app       = \Slim\Factory\AppFactory::createFromContainer($container);
+        $app = \Slim\Factory\AppFactory::createFromContainer($container);
 
         // Logger middleware, common for all routes
         $app->add('logger_middleware:process');
-
-        // Web routes
-        $app->group('', Route\HomeRoute::class);
-
-        // API routes
-        $app->group('/api', function ($app): void {
-            $app->group('/lists', Route\ListsRoute::class);
-            $app->group('/lists/{list_id}/tasks', Route\TasksRoute::class);
-            $app->group('/tags', Route\TagsRoute::class);
-        });
-
         $app->addRoutingMiddleware();
-        $app->add(new TrailingSlash(false));
+        $app->addMiddleware(new TrailingSlash(false));
         $app->addErrorMiddleware(true, true, true);
+
+        $routes = require __DIR__ . '/../../config/routes.php';
+        $routes($app);
 
         return $app;
     }
