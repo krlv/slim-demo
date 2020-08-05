@@ -11,17 +11,17 @@
     "require": {
         "php": ">=7.3",
         "ext-json": "*",
-        "slim/slim": "~4.3.0",
-        "slim/psr7": "~0.6.0",
+        "slim/slim": "~4.5",
+        "slim/psr7": "~1.1",
         "pimple/pimple": "~3.3",
-        "middlewares/trailing-slash": "~1.1",
-        "slim/php-view": "~2.2",
+        "middlewares/trailing-slash": "~2.0",
+        "slim/php-view": "~3.0",
         "doctrine/dbal": "~2.10",
         "monolog/monolog": "~2.1",
         "jms/serializer": "~3.8"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5",
+        "phpunit/phpunit": "^9.2",
         "phpstan/phpstan": "^0.11",
         "phpstan/phpstan-phpunit": "^0.11",
         "phpstan/phpstan-doctrine": "^0.11",
