@@ -21,7 +21,7 @@ return [
         // Monolog settings
         'logger' => [
             'name' => 'skeleton-app',
-            'path' => __DIR__ . '/var/logs/app.log',
+            'path' => __DIR__ . '/var/log/app.log',
         ],
     ],
 ];
