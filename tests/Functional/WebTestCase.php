@@ -43,7 +43,7 @@ class WebTestCase extends TestCase
      */
     protected function setUp(): void
     {
-        $this->app = AppFactory::createApp(require __DIR__ . '/../../settings.php', true);
+        $this->app = AppFactory::createApp(true);
 
         //TODO: init database tables
     }
