@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Skeleton\App\Middleware;
 
-use Monolog\Logger;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
+use Psr\Log\LoggerInterface;
 use Slim\Routing\RouteContext;
 
 final class LoggerMiddleware implements MiddlewareInterface
 {
     /**
-     * @var Logger
+     * @var LoggerInterface
      */
     private $logger;
 
-    public function __construct(Logger $logger)
+    public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;
     }

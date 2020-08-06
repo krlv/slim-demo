@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\App;
 
-use Pimple\Container;
+use DI\ContainerBuilder;
 use Slim\App;
 
 final class AppFactory
@@ -12,18 +12,22 @@ final class AppFactory
     /**
      * Create Application's instance.
      */
-    public static function createApp(array $config, bool $displayErrors = false): App
+    public static function createApp(bool $displayErrors = false): App
     {
-        $container = new Container($config);
-        $container
-            ->register(new Provider\SerializerServiceProvider())
-            ->register(new Provider\RendererServiceProvider())
-            ->register(new Provider\DbalServiceProvider())
-            ->register(new Provider\LoggerServiceProvider())
-            ->register(new Provider\ControllerServiceProvider())
-        ;
+        $containerBuilder = new ContainerBuilder();
 
-        $container = new \Pimple\Psr11\Container($container);
+        // TODO: enable DI container compilation
+
+        // Load app configs
+        $settings = require __DIR__ . '/../../config/settings.php';
+        $settings($containerBuilder);
+
+        // Set up services and dependencies
+        $services = require __DIR__ . '/../../config/services.php';
+        $services($containerBuilder);
+
+        // Build DI container and instantiate the app
+        $container = $containerBuilder->build();
         $app       = \Slim\Factory\AppFactory::createFromContainer($container);
 
         // Register global middleware
