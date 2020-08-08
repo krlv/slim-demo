@@ -15,6 +15,7 @@
         "slim/psr7": "~1.1",
         "php-di/php-di": "~6.2",
         "middlewares/trailing-slash": "~2.0",
+        "middlewares/payload": "~3.0",
         "slim/php-view": "~3.0",
         "doctrine/dbal": "~2.10",
         "monolog/monolog": "~2.1",
