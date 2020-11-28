@@ -6,45 +6,14 @@ namespace Skeleton\Entity;
 
 final class Task
 {
-    /**
-     * @var int|null
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $title;
-
-    /**
-     * @var string
-     */
-    private $description;
-
-    /**
-     * @var int
-     */
-    private $priority;
-
-    /**
-     * @var bool
-     */
-    private $isDone;
-
-    /**
-     * @var bool
-     */
-    private $isDeleted;
-
-    /**
-     * @var \DateTimeImmutable|null
-     */
-    private $doneAt;
-
-    /**
-     * @var \DateTimeImmutable|null
-     */
-    private $deletedAt;
+    private ?int $id;
+    private string $title;
+    private string $description;
+    private int $priority;
+    private bool $isDone;
+    private bool $isDeleted;
+    private ?\DateTimeImmutable $doneAt;
+    private ?\DateTimeImmutable $deletedAt;
 
     public function __construct(
         string $title,
@@ -66,7 +35,7 @@ final class Task
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id ?? null;
     }
 
     public function getTitle(): string

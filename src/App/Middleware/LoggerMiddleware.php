@@ -13,10 +13,7 @@ use Slim\Routing\RouteContext;
 
 final class LoggerMiddleware implements MiddlewareInterface
 {
-    /**
-     * @var LoggerInterface
-     */
-    private $logger;
+    private LoggerInterface $logger;
 
     public function __construct(LoggerInterface $logger)
     {

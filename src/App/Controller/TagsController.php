@@ -11,10 +11,7 @@ use Skeleton\App\Serializer\Serializer;
 
 class TagsController
 {
-    /**
-     * @var Serializer
-     */
-    private $serializer;
+    private Serializer $serializer;
 
     public function __construct(Serializer $serializer)
     {
