@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Skeleton\App\Controller;
+use Skeleton\Application\Controller;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 

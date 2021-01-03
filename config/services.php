@@ -13,7 +13,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Skeleton\App\Serializer\Serializer;
+use Skeleton\Application\Serializer\Serializer;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {
