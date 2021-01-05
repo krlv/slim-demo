@@ -20,24 +20,6 @@ final class TagsTest extends WebTestCase
         $this->assertStatusCode(200);
     }
 
-    public function testGetTagByIdAction(): void
-    {
-        $this->request('GET', '/api/tags/1', ['Content-Type' => 'application/json']);
-        $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Tag 1',
-        ], 200);
-    }
-
-    public function testGetListByNonExistingIdAction(): void
-    {
-        $this->request('GET', '/api/tags/1', ['Content-Type' => 'application/json']);
-        $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Tag 1',
-        ], 200);
-    }
-
     public function testCreateListAction(): void
     {
         $this->request('POST', '/api/tags', [
@@ -46,7 +28,7 @@ final class TagsTest extends WebTestCase
             'title' => 'Tag 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Tag 1',
         ], 201);
     }

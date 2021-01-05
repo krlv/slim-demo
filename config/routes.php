@@ -28,7 +28,6 @@ return static function (App $app) {
 
         // Tags API
         $group->get('/tags', Controller\TagsController::class . ':getTagsAction');
-        $group->get('/tags/{tag_id}', Controller\TagsController::class . ':getTagAction');
         $group->post('/tags', Controller\TagsController::class . ':createTagAction');
     });
 };

@@ -8,14 +8,21 @@ use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Skeleton\Application\Serializer\Serializer;
+use Skeleton\Domain\TagService;
 
 class TagsController
 {
     private Serializer $serializer;
 
-    public function __construct(Serializer $serializer)
+    /**
+     * @var TagService
+     */
+    private $tagService;
+
+    public function __construct(Serializer $serializer, TagService $tagService)
     {
         $this->serializer = $serializer;
+        $this->tagService = $tagService;
     }
 
     /**
@@ -23,23 +30,7 @@ class TagsController
      */
     public function getTagsAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: fetch list of available tags
-        $tags = [];
-
-        // Return response as JSON
-        return $this->serializer->serialize($response, $tags);
-    }
-
-    /**
-     * @param string[] $args
-     */
-    public function getTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
-    {
-        // TODO: fetch tag by ID
-        $tags = [
-            'id'    => $args['tag_id'],
-            'title' => 'Tag ' . $args['tag_id'],
-        ];
+        $tags = $this->tagService->getTags();
 
         // Return response as JSON
         return $this->serializer->serialize($response, $tags);
@@ -50,9 +41,9 @@ class TagsController
      */
     public function createTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: add new tag
-        $tag = $request->getParsedBody();
-        $tag = \array_merge(['id' => '1'], $tag);
+        /** @var array $tagData */
+        $tagData = $request->getParsedBody();
+        $tag = $this->tagService->createTag($tagData['title']);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $tag, HttpCode::STATUS_CREATED);

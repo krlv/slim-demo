@@ -14,6 +14,8 @@ use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Skeleton\Application\Serializer\Serializer;
+use Skeleton\Domain\TagRepository;
+use Skeleton\Infrastructure\Persistence\MemoryTagRepository;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -39,12 +41,14 @@ return function (ContainerBuilder $containerBuilder) {
                 ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())
                 ->build();
 
-            return  new Serializer($serializer);
+            return new Serializer($serializer);
         },
 
         Connection::class => function (ContainerInterface $c) {
             $settings = $c->get('settings')['dbal'];
             return DriverManager::getConnection($settings);
         },
+
+        TagRepository::class => DI\autowire(MemoryTagRepository::class),
     ]);
 };
