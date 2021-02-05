@@ -84,7 +84,6 @@ class SerializerTest extends TestCase
             ->willReturn($response)
         ;
 
-        /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
         // @var Response $response
         $this->assertSame($response, $appSerializer->serialize($response, $task, $status));
@@ -138,7 +137,6 @@ class SerializerTest extends TestCase
             ->willReturn($task)
         ;
 
-        /** @var SerializerInterface $serializer */
         $appSerializer = new Serializer($serializer);
         // @var Request $request
         $this->assertSame($task, $appSerializer->deserialize($request, $class));

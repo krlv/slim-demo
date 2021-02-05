@@ -20,15 +20,10 @@ class WebTestCase extends TestCase
 {
     /**
      * Application instance.
-     *
-     * @var SlimApp
      */
-    protected $app;
+    protected SlimApp $app;
 
-    /**
-     * @var Response
-     */
-    protected $response;
+    protected Response $response;
 
     /**
      * Setting up test environment.
