@@ -1,7 +1,5 @@
-includes:
-    - vendor/phpstan/phpstan/conf/config.level4.neon
-
 parameters:
-    paths:
-        - src
-        - tests
+	level: 4
+	paths:
+		- src
+		- tests

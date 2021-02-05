@@ -11,10 +11,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class Serializer
 {
-    /**
-     * @var SerializerInterface
-     */
-    private $serializer;
+    private SerializerInterface $serializer;
 
     public function __construct(SerializerInterface $serializer)
     {

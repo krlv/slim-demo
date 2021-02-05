@@ -6,15 +6,8 @@ namespace Skeleton\Entity;
 
 final class Tag
 {
-    /**
-     * @var int|null
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $title;
+    private ?int $id;
+    private string $title;
 
     public function __construct(string $title)
     {
@@ -23,7 +16,7 @@ final class Tag
 
     public function getId(): ?int
     {
-        return $this->id;
+        return $this->id ?? null;
     }
 
     public function getTitle(): string
