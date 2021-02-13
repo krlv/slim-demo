@@ -15,7 +15,9 @@ use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
 use Skeleton\Application\Serializer\Serializer;
 use Skeleton\Domain\TagRepository;
+use Skeleton\Domain\TaskRepository;
 use Skeleton\Infrastructure\Persistence\MemoryTagRepository;
+use Skeleton\Infrastructure\Persistence\MemoryTaskRepository;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -50,5 +52,6 @@ return function (ContainerBuilder $containerBuilder) {
         },
 
         TagRepository::class => DI\autowire(MemoryTagRepository::class),
+        TaskRepository::class => DI\autowire(MemoryTaskRepository::class),
     ]);
 };

@@ -10,10 +10,7 @@ use Skeleton\Infrastructure\Persistence\Hydrator\TagHydrator;
 
 final class MemoryTagRepository implements TagRepository
 {
-    /**
-     * @var TagHydrator
-     */
-    private $hydrator;
+    private TagHydrator $hydrator;
 
     public function __construct(TagHydrator $hydrator)
     {
@@ -39,7 +36,6 @@ final class MemoryTagRepository implements TagRepository
         $tagData = $this->hydrator->toArray($tag);
         $tagData['id'] = 1;
 
-        /** @var Tag $tag */
         $tag = $this->hydrator->hydrate($tagData);
 
         return $tag;

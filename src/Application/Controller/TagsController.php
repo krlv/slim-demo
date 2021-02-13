@@ -13,11 +13,7 @@ use Skeleton\Domain\TagService;
 class TagsController
 {
     private Serializer $serializer;
-
-    /**
-     * @var TagService
-     */
-    private $tagService;
+    private TagService $tagService;
 
     public function __construct(Serializer $serializer, TagService $tagService)
     {
@@ -41,7 +37,6 @@ class TagsController
      */
     public function createTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        /** @var array $tagData */
         $tagData = $request->getParsedBody();
         $tag = $this->tagService->createTag($tagData['title']);
 

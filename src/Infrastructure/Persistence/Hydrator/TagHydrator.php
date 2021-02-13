@@ -8,7 +8,7 @@ use Skeleton\Domain\Tag;
 
 final class TagHydrator extends AbstractHydrator
 {
-    public function hydrate(array $data): object
+    public function hydrate(array $data): Tag
     {
         $tag = new Tag($data['title']);
 

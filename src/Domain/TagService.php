@@ -6,10 +6,7 @@ namespace Skeleton\Domain;
 
 final class TagService
 {
-    /**
-     * @var TagRepository
-     */
-    private $repository;
+    private TagRepository $repository;
 
     public function __construct(TagRepository $repository)
     {

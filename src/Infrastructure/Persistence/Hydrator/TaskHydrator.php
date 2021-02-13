@@ -8,7 +8,7 @@ use Skeleton\Domain\Task;
 
 final class TaskHydrator extends AbstractHydrator
 {
-    public function hydrate(array $data): object
+    public function hydrate(array $data): Task
     {
         $task = new Task($data['title']);
 

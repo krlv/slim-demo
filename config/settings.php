@@ -17,9 +17,10 @@ return function (ContainerBuilder $containerBuilder) {
             ],
 
             // Database settings
+            // TODO: use env to set db host, user and password values
             'dbal' => [
                 'dbname'   => 'skeleton',
-                'user'     => 'homestead',
+                'user'     => 'root',
                 'password' => 'secret',
                 'host'     => '127.0.0.1',
                 'driver'   => 'pdo_mysql',

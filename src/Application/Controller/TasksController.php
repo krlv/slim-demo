@@ -8,14 +8,17 @@ use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Skeleton\Application\Serializer\Serializer;
+use Skeleton\Domain\TaskService;
 
 class TasksController
 {
     private Serializer $serializer;
+    private TaskService $taskService;
 
-    public function __construct(Serializer $serializer)
+    public function __construct(Serializer $serializer, TaskService $taskService)
     {
-        $this->serializer = $serializer;
+        $this->serializer  = $serializer;
+        $this->taskService = $taskService;
     }
 
     /**
@@ -23,17 +26,7 @@ class TasksController
      */
     public function getTasksAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: fetch list of tasks
-        $tasks = [
-            [
-                'id'    => 1,
-                'title' => 'Task 1',
-            ],
-            [
-                'id'    => 2,
-                'title' => 'Task 2',
-            ],
-        ];
+        $tasks = $this->taskService->getTasks();
 
         // Return response as JSON
         return $this->serializer->serialize($response, $tasks);
@@ -44,11 +37,10 @@ class TasksController
      */
     public function getTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: fetch task by ID
-        $task = [
-            'id'    => $args['task_id'],
-            'title' => 'Task ' . $args['task_id'],
-        ];
+        $id = (int) $args['task_id'];
+
+        // TODO: handle not found exception
+        $task = $this->taskService->getTaskById($id);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $task);
@@ -59,9 +51,10 @@ class TasksController
      */
     public function createTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: save new task
-        $task = $request->getParsedBody();
-        $task = \array_merge(['id' => '1'], $task);
+        // TODO: validate payload
+        $data = $request->getParsedBody();
+
+        $task = $this->taskService->createTask($data);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $task, HttpCode::STATUS_CREATED);
@@ -72,9 +65,12 @@ class TasksController
      */
     public function updateTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: update existing task
-        $task = $request->getParsedBody();
-        $task = \array_merge(['id' => $args['task_id']], $task);
+        // TODO: validate payload
+        $id   = (int) $args['task_id'];
+        $data = $request->getParsedBody();
+
+        // TODO: handle not found exception
+        $task = $this->taskService->updateTask($id, $data);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $task);
@@ -85,7 +81,11 @@ class TasksController
      */
     public function deleteTaskAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        // TODO: delete existing task
+        $id = (int) $args['task_id'];
+
+        // TODO: handle not found exception
+        $this->taskService->deleteTask($id);
+
         // Return empty response with 204 No Content code
         return $this->serializer->serialize($response, [], HttpCode::STATUS_NO_CONTENT);
     }

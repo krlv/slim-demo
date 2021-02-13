@@ -24,8 +24,12 @@ final class TasksTest extends WebTestCase
     {
         $this->request('GET', '/api/lists/1/tasks/1', ['Content-Type' => 'application/json']);
         $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Task 1',
+            'id'            => 1,
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
+            'priority'      => 0,
+            'is_done'       => false,
+            'is_deleted'    => false,
         ], 200);
     }
 
@@ -33,8 +37,12 @@ final class TasksTest extends WebTestCase
     {
         $this->request('GET', '/api/lists/1/tasks/1', ['Content-Type' => 'application/json']);
         $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Task 1',
+            'id'            => 1,
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
+            'priority'      => 0,
+            'is_done'       => false,
+            'is_deleted'    => false,
         ], 200);
     }
 
@@ -43,11 +51,16 @@ final class TasksTest extends WebTestCase
         $this->request('POST', '/api/lists/1/tasks', [
             'Content-Type' => 'application/json',
         ], [], [], [
-            'title' => 'Task 1',
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Task 1',
+            'id'            => 1,
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
+            'priority'      => 0,
+            'is_done'       => false,
+            'is_deleted'    => false,
         ], 201);
     }
 
@@ -56,11 +69,16 @@ final class TasksTest extends WebTestCase
         $this->request('PUT', '/api/lists/1/tasks/1', [
             'Content-Type' => 'application/json',
         ], [], [], [
-            'title' => 'Task 1',
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Task 1',
+            'id'            => 1,
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
+            'priority'      => 0,
+            'is_done'       => false,
+            'is_deleted'    => false,
         ], 200);
     }
 
@@ -69,11 +87,16 @@ final class TasksTest extends WebTestCase
         $this->request('PUT', '/api/lists/1/tasks/1', [
             'Content-Type' => 'application/json',
         ], [], [], [
-            'title' => 'Task 1',
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
-            'title' => 'Task 1',
+            'id'            => 1,
+            'title'         => 'Task 1',
+            'description'   => 'Description 1',
+            'priority'      => 0,
+            'is_done'       => false,
+            'is_deleted'    => false,
         ], 200);
     }
 
