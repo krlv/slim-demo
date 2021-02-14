@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Skeleton\Infrastructure\Persistence\Hydrator;
 
-use Skeleton\Domain\TaskList;
+use Skeleton\Domain\ListEnity;
 
-final class TaskListHydrator extends AbstractHydrator
+final class ListHydrator extends AbstractHydrator
 {
-    public function hydrate(array $data): TaskList
+    public function hydrate(array $data): ListEnity
     {
-        $list = new TaskList($data['title']);
+        $list = new ListEnity($data['title']);
 
         if (isset($data['id'])) {
             $this->setPrivateProperty($list, 'id', (int) $data['id']);
@@ -20,7 +20,7 @@ final class TaskListHydrator extends AbstractHydrator
     }
 
     /**
-     * @param TaskList $list
+     * @param ListEnity $list
      */
     public function toArray(object $list): array
     {

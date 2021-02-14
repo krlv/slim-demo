@@ -4,36 +4,36 @@ declare(strict_types=1);
 
 namespace Skeleton\Domain;
 
-final class TaskListService
+final class ListService
 {
-    private TaskListRepository $repository;
+    private ListRepository $repository;
 
-    public function __construct(TaskListRepository $repository)
+    public function __construct(ListRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * @return TaskList[]
+     * @return ListEnity[]
      */
     public function getLists(): array
     {
         return $this->repository->find();
     }
 
-    public function getListById(int $id): TaskList
+    public function getListById(int $id): ListEnity
     {
         return $this->repository->findById($id);
     }
 
-    public function createList(array $data): TaskList
+    public function createList(array $data): ListEnity
     {
-        $task = new TaskList($data['title']);
+        $task = new ListEnity($data['title']);
 
         return $this->repository->store($task);
     }
 
-    public function updateList(int $id, array $data): TaskList
+    public function updateList(int $id, array $data): ListEnity
     {
         $list = $this->repository->findById($id);
         $list->setTitle($data['title']);

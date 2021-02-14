@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Skeleton\Domain;
 
-final class TaskList
+final class ListEnity
 {
     private ?int $id;
     private string $title;

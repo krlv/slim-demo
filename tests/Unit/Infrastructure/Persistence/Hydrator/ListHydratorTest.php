@@ -5,41 +5,41 @@ declare(strict_types=1);
 namespace Skeleton\Test\Unit\Infrastructure\Persistence\Hydrator;
 
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\TaskList;
-use Skeleton\Infrastructure\Persistence\Hydrator\TaskListHydrator;
+use Skeleton\Domain\ListEnity;
+use Skeleton\Infrastructure\Persistence\Hydrator\ListHydrator;
 use Skeleton\Test\Unit\Traits\Visibility;
 
-final class TaskListHydratorTest extends TestCase
+final class ListHydratorTest extends TestCase
 {
     use Visibility;
 
     /**
      * @dataProvider hydrateProvider
      */
-    public function testHydrate(array $list, TaskList $expected): void
+    public function testHydrate(array $list, ListEnity $expected): void
     {
-        $hydrator = new TaskListHydrator();
+        $hydrator = new ListHydrator();
         $this->assertEquals($expected, $hydrator->hydrate($list));
     }
 
     /**
      * @dataProvider toArrayProvider
      */
-    public function testToArray(TaskList $list, array $expected): void
+    public function testToArray(ListEnity $list, array $expected): void
     {
-        $hydrator = new TaskListHydrator();
+        $hydrator = new ListHydrator();
         $this->assertEquals($expected, $hydrator->toArray($list));
     }
 
     public function hydrateProvider(): array
     {
-        $expected = new TaskList($title = 'New List');
+        $expected = new ListEnity($title = 'New List');
         $list     = [
             'id'    => null,
             'title' => $title,
         ];
 
-        $expectedWithId = new TaskList($title = 'List With ID');
+        $expectedWithId = new ListEnity($title = 'List With ID');
         $this->setPrivateProperty($expectedWithId, 'id', $id = 1);
 
         $listWithId = [
@@ -55,13 +55,13 @@ final class TaskListHydratorTest extends TestCase
 
     public function toArrayProvider(): array
     {
-        $list     = new TaskList($title = 'New List');
+        $list     = new ListEnity($title = 'New List');
         $expected = [
             'id'    => null,
             'title' => $title,
         ];
 
-        $listWithId = new TaskList($title = 'List With ID');
+        $listWithId = new ListEnity($title = 'List With ID');
         $this->setPrivateProperty($listWithId, 'id', $id = 1);
 
         $expectedWithId = [

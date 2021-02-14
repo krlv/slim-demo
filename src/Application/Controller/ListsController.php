@@ -8,17 +8,17 @@ use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Skeleton\Application\Serializer\Serializer;
-use Skeleton\Domain\TaskListService;
+use Skeleton\Domain\ListService;
 
 class ListsController
 {
     private Serializer $serializer;
-    private TaskListService $taskListService;
+    private ListService $listService;
 
-    public function __construct(Serializer $serializer, TaskListService $taskListService)
+    public function __construct(Serializer $serializer, ListService $taskListService)
     {
-        $this->serializer      = $serializer;
-        $this->taskListService = $taskListService;
+        $this->serializer  = $serializer;
+        $this->listService = $taskListService;
     }
 
     /**
@@ -26,7 +26,7 @@ class ListsController
      */
     public function getListsAction(Request $request, Response $response, array $args): Response
     {
-        $lists = $this->taskListService->getLists();
+        $lists = $this->listService->getLists();
 
         // Return response as JSON
         return $this->serializer->serialize($response, $lists);
@@ -40,7 +40,7 @@ class ListsController
         $id = (int) $args['list_id'];
 
         // TODO: handle not found exception
-        $list = $this->taskListService->getListById($id);
+        $list = $this->listService->getListById($id);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $list);
@@ -54,7 +54,7 @@ class ListsController
         // TODO: validate payload
         $data = $request->getParsedBody();
 
-        $list = $this->taskListService->createList($data);
+        $list = $this->listService->createList($data);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $list, HttpCode::STATUS_CREATED);
@@ -70,7 +70,7 @@ class ListsController
         $data = $request->getParsedBody();
 
         // TODO: handle not found exception
-        $list = $this->taskListService->updateList($id, $data);
+        $list = $this->listService->updateList($id, $data);
 
         // Return response as JSON
         return $this->serializer->serialize($response, $list);
@@ -84,7 +84,7 @@ class ListsController
         $id = (int) $args['list_id'];
 
         // TODO: handle not found exception
-        $this->taskListService->deleteList($id);
+        $this->listService->deleteList($id);
 
         // Return empty response with 204 No Content code
         return $this->serializer->serialize($response, [], HttpCode::STATUS_NO_CONTENT);

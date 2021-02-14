@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Skeleton\Infrastructure\Persistence;
 
-use Skeleton\Domain\TaskList;
-use Skeleton\Domain\TaskListRepository;
-use Skeleton\Infrastructure\Persistence\Hydrator\TaskListHydrator;
+use Skeleton\Domain\ListEnity;
+use Skeleton\Domain\ListRepository;
+use Skeleton\Infrastructure\Persistence\Hydrator\ListHydrator;
 
-final class MemoryTaskListRepository implements TaskListRepository
+final class MemoryListRepository implements ListRepository
 {
-    private TaskListHydrator $hydrator;
+    private ListHydrator $hydrator;
 
-    public function __construct(TaskListHydrator $hydrator)
+    public function __construct(ListHydrator $hydrator)
     {
         $this->hydrator = $hydrator;
     }
 
     /**
-     * @return TaskList[]
+     * @return ListEnity[]
      */
     public function find(): array
     {
@@ -34,7 +34,7 @@ final class MemoryTaskListRepository implements TaskListRepository
         );
     }
 
-    public function findById(int $id): TaskList
+    public function findById(int $id): ListEnity
     {
         // TODO: Implement findById() method.
         return $this->hydrator->hydrate([
@@ -43,7 +43,7 @@ final class MemoryTaskListRepository implements TaskListRepository
         ]);
     }
 
-    public function store(TaskList $taskList): TaskList
+    public function store(ListEnity $taskList): ListEnity
     {
         // TODO: Implement insert/update methods.
         $taskListData = $this->hydrator->toArray($taskList);
