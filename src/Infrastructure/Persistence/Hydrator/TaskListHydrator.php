@@ -8,7 +8,7 @@ use Skeleton\Domain\TaskList;
 
 final class TaskListHydrator extends AbstractHydrator
 {
-    public function hydrate(array $data): object
+    public function hydrate(array $data): TaskList
     {
         $list = new TaskList($data['title']);
 

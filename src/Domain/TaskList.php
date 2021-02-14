@@ -30,4 +30,10 @@ final class TaskList
 
         return $this;
     }
+
+    public function delete(): self
+    {
+        // TODO: implement delete/undelete logic
+        return $this;
+    }
 }

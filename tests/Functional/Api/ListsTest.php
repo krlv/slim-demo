@@ -24,7 +24,7 @@ final class ListsTest extends WebTestCase
     {
         $this->request('GET', '/api/lists/1', ['Content-Type' => 'application/json']);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Task List 1',
         ], 200);
     }
@@ -33,7 +33,7 @@ final class ListsTest extends WebTestCase
     {
         $this->request('GET', '/api/lists/1', ['Content-Type' => 'application/json']);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Task List 1',
         ], 200);
     }
@@ -46,7 +46,7 @@ final class ListsTest extends WebTestCase
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Task List 1',
         ], 201);
     }
@@ -59,7 +59,7 @@ final class ListsTest extends WebTestCase
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Task List 1',
         ], 200);
     }
@@ -72,7 +72,7 @@ final class ListsTest extends WebTestCase
             'title' => 'Task List 1',
         ]);
         $this->assertJsonResponse([
-            'id'    => '1',
+            'id'    => 1,
             'title' => 'Task List 1',
         ], 200);
     }
