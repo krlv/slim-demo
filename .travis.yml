@@ -31,7 +31,7 @@ before_script:
 
 script:
   - ./bin/phpcs
-  - if [[ $(phpenv version-name) != 'nightly' ]]; then ./bin/php-cs-fixer fix --dry-run ; fi;
+  - if [[ $(phpenv version-name) != 'nightly' ]]; then ./bin/phpcs; fi;
   - if [[ $(phpenv version-name) != 'nightly' ]]; then phpdbg -qrr bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml ; else ./bin/phpunit ; fi;
   - ./bin/phpstan analyse
 
