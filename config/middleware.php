@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Skeleton\App\Middleware;
+use Skeleton\Application\Middleware;
 use Slim\App;
 
 return static function (App $app) {

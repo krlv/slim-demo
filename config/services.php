@@ -13,7 +13,13 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Skeleton\App\Serializer\Serializer;
+use Skeleton\Application\Serializer\Serializer;
+use Skeleton\Domain\TagRepository;
+use Skeleton\Domain\ListRepository;
+use Skeleton\Domain\TaskRepository;
+use Skeleton\Infrastructure\Persistence\MemoryTagRepository;
+use Skeleton\Infrastructure\Persistence\MemoryListRepository;
+use Skeleton\Infrastructure\Persistence\MemoryTaskRepository;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {
@@ -39,12 +45,16 @@ return function (ContainerBuilder $containerBuilder) {
                 ->setDeserializationVisitor('json', new JsonDeserializationVisitorFactory())
                 ->build();
 
-            return  new Serializer($serializer);
+            return new Serializer($serializer);
         },
 
         Connection::class => function (ContainerInterface $c) {
             $settings = $c->get('settings')['dbal'];
             return DriverManager::getConnection($settings);
         },
+
+        TagRepository::class => DI\autowire(MemoryTagRepository::class),
+        TaskRepository::class => DI\autowire(MemoryTaskRepository::class),
+        ListRepository::class => DI\autowire(MemoryListRepository::class),
     ]);
 };

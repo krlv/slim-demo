@@ -6,7 +6,7 @@ namespace Skeleton\Test\Functional;
 
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Skeleton\App\AppFactory;
+use Skeleton\Application\AppFactory;
 use Slim\App as SlimApp;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Headers;

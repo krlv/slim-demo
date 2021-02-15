@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use Skeleton\App\Controller;
+use Skeleton\Application\Controller;
 use Slim\App;
 use Slim\Interfaces\RouteCollectorProxyInterface as Group;
 
@@ -28,7 +28,6 @@ return static function (App $app) {
 
         // Tags API
         $group->get('/tags', Controller\TagsController::class . ':getTagsAction');
-        $group->get('/tags/{tag_id}', Controller\TagsController::class . ':getTagAction');
         $group->post('/tags', Controller\TagsController::class . ':createTagAction');
     });
 };
