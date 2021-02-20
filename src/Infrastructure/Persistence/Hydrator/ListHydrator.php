@@ -29,4 +29,12 @@ final class ListHydrator extends AbstractHydrator
             'title' => $list->getTitle(),
         ];
     }
+
+    /**
+     * @param ListEnity $list
+     */
+    public function assignId(int $id, object $list): void
+    {
+        $this->setPrivateProperty($list, 'id', $id);
+    }
 }

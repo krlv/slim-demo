@@ -44,9 +44,7 @@ final class MemoryTaskRepository implements TaskRepository
     public function store(Task $task): Task
     {
         // TODO: Implement insert/update methods.
-        $taskData = $this->hydrator->toArray($task);
-        $taskData['id'] = 1;
-        $task = $this->hydrator->hydrate($taskData);
+        $this->hydrator->assignId(1, $task);
 
         return $task;
     }

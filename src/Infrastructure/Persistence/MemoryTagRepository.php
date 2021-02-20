@@ -33,10 +33,7 @@ final class MemoryTagRepository implements TagRepository
 
     public function store(Tag $tag): Tag
     {
-        $tagData = $this->hydrator->toArray($tag);
-        $tagData['id'] = 1;
-
-        $tag = $this->hydrator->hydrate($tagData);
+        $this->hydrator->assignId(1, $tag);
 
         return $tag;
     }

@@ -20,13 +20,21 @@ final class TagHydrator extends AbstractHydrator
     }
 
     /**
-     * @param Tag $tag
+     * @param Tag $task
      */
-    public function toArray(object $tag): array
+    public function toArray(object $task): array
     {
         return [
-            'id'    => $tag->getId(),
-            'title' => $tag->getTitle(),
+            'id'    => $task->getId(),
+            'title' => $task->getTitle(),
         ];
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    public function assignId(int $id, object $tag): void
+    {
+        $this->setPrivateProperty($tag, 'id', $id);
     }
 }

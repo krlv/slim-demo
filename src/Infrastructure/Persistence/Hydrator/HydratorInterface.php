@@ -11,4 +11,6 @@ interface HydratorInterface
     public function hydrate(array $data): object;
 
     public function toArray(object $object): array;
+
+    public function assignId(int $id, object $object): void;
 }

@@ -44,29 +44,37 @@ final class TaskHydrator extends AbstractHydrator
     }
 
     /**
-     * @param Task $tag
+     * @param Task $task
      */
-    public function toArray(object $tag): array
+    public function toArray(object $task): array
     {
-        $task = [
-            'id'          => $tag->getId(),
-            'title'       => $tag->getTitle(),
-            'description' => $tag->getDescription(),
-            'priority'    => $tag->getPriority(),
-            'is_done'     => $tag->isDone(),
-            'is_deleted'  => $tag->isDeleted(),
-            'done_at'     => $tag->getDoneAt(),
-            'deleted_at'  => $tag->getDeletedAt(),
+        $data = [
+            'id'          => $task->getId(),
+            'title'       => $task->getTitle(),
+            'description' => $task->getDescription(),
+            'priority'    => $task->getPriority(),
+            'is_done'     => $task->isDone(),
+            'is_deleted'  => $task->isDeleted(),
+            'done_at'     => $task->getDoneAt(),
+            'deleted_at'  => $task->getDeletedAt(),
         ];
 
-        $task['done_at'] = $task['done_at']
-            ? $task['done_at']->format(self::DATE_FORMAT)
+        $data['done_at'] = $data['done_at']
+            ? $data['done_at']->format(self::DATE_FORMAT)
             : null;
 
-        $task['deleted_at'] = $task['deleted_at']
-            ? $task['deleted_at']->format(self::DATE_FORMAT)
+        $data['deleted_at'] = $data['deleted_at']
+            ? $data['deleted_at']->format(self::DATE_FORMAT)
             : null;
 
-        return $task;
+        return $data;
+    }
+
+    /**
+     * @param Task $task
+     */
+    public function assignId(int $id, object $task): void
+    {
+        $this->setPrivateProperty($task, 'id', $id);
     }
 }

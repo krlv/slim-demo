@@ -46,9 +46,7 @@ final class MemoryListRepository implements ListRepository
     public function store(ListEnity $taskList): ListEnity
     {
         // TODO: Implement insert/update methods.
-        $taskListData = $this->hydrator->toArray($taskList);
-        $taskListData['id'] = 1;
-        $taskList = $this->hydrator->hydrate($taskListData);
+        $this->hydrator->assignId(1, $taskList);
 
         return $taskList;
     }
