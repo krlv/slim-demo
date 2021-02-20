@@ -27,7 +27,7 @@ final class TasksTest extends WebTestCase
             'id'            => 1,
             'title'         => 'Task 1',
             'description'   => 'Description 1',
-            'priority'      => 0,
+            'priority'      => 1,
             'is_done'       => false,
             'is_deleted'    => false,
         ], 200);
@@ -40,7 +40,7 @@ final class TasksTest extends WebTestCase
             'id'            => 1,
             'title'         => 'Task 1',
             'description'   => 'Description 1',
-            'priority'      => 0,
+            'priority'      => 1,
             'is_done'       => false,
             'is_deleted'    => false,
         ], 200);
@@ -76,7 +76,7 @@ final class TasksTest extends WebTestCase
             'id'            => 1,
             'title'         => 'Task 1',
             'description'   => 'Description 1',
-            'priority'      => 0,
+            'priority'      => 1,
             'is_done'       => false,
             'is_deleted'    => false,
         ], 200);
@@ -94,7 +94,7 @@ final class TasksTest extends WebTestCase
             'id'            => 1,
             'title'         => 'Task 1',
             'description'   => 'Description 1',
-            'priority'      => 0,
+            'priority'      => 1,
             'is_done'       => false,
             'is_deleted'    => false,
         ], 200);

@@ -10,10 +10,17 @@ final class TaskHydrator extends AbstractHydrator
 {
     public function hydrate(array $data): Task
     {
-        $task = new Task($data['title']);
+        $reflection = new \ReflectionClass(Task::class);
+
+        /** @var Task $task */
+        $task = $reflection->newInstanceWithoutConstructor();
 
         if (isset($data['id'])) {
             $this->setPrivateProperty($task, 'id', (int) $data['id']);
+        }
+
+        if (isset($data['title'])) {
+            $task->setTitle($data['title']);
         }
 
         if (isset($data['description'])) {
@@ -32,13 +39,11 @@ final class TaskHydrator extends AbstractHydrator
             $this->setPrivateProperty($task, 'isDeleted', (bool) $data['is_deleted']);
         }
 
-        if (isset($data['done_at'])) {
-            $this->setPrivateProperty($task, 'doneAt', new \DateTimeImmutable($data['done_at']));
-        }
+        $doneAt = isset($data['done_at']) ? new \DateTimeImmutable($data['done_at']) : null;
+        $this->setPrivateProperty($task, 'doneAt', $doneAt);
 
-        if (isset($data['deleted_at'])) {
-            $this->setPrivateProperty($task, 'deletedAt', new \DateTimeImmutable($data['deleted_at']));
-        }
+        $deletedAt = isset($data['deleted_at']) ? new \DateTimeImmutable($data['deleted_at']) : null;
+        $this->setPrivateProperty($task, 'deletedAt', $deletedAt);
 
         return $task;
     }

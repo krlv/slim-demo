@@ -25,8 +25,26 @@ final class MemoryTaskRepository implements TaskRepository
                 return $this->hydrator->hydrate($taskData);
             },
             [
-                ['id' => 1, 'title' => 'Task 1', 'description' => 'Description 1'],
-                ['id' => 2, 'title' => 'Task 2', 'description' => 'Description 2'],
+                [
+                    'id'          => 1,
+                    'title'       => 'Task 1',
+                    'description' => 'Description 1',
+                    'priority'    => 1,
+                    'is_done'     => false,
+                    'is_deleted'  => false,
+                    'done_at'     => null,
+                    'deleted_at'  => null,
+                ],
+                [
+                    'id'          => 2,
+                    'title'       => 'Task 2',
+                    'description' => 'Description 2',
+                    'priority'    => 2,
+                    'is_done'     => false,
+                    'is_deleted'  => false,
+                    'done_at'     => null,
+                    'deleted_at'  => null,
+                ],
             ]
         );
     }
@@ -38,6 +56,11 @@ final class MemoryTaskRepository implements TaskRepository
             'id'            => $id,
             'title'         => \sprintf('Task %d', $id),
             'description'   => \sprintf('Description %d', $id),
+            'priority'      => 1,
+            'is_done'       => false,
+            'is_deleted'    => false,
+            'done_at'       => null,
+            'deleted_at'    => null,
         ]);
     }
 

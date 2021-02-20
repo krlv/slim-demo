@@ -33,9 +33,6 @@ final class TaskHydratorTest extends TestCase
 
     public function hydrateProvider(): array
     {
-        $taskDefaults     = ['title' => 'New Task'];
-        $expectedDefaults = new Task('New Task');
-
         $task = [
             'id'          => $id        = 1,
             'title'       => $title     = 'New Task',
@@ -59,7 +56,6 @@ final class TaskHydratorTest extends TestCase
         $this->setPrivateProperty($expected, 'id', $id);
 
         return [
-            [$taskDefaults, $expectedDefaults],
             [$task, $expected],
         ];
     }

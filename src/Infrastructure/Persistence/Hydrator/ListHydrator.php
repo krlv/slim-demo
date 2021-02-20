@@ -10,10 +10,17 @@ final class ListHydrator extends AbstractHydrator
 {
     public function hydrate(array $data): ListEnity
     {
-        $list = new ListEnity($data['title']);
+        $reflection = new \ReflectionClass(ListEnity::class);
+
+        /** @var ListEnity $list */
+        $list = $reflection->newInstanceWithoutConstructor();
 
         if (isset($data['id'])) {
             $this->setPrivateProperty($list, 'id', (int) $data['id']);
+        }
+
+        if (isset($data['title'])) {
+            $list->setTitle($data['title']);
         }
 
         return $list;
