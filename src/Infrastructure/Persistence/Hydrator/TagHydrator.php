@@ -10,23 +10,38 @@ final class TagHydrator extends AbstractHydrator
 {
     public function hydrate(array $data): Tag
     {
-        $tag = new Tag($data['title']);
+        $reflection = new \ReflectionClass(Tag::class);
+
+        /** @var Tag $tag */
+        $tag = $reflection->newInstanceWithoutConstructor();
 
         if (isset($data['id'])) {
             $this->setPrivateProperty($tag, 'id', (int) $data['id']);
+        }
+
+        if (isset($data['title'])) {
+            $this->setPrivateProperty($tag, 'title', $data['title']);
         }
 
         return $tag;
     }
 
     /**
-     * @param Tag $tag
+     * @param Tag $task
      */
-    public function toArray(object $tag): array
+    public function toArray(object $task): array
     {
         return [
-            'id'    => $tag->getId(),
-            'title' => $tag->getTitle(),
+            'id'    => $task->getId(),
+            'title' => $task->getTitle(),
         ];
+    }
+
+    /**
+     * @param Tag $tag
+     */
+    public function assignId(int $id, object $tag): void
+    {
+        $this->setPrivateProperty($tag, 'id', $id);
     }
 }

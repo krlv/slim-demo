@@ -10,10 +10,17 @@ final class TaskHydrator extends AbstractHydrator
 {
     public function hydrate(array $data): Task
     {
-        $task = new Task($data['title']);
+        $reflection = new \ReflectionClass(Task::class);
+
+        /** @var Task $task */
+        $task = $reflection->newInstanceWithoutConstructor();
 
         if (isset($data['id'])) {
             $this->setPrivateProperty($task, 'id', (int) $data['id']);
+        }
+
+        if (isset($data['title'])) {
+            $task->setTitle($data['title']);
         }
 
         if (isset($data['description'])) {
@@ -32,41 +39,47 @@ final class TaskHydrator extends AbstractHydrator
             $this->setPrivateProperty($task, 'isDeleted', (bool) $data['is_deleted']);
         }
 
-        if (isset($data['done_at'])) {
-            $this->setPrivateProperty($task, 'doneAt', new \DateTimeImmutable($data['done_at']));
-        }
+        $doneAt = isset($data['done_at']) ? new \DateTimeImmutable($data['done_at']) : null;
+        $this->setPrivateProperty($task, 'doneAt', $doneAt);
 
-        if (isset($data['deleted_at'])) {
-            $this->setPrivateProperty($task, 'deletedAt', new \DateTimeImmutable($data['deleted_at']));
-        }
+        $deletedAt = isset($data['deleted_at']) ? new \DateTimeImmutable($data['deleted_at']) : null;
+        $this->setPrivateProperty($task, 'deletedAt', $deletedAt);
 
         return $task;
     }
 
     /**
-     * @param Task $tag
+     * @param Task $task
      */
-    public function toArray(object $tag): array
+    public function toArray(object $task): array
     {
-        $task = [
-            'id'          => $tag->getId(),
-            'title'       => $tag->getTitle(),
-            'description' => $tag->getDescription(),
-            'priority'    => $tag->getPriority(),
-            'is_done'     => $tag->isDone(),
-            'is_deleted'  => $tag->isDeleted(),
-            'done_at'     => $tag->getDoneAt(),
-            'deleted_at'  => $tag->getDeletedAt(),
+        $data = [
+            'id'          => $task->getId(),
+            'title'       => $task->getTitle(),
+            'description' => $task->getDescription(),
+            'priority'    => $task->getPriority(),
+            'is_done'     => $task->isDone(),
+            'is_deleted'  => $task->isDeleted(),
+            'done_at'     => $task->getDoneAt(),
+            'deleted_at'  => $task->getDeletedAt(),
         ];
 
-        $task['done_at'] = $task['done_at']
-            ? $task['done_at']->format(self::DATE_FORMAT)
+        $data['done_at'] = $data['done_at']
+            ? $data['done_at']->format(self::DATE_FORMAT)
             : null;
 
-        $task['deleted_at'] = $task['deleted_at']
-            ? $task['deleted_at']->format(self::DATE_FORMAT)
+        $data['deleted_at'] = $data['deleted_at']
+            ? $data['deleted_at']->format(self::DATE_FORMAT)
             : null;
 
-        return $task;
+        return $data;
+    }
+
+    /**
+     * @param Task $task
+     */
+    public function assignId(int $id, object $task): void
+    {
+        $this->setPrivateProperty($task, 'id', $id);
     }
 }
