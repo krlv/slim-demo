@@ -51,6 +51,16 @@ final class ListsTest extends WebTestCase
         ], 201);
     }
 
+    public function testCreateListActionInvalidPayload(): void
+    {
+        $this->request('POST', '/api/lists', [
+            'Content-Type' => 'application/json',
+        ], [], [], [
+            'name' => 'Task List 1',
+        ]);
+        $this->assertJsonResponse(['errors' => ['title' => ['Title is required']]], 400);
+    }
+
     public function testUpdateListAction(): void
     {
         $this->request('PUT', '/api/lists/1', [
@@ -62,6 +72,16 @@ final class ListsTest extends WebTestCase
             'id'    => 1,
             'title' => 'Task List 1',
         ], 200);
+    }
+
+    public function testUpdateListActionInvalidPayload(): void
+    {
+        $this->request('PUT', '/api/lists/1', [
+            'Content-Type' => 'application/json',
+        ], [], [], [
+            'name' => 'Task List 1',
+        ]);
+        $this->assertJsonResponse(['errors' => ['title' => ['Title is required']]], 400);
     }
 
     public function testUpdateNonExistingListAction(): void

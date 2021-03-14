@@ -87,7 +87,7 @@ class WebTestCase extends TestCase
     /**
      * Assert that JSON response equals to expected data.
      *
-     * @param string[] $expected
+     * @param mixed[] $expected
      */
     public function assertJsonResponse(array $expected, int $code = 200): void
     {

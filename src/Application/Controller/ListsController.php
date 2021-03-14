@@ -9,14 +9,19 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Skeleton\Application\Serializer\Serializer;
 use Skeleton\Domain\ListService;
+use Valitron\Validator;
 
 class ListsController
 {
+    private Validator $validator;
     private Serializer $serializer;
     private ListService $listService;
 
-    public function __construct(Serializer $serializer, ListService $taskListService)
+    public function __construct(Validator $validator, Serializer $serializer, ListService $taskListService)
     {
+        $this->validator = $validator;
+        $this->validator->rule('required', 'title');
+
         $this->serializer  = $serializer;
         $this->listService = $taskListService;
     }
@@ -51,8 +56,12 @@ class ListsController
      */
     public function createListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: validate payload
         $data = $request->getParsedBody();
+
+        $v = $this->validator->withData($data);
+        if (!$v->validate()) {
+            return $this->serializer->serialize($response, ['errors' => $v->errors()], HttpCode::STATUS_BAD_REQUEST);
+        }
 
         $list = $this->listService->createList($data);
 
@@ -65,9 +74,13 @@ class ListsController
      */
     public function updateListAction(Request $request, Response $response, array $args): Response
     {
-        // TODO: validate payload
         $id   = (int) $args['list_id'];
         $data = $request->getParsedBody();
+
+        $v = $this->validator->withData($data);
+        if (!$v->validate()) {
+            return $this->serializer->serialize($response, ['errors' => $v->errors()], HttpCode::STATUS_BAD_REQUEST);
+        }
 
         // TODO: handle not found exception
         $list = $this->listService->updateList($id, $data);
