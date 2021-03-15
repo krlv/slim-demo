@@ -9,14 +9,19 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Skeleton\Application\Serializer\Serializer;
 use Skeleton\Domain\TagService;
+use Valitron\Validator;
 
 class TagsController
 {
+    private Validator $validator;
     private Serializer $serializer;
     private TagService $tagService;
 
-    public function __construct(Serializer $serializer, TagService $tagService)
+    public function __construct(Validator $validator, Serializer $serializer, TagService $tagService)
     {
+        $this->validator = $validator;
+        $this->validator->rule('required', 'title');
+
         $this->serializer = $serializer;
         $this->tagService = $tagService;
     }
@@ -37,8 +42,14 @@ class TagsController
      */
     public function createTagAction(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface
     {
-        $tagData = $request->getParsedBody();
-        $tag = $this->tagService->createTag($tagData['title']);
+        $data = $request->getParsedBody();
+
+        $v = $this->validator->withData($data);
+        if (!$v->validate()) {
+            return $this->serializer->serialize($response, ['errors' => $v->errors()], HttpCode::STATUS_BAD_REQUEST);
+        }
+
+        $tag = $this->tagService->createTag($data['title']);
 
         // Return response as JSON with 201 Created code
         return $this->serializer->serialize($response, $tag, HttpCode::STATUS_CREATED);

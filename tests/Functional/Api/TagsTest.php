@@ -32,4 +32,14 @@ final class TagsTest extends WebTestCase
             'title' => 'Tag 1',
         ], 201);
     }
+
+    public function testCreateListActionInvalidPayload(): void
+    {
+        $this->request('POST', '/api/tags', [
+            'Content-Type' => 'application/json',
+        ], [], [], [
+            'tag' => 'Tag 1',
+        ]);
+        $this->assertJsonResponse(['errors' => ['title' => ['Title is required']]], 400);
+    }
 }
