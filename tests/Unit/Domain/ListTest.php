@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Domain;
+namespace Demo\Test\Unit\Domain;
 
+use Demo\Domain\ListEnity;
+use Demo\Test\Unit\Traits\Visibility;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\ListEnity;
-use Skeleton\Test\Unit\Traits\Visibility;
 
 class ListTest extends TestCase
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Domain;
+namespace Demo\Test\Unit\Domain;
 
+use Demo\Domain\ListEnity;
+use Demo\Domain\ListRepository;
+use Demo\Domain\ListService;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\ListEnity;
-use Skeleton\Domain\ListRepository;
-use Skeleton\Domain\ListService;
 
 final class ListServiceTest extends TestCase
 {

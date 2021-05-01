@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence;
+namespace Demo\Infrastructure\Persistence;
 
-use Skeleton\Domain\ListEnity;
-use Skeleton\Domain\ListRepository;
-use Skeleton\Infrastructure\Persistence\Hydrator\ListHydrator;
+use Demo\Domain\ListEnity;
+use Demo\Domain\ListRepository;
+use Demo\Infrastructure\Persistence\Hydrator\ListHydrator;
 
 final class MemoryListRepository implements ListRepository
 {

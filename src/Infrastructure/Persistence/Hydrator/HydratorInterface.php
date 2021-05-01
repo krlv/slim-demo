@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence\Hydrator;
+namespace Demo\Infrastructure\Persistence\Hydrator;
 
 interface HydratorInterface
 {

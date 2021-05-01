@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence\Hydrator;
+namespace Demo\Infrastructure\Persistence\Hydrator;
 
-use Skeleton\Domain\ListEnity;
+use Demo\Domain\ListEnity;
 
 final class ListHydrator extends AbstractHydrator
 {

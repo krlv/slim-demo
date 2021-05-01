@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Application\Controller;
+namespace Demo\Application\Controller;
 
+use Demo\Application\Serializer\Serializer;
+use Demo\Domain\TaskService;
 use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Skeleton\Application\Serializer\Serializer;
-use Skeleton\Domain\TaskService;
 
 class TasksController
 {

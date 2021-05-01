@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Infrastructure\Persistence\Hydrator;
+namespace Demo\Test\Unit\Infrastructure\Persistence\Hydrator;
 
+use Demo\Domain\ListEnity;
+use Demo\Infrastructure\Persistence\Hydrator\ListHydrator;
+use Demo\Test\Unit\Traits\Visibility;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\ListEnity;
-use Skeleton\Infrastructure\Persistence\Hydrator\ListHydrator;
-use Skeleton\Test\Unit\Traits\Visibility;
 
 final class ListHydratorTest extends TestCase
 {

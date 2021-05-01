@@ -19,7 +19,7 @@ return function (ContainerBuilder $containerBuilder) {
             // Database settings
             // TODO: use env to set db host, user and password values
             'dbal' => [
-                'dbname'   => 'skeleton',
+                'dbname'   => 'demo',
                 'user'     => 'root',
                 'password' => 'secret',
                 'host'     => '127.0.0.1',
@@ -28,7 +28,7 @@ return function (ContainerBuilder $containerBuilder) {
 
             // Monolog settings
             'logger' => [
-                'name' => 'skeleton-app',
+                'name' => 'slim-demo',
                 'path' => __DIR__ . '/../var/log/app.log',
             ],
         ],

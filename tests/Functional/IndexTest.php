@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Functional;
+namespace Demo\Test\Functional;
 
 class IndexTest extends WebTestCase
 {

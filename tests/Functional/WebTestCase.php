@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Functional;
+namespace Demo\Test\Functional;
 
+use Demo\Application\AppFactory;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface as Response;
-use Skeleton\Application\AppFactory;
 use Slim\App as SlimApp;
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Headers;

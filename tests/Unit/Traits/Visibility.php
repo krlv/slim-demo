@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Traits;
+namespace Demo\Test\Unit\Traits;
 
 trait Visibility
 {

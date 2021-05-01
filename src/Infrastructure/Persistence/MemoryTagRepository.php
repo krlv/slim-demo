@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence;
+namespace Demo\Infrastructure\Persistence;
 
-use Skeleton\Domain\Tag;
-use Skeleton\Domain\TagRepository;
-use Skeleton\Infrastructure\Persistence\Hydrator\TagHydrator;
+use Demo\Domain\Tag;
+use Demo\Domain\TagRepository;
+use Demo\Infrastructure\Persistence\Hydrator\TagHydrator;
 
 final class MemoryTagRepository implements TagRepository
 {

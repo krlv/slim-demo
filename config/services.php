@@ -13,13 +13,13 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
-use Skeleton\Application\Serializer\Serializer;
-use Skeleton\Domain\TagRepository;
-use Skeleton\Domain\ListRepository;
-use Skeleton\Domain\TaskRepository;
-use Skeleton\Infrastructure\Persistence\MemoryTagRepository;
-use Skeleton\Infrastructure\Persistence\MemoryListRepository;
-use Skeleton\Infrastructure\Persistence\MemoryTaskRepository;
+use Demo\Application\Serializer\Serializer;
+use Demo\Domain\TagRepository;
+use Demo\Domain\ListRepository;
+use Demo\Domain\TaskRepository;
+use Demo\Infrastructure\Persistence\MemoryTagRepository;
+use Demo\Infrastructure\Persistence\MemoryListRepository;
+use Demo\Infrastructure\Persistence\MemoryTaskRepository;
 use Slim\Views\PhpRenderer;
 
 return function (ContainerBuilder $containerBuilder) {

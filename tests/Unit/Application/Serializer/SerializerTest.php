@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Application\Serializer;
+namespace Demo\Test\Unit\Application\Serializer;
 
+use Demo\Application\Serializer\Serializer;
 use JMS\Serializer\SerializerInterface;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\StreamInterface;
-use Skeleton\Application\Serializer\Serializer;
 
 class SerializerTest extends TestCase
 {

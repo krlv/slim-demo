@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Application\Controller;
+namespace Demo\Application\Controller;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;

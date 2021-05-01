@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Domain;
+namespace Demo\Domain;
 
 final class ListService
 {

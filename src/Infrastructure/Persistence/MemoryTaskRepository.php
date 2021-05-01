@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence;
+namespace Demo\Infrastructure\Persistence;
 
-use Skeleton\Domain\Task;
-use Skeleton\Domain\TaskRepository;
-use Skeleton\Infrastructure\Persistence\Hydrator\TaskHydrator;
+use Demo\Domain\Task;
+use Demo\Domain\TaskRepository;
+use Demo\Infrastructure\Persistence\Hydrator\TaskHydrator;
 
 final class MemoryTaskRepository implements TaskRepository
 {

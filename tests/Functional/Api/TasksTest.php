@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Functional\Api;
+namespace Demo\Test\Functional\Api;
 
-use Skeleton\Test\Functional\WebTestCase;
+use Demo\Test\Functional\WebTestCase;
 
 final class TasksTest extends WebTestCase
 {

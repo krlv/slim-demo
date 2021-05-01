@@ -3,6 +3,7 @@ version: '2'
 services:
     fpm:
         build: docker/php-fpm
+        container_name: demo_fpm
         volumes:
             - ./:/app
         working_dir: /app
@@ -10,6 +11,7 @@ services:
 
     nginx:
         build: docker/nginx
+        container_name: demo_nginx
         volumes:
             - ./:/app
         network_mode: bridge

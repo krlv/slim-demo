@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Infrastructure\Persistence\Hydrator;
+namespace Demo\Test\Unit\Infrastructure\Persistence\Hydrator;
 
+use Demo\Domain\Task;
+use Demo\Infrastructure\Persistence\Hydrator\TaskHydrator;
+use Demo\Test\Unit\Traits\Visibility;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\Task;
-use Skeleton\Infrastructure\Persistence\Hydrator\TaskHydrator;
-use Skeleton\Test\Unit\Traits\Visibility;
 
 final class TaskHydratorTest extends TestCase
 {

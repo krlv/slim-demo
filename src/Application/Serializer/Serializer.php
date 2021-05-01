@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Application\Serializer;
+namespace Demo\Application\Serializer;
 
 use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use JMS\Serializer\SerializerInterface;

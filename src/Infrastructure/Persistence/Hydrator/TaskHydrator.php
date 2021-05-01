@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Infrastructure\Persistence\Hydrator;
+namespace Demo\Infrastructure\Persistence\Hydrator;
 
-use Skeleton\Domain\Task;
+use Demo\Domain\Task;
 
 final class TaskHydrator extends AbstractHydrator
 {

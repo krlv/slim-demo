@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Application;
+namespace Demo\Application;
 
 use DI\ContainerBuilder;
 use Slim\App;

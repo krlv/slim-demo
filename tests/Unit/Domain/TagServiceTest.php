@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Domain;
+namespace Demo\Test\Unit\Domain;
 
+use Demo\Domain\Tag;
+use Demo\Domain\TagRepository;
+use Demo\Domain\TagService;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\Tag;
-use Skeleton\Domain\TagRepository;
-use Skeleton\Domain\TagService;
 
 class TagServiceTest extends TestCase
 {

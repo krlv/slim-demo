@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Test\Unit\Domain;
+namespace Demo\Test\Unit\Domain;
 
+use Demo\Domain\Tag;
+use Demo\Test\Unit\Traits\Visibility;
 use PHPUnit\Framework\TestCase;
-use Skeleton\Domain\Tag;
-use Skeleton\Test\Unit\Traits\Visibility;
 
 class TagTest extends TestCase
 {

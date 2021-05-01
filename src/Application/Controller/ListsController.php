@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Skeleton\Application\Controller;
+namespace Demo\Application\Controller;
 
+use Demo\Application\Serializer\Serializer;
+use Demo\Domain\ListService;
 use Fig\Http\Message\StatusCodeInterface as HttpCode;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Skeleton\Application\Serializer\Serializer;
-use Skeleton\Domain\ListService;
 
 class ListsController
 {
